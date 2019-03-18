@@ -1,4 +1,4 @@
-package java;
+package model;
 
 public class Administrator extends User{
     private String type = "Administrator";

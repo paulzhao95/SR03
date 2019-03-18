@@ -1,4 +1,4 @@
-package java;
+package model;
 
 public class Intern extends User{
     private String type = "Intern";

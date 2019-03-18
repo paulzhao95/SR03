@@ -1,5 +1,5 @@
 
-package java.controller;
+package controller;
 
 
 
@@ -10,12 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.Administrator;
-import java.User;
+import model.Administrator;
+import model.User;
 import java.util.Date;
 
 import java.text.SimpleDateFormat; 
-import java.Intern;
+import model.Intern;
 
 public class CreerUnUtilisateur extends HttpServlet {
  private static Hashtable<Integer, User> usersTable= new Hashtable<Integer, User>();
@@ -30,7 +30,7 @@ public class CreerUnUtilisateur extends HttpServlet {
  */
  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
  throws ServletException, IOException {
-Date now = new Date(); 
+Date now = new Date();
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
      if (request.getParameter("Type_User") == "Administrator"){
