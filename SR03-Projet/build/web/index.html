@@ -6,13 +6,11 @@
  </head>
  <body>
     <div>Inscription</div>
-    <form action="/ImplementationMVC/CreerUnUtilisateur" method="post">
-    <label> First name </label>
-    <input type="text" id="frname" name="User first name"/>
+    <form action="/SR03-Projet/CreerUnUtilisateur" method="post">
+    <label> Name </label>
+    <input type="text" id="name" name="User name"/>
     <br>
-    <label> Familly name </label>
-    <input type="text" id="faname" name="User familly name"/>
-    <br>
+
     <label> Email </label>
     <input type="email" id="email" name="User email"/>
     <br>
@@ -20,11 +18,20 @@
     <label> Password </label>
     <input type="password" id="psw" name="User password"/>
     <br>
-    <label> male </label>
-    <input type="radio" id="male" name="gender" value="male" checked/>
+    
+    <label> Company </label>
+    <input type="text" id="company" name="User company"/>
     <br>
-    <label> female </label>
-    <input type="radio" id="female" name="gender" value="female"/>
+    
+    <label> Telephone </label>
+    <input type="text" id="Telephone" name="User telephone"/>
+    <br>
+    
+    <label> Administrator </label>
+    <input type="radio" id="Administrator" name="Type_User" value="Administrator" checked/>
+    <br>
+    <label> Intern </label>
+    <input type="radio" id="Intern" name="Type_User" value="Intern"/>
     <br>
 
 
