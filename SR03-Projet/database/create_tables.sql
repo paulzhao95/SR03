@@ -23,7 +23,7 @@ CREATE TABLE public."Users"
 
 CREATE TABLE public."Questionnaires"
 (
-    "Number" integer NOT NULL,
+    "Number" serial NOT NULL,
     "Theme" "Skills" NOT NULL,
     "Status" states,
     PRIMARY KEY ("Number")
