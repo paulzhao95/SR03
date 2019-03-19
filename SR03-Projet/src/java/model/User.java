@@ -8,20 +8,18 @@ public class User {
     private String status;
     private String company;
     private String tel;
-    private String creatng_time;
+    private String creatngTime;
+    private String type;
     
-    
-    public User(){
-    }
-    
-    public User(String email, String password, String name, String status,String company,String tel,String creatng_time){
+
+    public User(String email, String password, String name, String status,String company,String tel,String creatngTime){
         this.email=email;
         this.password=password;
         this.name=name;
         this.status=status;
         this.company=company;
         this.tel=tel;
-        this.creatng_time=creatng_time;
+        this.creatngTime = creatngTime;
     }
     
     public void setLogin(String login){
@@ -72,14 +70,21 @@ public class User {
         return this.tel;
     }
     
-    public void setCreateDate(String date){
-        this.creatng_time = date;
+    public void setCreatingTime(String date){
+        this.creatngTime = date;
     }
     
-    public String getCreateDate(){
-        return this.creatng_time;
+    public String getCreatingTime(){
+        return this.creatngTime;
     }
-    
+
+    public void setType(String type) { this.type = type;}
+
+    public String getType() {
+        return type;
+    }
+
+
     public String toString(){
         return "User{" + "Name= "+ name+ ", login= "+email+", key= "+password;
     }
