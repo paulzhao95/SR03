@@ -1,5 +1,4 @@
 package controller;
-import model.Intern;
 
 import java.sql.*;
 
@@ -34,6 +33,44 @@ public class DatabaseHandler {
         databaseConnection.close();
     }
 
+    public static Boolean userExists(String userLogin) throws SQLException {
+        Connection databaseConnection = getDatabaseConnection();
+        Statement statement = databaseConnection.createStatement();
+        String sql = "select * from \"User\" where \"Email\" = "+"'" +userLogin+"'";
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.close();
+        statement.close();
+        databaseConnection.close();
+        Boolean next = resultSet.next();
+        return next;
+    }
+
+
+    /*TODO test handle login*/
+    public static Boolean handleLogin(String email, String pwd,String userType) throws SQLException, Exception {
+        if (!userExists(email)){
+            throw new Exception ("User does not exist");
+        }
+
+        Connection databaseConnection = getDatabaseConnection();
+        Statement statement = databaseConnection.createStatement();
+        String sql = "select * from \"User\" where \"Email\" = "+"'" +email+"'" + "and \"Password\" = "  +"'"  +pwd +"'" +"and \"Type_user\" =" +"'" +userType+"'" ;
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        Boolean login = resultSet.next();
+
+        resultSet.close();
+        statement.close();
+        databaseConnection.close();
+        return login;
+
+
+
+
+
+
+
+    }
 //    public static void executeQuery(String sql) throws SQLException {
 //        Connection databaseConnection = getDatabaseConnection();
 //        Statement statement = databaseConnection.createStatement();
