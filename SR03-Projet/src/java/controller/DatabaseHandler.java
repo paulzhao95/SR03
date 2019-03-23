@@ -1,5 +1,8 @@
 package controller;
 
+import model.Question;
+import model.Questionnaire;
+
 import java.sql.*;
 
 
@@ -36,12 +39,13 @@ public class DatabaseHandler {
     public static Boolean userExists(String userLogin) throws SQLException {
         Connection databaseConnection = getDatabaseConnection();
         Statement statement = databaseConnection.createStatement();
-        String sql = "select * from \"User\" where \"Email\" = "+"'" +userLogin+"'";
+        String sql = "select * from \"Users\" where \"Email\" = "+"'" +userLogin+"'";
+
         ResultSet resultSet = statement.executeQuery(sql);
+        Boolean next = resultSet.next();
         resultSet.close();
         statement.close();
         databaseConnection.close();
-        Boolean next = resultSet.next();
         return next;
     }
 
@@ -64,13 +68,23 @@ public class DatabaseHandler {
         databaseConnection.close();
         return login;
 
-
-
-
-
-
-
     }
+
+    public static void InsertQuestionnaire(Questionnaire questionnaire) throws SQLException {
+        // insert questionnqire info
+        Connection databaseConnection = getDatabaseConnection();
+        Statement statement = databaseConnection.createStatement();
+        statement.executeUpdate("insert into \"Questionnaires\" VALUE (" + "'" + questionnaire.getQuestionnaireID() + "'," + "'" + questionnaire.getTheme()+"',"+ "'" + questionnaire.getStatus()+"')" );
+        // TODO: 3/20/19 insert componants of questionnaire
+    }
+
+    public static void InsertQuestion(Question question) throws SQLException {
+        Connection databaseConnection = getDatabaseConnection();
+        Statement statement = databaseConnection.createStatement();
+//        statement.executeUpdate("insert into \"Questions\" value ("+ "'" + question.get() + "',");
+    }
+
+
 //    public static void executeQuery(String sql) throws SQLException {
 //        Connection databaseConnection = getDatabaseConnection();
 //        Statement statement = databaseConnection.createStatement();

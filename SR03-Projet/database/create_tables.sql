@@ -1,13 +1,20 @@
+drop type if exists States cascade ;
 CREATE TYPE States as enum ('Active','Inactive');
 
-CREATE TYPE public."Skills" AS ENUM
-    ('Java development', 'Webservice');
-	
+drop type if exists Type_user cascade ;
 CREATE TYPE Type_user as enum ('Administrator','Intern');
 
+drop type if exists Type_choice cascade ;
 CREATE TYPE Type_choice as enum ('Wrong_choice','Right_choice');
 
+drop table if exists public."Skills" CASCADE;
+CREATE TABLE public."Skills"
+(
+  "Skill" character varying not null,
+  primary key ("Skill")
+);
 
+drop table if exists public."Users" CASCADE;
 CREATE TABLE public."Users"
 (
     "Password" character varying NOT NULL,
@@ -21,21 +28,26 @@ CREATE TABLE public."Users"
     PRIMARY KEY ("Email")
 );
 
+
+drop table if exists public."Questionnaires" CASCADE;
 CREATE TABLE public."Questionnaires"
 (
-    "Number" serial NOT NULL,
-    "Theme" "Skills" NOT NULL,
+    "Number" integer NOT NULL,
+    "Theme" character varying NOT NULL,
     "Status" states,
     PRIMARY KEY ("Number")
 );
 
+alter table "Questionnaires" add constraint FK_Theme foreign key ("Theme")
+references "Skills"("Skill");
 
+drop table if exists public."Questions" CASCADE;
 CREATE TABLE public."Questions"
 (
     "Questionnaire_Id" integer NOT NULL ,
     "Number" integer NOT NULL,
     "Description" character varying,
-	"Status" States NOT NULL,
+	  "Status" States NOT NULL,
     "Score" integer NOT NULL,
     PRIMARY KEY ("Questionnaire_Id", "Number")
 );
@@ -44,7 +56,7 @@ ALTER TABLE "Questions" add constraint FK foreign key("Questionnaire_Id")
 references "Questionnaires"("Number");
 
 
-
+drop table if exists  public."Choices" CASCADE;
 CREATE TABLE public."Choices"
 (
     "Questionnaire_Id" integer NOT NULL ,
@@ -59,6 +71,8 @@ CREATE TABLE public."Choices"
 ALTER TABLE "Choices" add constraint FK_Choice foreign key("Questionnaire_Id","Question_Id") 
 references "Questions"("Questionnaire_Id","Number");
 
+
+drop table if exists public."Evaluation" CASCADE;
 CREATE TABLE public."Evaluation"
 (
 	"Evaluation_Id" integer NOT NULL,
@@ -73,6 +87,7 @@ CREATE TABLE public."Evaluation"
 ALTER TABLE "Evaluation" add constraint FK_Evaluation_User foreign key("User_email") references "Users"("Email");
 ALTER TABLE "Evaluation" add constraint FK_Evaluation_Questionnaire foreign key("Questionnaire_Id") references "Questionnaires" ("Number");
 
+drop table if exists public."User_choice" CASCADE;
 CREATE TABLE public."User_choice"
 (
 	"Evaluation_Id" integer NOT NULL,

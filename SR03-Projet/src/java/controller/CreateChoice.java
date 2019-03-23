@@ -6,10 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CreateQuestion extends HttpServlet {
-    // TODO: 3/20/19  process question creation
-
-
+public class CreateChoice extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
@@ -19,4 +16,5 @@ public class CreateQuestion extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
     }
+
 }

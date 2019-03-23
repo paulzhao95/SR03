@@ -52,6 +52,20 @@ public class CreateUser extends HttpServlet {
         if (DatabaseHandler.userExists(user.getLogin())){
 
             /*TODO show user already exists*/
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>error:</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1> User already exists" + usersTable.get(usersTable.size() - 1).toString() + "</h1>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+
         }
 
         else {
@@ -59,19 +73,19 @@ public class CreateUser extends HttpServlet {
         }
 
         /* TODO show... if user creation successes. */
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Controller:</title>");
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1> Utilisateur crée " + usersTable.get(usersTable.size() - 1).toString() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Controller:</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1> Utilisateur crée " + usersTable.get(usersTable.size() - 1).toString() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
