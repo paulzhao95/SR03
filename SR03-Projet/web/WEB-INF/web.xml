@@ -1,13 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
     <servlet>
-        <servlet-name>CreerUnUtilisateur</servlet-name>
-        <servlet-class>controller.CreerUnUtilisateur</servlet-class>
+        <servlet-name>CreateUser</servlet-name>
+        <servlet-class>controller.CreateUser</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CreerUnUtilisateur</servlet-name>
-        <url-pattern>/CreerUnUtilisateur</url-pattern>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/CreateUser</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CreateChoice</servlet-name>
+        <servlet-class>controller.CreateChoice</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateChoice</servlet-name>
+        <url-pattern>/CreateChoice</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CreateQuestion</servlet-name>
+        <servlet-class>controller.CreateQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateQuestion</servlet-name>
+        <url-pattern>/CreateQuestion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CreateQuestionnaire</servlet-name>
+        <servlet-class>controller.CreateQuestionnaire</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateQuestionnaire</servlet-name>
+        <url-pattern>/CreateQuestionnaire</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CreateSkill</servlet-name>
+        <servlet-class>controller.CreateSkill</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateSkill</servlet-name>
+        <url-pattern>/CreateSkill</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    
+    
+    
     <session-config>
         <session-timeout>
             30

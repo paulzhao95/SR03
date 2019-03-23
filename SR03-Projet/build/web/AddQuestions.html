@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+ <body>
+        
+<script>var i=1
+         function myfun(){
+         var obj = document.getElementById("btn1");
+         obj.insertAdjacentHTML("afterEnd",'<input type=text name=Question'+i+' value=Question'+i+'>\n\
+ <input type=text name=AnswerA'+i+' value=AnswerA'+i+'><input type=text name=AnswerB'+i+' value=AnswerB'+i+'><input type=text name=AnswerC'+i+' value=AnswerC'+i+'><input type=text name=AnswerCorrect'+i+' value=AnswerCorrect'+i+++'>\n\
+<br> ');
+     }
+</script>
+<form action="/SR03-Projet/CreateQuestion" method="post">
+<div id = "insert"> Enter your Question and Answer</div>
+         <input id="btn1" name="btn1" type="button" value="更多" onclick="myfun()">
+<input type="submit" value="Submit">
+</form>
+    </body>
+</html>
