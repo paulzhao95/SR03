@@ -4,21 +4,26 @@ import java.util.ArrayList;
 
 public class Question {
     private Integer questionID;
-    private String status = "Active";
+    private Boolean status ;
     private String Description;
-    private Integer score = 1;
     private Choice rightChoice;
     private ArrayList<Choice> wrongChoices;
 
-    public Question(Integer id, String description, Integer score,Choice rightChoice, ArrayList<Choice> wrongChoices) {
+    public Question(Integer id, String description, Boolean status) {
         this.Description = description;
         this.questionID = id;
-        this.score = score;
-        this.rightChoice = rightChoice;
-        this.wrongChoices  =wrongChoices;
+        this.status = status;
     }
 
-    public String getStatus() {
+    public Question(Integer id, String description, Boolean status, Choice rightChoice, ArrayList<Choice> wrongChoices) {
+        this.Description = description;
+        this.questionID = id;
+        this.status = status;
+        this.rightChoice = rightChoice;
+        this.wrongChoices = wrongChoices;
+    }
+
+    public Boolean getStatus() {
         return status;
     }
 
@@ -26,15 +31,12 @@ public class Question {
         return questionID;
     }
 
-    public Integer getScore() {
-        return score;
-    }
 
     public String getDescription() {
         return Description;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -46,8 +48,20 @@ public class Question {
         this.questionID = questionID;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public ArrayList<Choice> getWrongChoices() {
+        return wrongChoices;
+    }
+
+    public Choice getRightChoice() {
+        return rightChoice;
+    }
+
+    public void setRightChoice(Choice rightChoice) {
+        this.rightChoice = rightChoice;
+    }
+
+    public void setWrongChoices(ArrayList<Choice> wrongChoices) {
+        this.wrongChoices = wrongChoices;
     }
 
 

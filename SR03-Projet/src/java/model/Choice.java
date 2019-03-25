@@ -2,7 +2,7 @@ package model;
 
 public class Choice {
     private Integer choiceID;
-    private String status = "Active";
+    private Boolean status;
     private String description;
     private Boolean isRight;
 
@@ -17,7 +17,7 @@ public class Choice {
         return description;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
@@ -33,7 +33,7 @@ public class Choice {
         this.description = description;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

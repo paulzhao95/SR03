@@ -39,7 +39,7 @@ public class CreateUser extends HttpServlet {
 
         String user_type = request.getParameter("Type_User");
 
-        if (user_type.equals("Administrator")) {
+        if (user_type.equals("administrator")) {
             usersTable.put(usersTable.size(), new Administrator(request.getParameter("User email"), request.getParameter("User password"), request.getParameter("User name"), "Active", request.getParameter("User company"), request.getParameter("User telephone"), dateFormat.format(now)));
         } else {
             usersTable.put(usersTable.size(), new Intern(request.getParameter("User email"), request.getParameter("User password"), request.getParameter("User name"), "Active", request.getParameter("User company"), request.getParameter("User telephone"), dateFormat.format(now)));

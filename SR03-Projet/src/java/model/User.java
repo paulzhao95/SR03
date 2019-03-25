@@ -1,18 +1,20 @@
 
 package model;
 
+import java.sql.Timestamp;
+
 public class User {
     private String email;
     private String password;
     private String name;
-    private String status;
+    private Boolean status;
     private String company;
     private String tel;
-    private String creatngTime;
+    private Timestamp creatngTime;
     private String type;
     
 
-    public User(String email, String password, String name, String status,String company,String tel,String creatngTime){
+    public User(String email, String password, String name, Boolean status,String company,String tel,Timestamp creatngTime){
         this.email=email;
         this.password=password;
         this.name=name;
@@ -21,7 +23,17 @@ public class User {
         this.tel=tel;
         this.creatngTime = creatngTime;
     }
-    
+
+    public User() {
+        this.email="";
+        this.password="";
+        this.name="";
+        this.status=false;
+        this.company="";
+        this.tel="";
+        this.creatngTime = null;
+    }
+
     public void setLogin(String login){
         this.email = login;
     }
@@ -46,11 +58,11 @@ public class User {
         return this.name;
     }
     
-    public void setStatus(String status){
+    public void setStatus(Boolean status){
         this.status = status;
     }
     
-    public String getStatus(){
+    public Boolean getStatus(){
         return this.status;
     }
     
@@ -70,11 +82,11 @@ public class User {
         return this.tel;
     }
     
-    public void setCreatingTime(String date){
+    public void setCreatingTime(Timestamp date){
         this.creatngTime = date;
     }
-    
-    public String getCreatingTime(){
+
+    public Timestamp getCreatingTime(){
         return this.creatngTime;
     }
 

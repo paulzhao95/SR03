@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 // TODO: 3/20/19 test createSkill
-public class CreateSkill extends HttpServlet {
+public class CreateTopic extends HttpServlet {
 
-    protected void processCreateSkill(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    protected void processCreateTopic(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         /*TODO get skill name */
         String skillName = "";
 
@@ -23,7 +23,7 @@ public class CreateSkill extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            processCreateSkill(req,resp);
+            processCreateTopic(req,resp);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class CreateSkill extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            processCreateSkill(req,resp);
+            processCreateTopic(req,resp);
         } catch (SQLException e) {
             e.printStackTrace();
         }
