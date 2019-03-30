@@ -39,7 +39,7 @@ public class DatabaseHandler {
     public static Boolean userExists(String userLogin) throws SQLException {
         Connection databaseConnection = getDatabaseConnection();
         Statement statement = databaseConnection.createStatement();
-        String sql = "select * from \"Users\" where \"Email\" = "+"'" +userLogin+"'";
+        String sql = "select * from Users where Email = "+"'" +userLogin+"'";
 
         ResultSet resultSet = statement.executeQuery(sql);
         Boolean next = resultSet.next();
@@ -58,7 +58,7 @@ public class DatabaseHandler {
 
         Connection databaseConnection = getDatabaseConnection();
         Statement statement = databaseConnection.createStatement();
-        String sql = "select * from \"User\" where \"Email\" = "+"'" +email+"'" + "and \"Password\" = "  +"'"  +pwd +"'" +"and \"Type_user\" =" +"'" +userType+"'" ;
+        String sql = "select * from User where Email = "+"'" +email+"'" + "and Password = "  +"'"  +pwd +"'" +"and Type_user =" +"'" +userType+"'" ;
         ResultSet resultSet = statement.executeQuery(sql);
 
         Boolean login = resultSet.next();
@@ -74,14 +74,14 @@ public class DatabaseHandler {
         // insert questionnqire info
         Connection databaseConnection = getDatabaseConnection();
         Statement statement = databaseConnection.createStatement();
-        statement.executeUpdate("insert into \"Questionnaires\" VALUE (" + "'" + questionnaire.getQuestionnaireID() + "'," + "'" + questionnaire.getTopic()+"',"+ "'" + questionnaire.getStatus()+"')" );
+        statement.executeUpdate("insert into Questionnaires VALUE (" + "'" + questionnaire.getQuestionnaireID() + "'," + "'" + questionnaire.getTopic()+"',"+ "'" + questionnaire.getStatus()+"')" );
         // TODO: 3/20/19 insert componants of questionnaire
     }
 
     public static void InsertQuestion(Question question) throws SQLException {
         Connection databaseConnection = getDatabaseConnection();
         Statement statement = databaseConnection.createStatement();
-//        statement.executeUpdate("insert into \"Questions\" value ("+ "'" + question.get() + "',");
+//        statement.executeUpdate("insert into Questions value ("+ "'" + question.get() + "',");
     }
 
 

@@ -14,7 +14,7 @@ public class CreateTopic extends HttpServlet {
         /*TODO get skill name */
         String skillName = "";
 
-        String sql = "ALTER TYPE \"Skills\" ADD VALUE " +"'" +skillName +"'";
+        String sql = "ALTER TYPE Skills ADD VALUE " +"'" +skillName +"'";
         DatabaseHandler.executeUpdate(sql);
 
         /*TODO show skill added */

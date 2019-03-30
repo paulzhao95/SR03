@@ -6,8 +6,7 @@ public class Question {
     private Integer questionID;
     private Boolean status ;
     private String Description;
-    private Choice rightChoice;
-    private ArrayList<Choice> wrongChoices;
+    private ArrayList<Choice> choices;
 
     public Question(Integer id, String description, Boolean status) {
         this.Description = description;
@@ -15,12 +14,11 @@ public class Question {
         this.status = status;
     }
 
-    public Question(Integer id, String description, Boolean status, Choice rightChoice, ArrayList<Choice> wrongChoices) {
+    public Question(Integer id, String description, Boolean status, ArrayList<Choice> choices) {
         this.Description = description;
         this.questionID = id;
         this.status = status;
-        this.rightChoice = rightChoice;
-        this.wrongChoices = wrongChoices;
+        this.choices = choices;
     }
 
     public Boolean getStatus() {
@@ -49,19 +47,11 @@ public class Question {
     }
 
     public ArrayList<Choice> getWrongChoices() {
-        return wrongChoices;
+        return choices;
     }
 
-    public Choice getRightChoice() {
-        return rightChoice;
-    }
-
-    public void setRightChoice(Choice rightChoice) {
-        this.rightChoice = rightChoice;
-    }
-
-    public void setWrongChoices(ArrayList<Choice> wrongChoices) {
-        this.wrongChoices = wrongChoices;
+    public void setChoices(ArrayList<Choice> choices) {
+        this.choices = choices;
     }
 
 

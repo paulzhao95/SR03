@@ -47,7 +47,7 @@ public class CreateUser extends HttpServlet {
 
 
         User user = usersTable.get(usersTable.size() - 1);
-        String sql = "INSERT INTO \"Users\" (\"Password\",\"Status\",\"Name\",\"Company\",\"Tel\",\"Creating_time\",\"Email\",\"Type_user\") VALUES (" +"'"+ user.getPwd() +"'"+"," + "'Active'" +","+"'"+user.getName()+"'"+ ","+"'"+user.getCompany()+"'"+","+"'"+user.getTel()+"'"+","+"'"+user.getCreatingTime()+"'"+"," +"'"+user.getLogin()+"'"+","+"'"+user.getType()+"'"+")";
+        String sql = "INSERT INTO Users (Password,Status,Name,Company,Tel,Creating_time,Email,Type_user) VALUES (" +"'"+ user.getPwd() +"'"+"," + "'Active'" +","+"'"+user.getName()+"'"+ ","+"'"+user.getCompany()+"'"+","+"'"+user.getTel()+"'"+","+"'"+user.getCreatingTime()+"'"+"," +"'"+user.getLogin()+"'"+","+"'"+user.getType()+"'"+")";
 
         if (DatabaseHandler.userExists(user.getLogin())){
 

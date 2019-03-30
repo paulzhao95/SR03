@@ -25,5 +25,7 @@ public interface UserManagerDao {
 
     ArrayList<Attempt> getAttemptsByLogin(String email) throws DaoException;
 
+    Attempt getAttempt(String email, int evaluationId) throws DaoException;
+
 }
 

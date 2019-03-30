@@ -6,12 +6,14 @@ public class Choice {
     private String description;
     private Boolean isRight;
 
-    public Choice(Integer choiceId, String description, Boolean isRight){
+    public Choice(Integer choiceId, String description, Boolean status, Boolean isRight){
         this.choiceID = choiceId;
         this.description = description;
+        this.status = status;
         this.isRight = isRight;
 
     }
+
 
     public String getDescription() {
         return description;
