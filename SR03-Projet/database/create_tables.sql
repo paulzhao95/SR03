@@ -98,14 +98,14 @@ CREATE TABLE public.User_choice
 (
   Evaluation_Id integer NOT NULL,
   Topic character varying NOT NULL,
-  Questionaire_Id integer NOT NULL ,
+  Questionnaire_Id integer NOT NULL ,
   Question_Id integer NOT NULL,
   Choice_Id integer NOT NULL,
   Type type_choice NOT NULL,
-  PRIMARY KEY (Evaluation_Id, Topic,Questionaire_Id,Question_Id ,Choice_Id)
+  PRIMARY KEY (Evaluation_Id, Topic,Questionnaire_Id,Question_Id ,Choice_Id)
 );
 
 ALTER TABLE User_choice add constraint FK_UC_Evaluation foreign key(Evaluation_Id) references Evaluation(Evaluation_Id) ON DELETE CASCADE;
-ALTER TABLE User_choice add constraint FK_UC_Choice foreign key(Topic,Questionaire_Id,Question_Id,Choice_Id) references Choices(Topic,Questionnaire_Id, Question_Id,Number) ON DELETE CASCADE;
+ALTER TABLE User_choice add constraint FK_UC_Choice foreign key(Topic,Questionnaire_Id,Question_Id,Choice_Id) references Choices(Topic,Questionnaire_Id, Question_Id,Number) ON DELETE CASCADE;
 
 
