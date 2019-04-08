@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class DaoFactory {
 
-    private static final String FILE_PROPERTIES = "/home/longen/GI03/SR03/SR03-Projet/src/java/dao/dao.properties";
+    private static final String FILE_PROPERTIES = "dao/dao.properties";
     private static final String PROPERTY_RDBMS = "rdbms";
     private static final String PROPERTY_HOST = "host";
     private static final String PROPERTY_PORT = "port";
@@ -96,6 +96,7 @@ public class DaoFactory {
     }
 
     public String getConnectionString(){
+        System.out.println("jdbc:"+this.getRdbms()+"://"+this.getHost()+":"+this.getPort()+"/"+getDatabaseName());
         return "jdbc:"+this.getRdbms()+"://"+this.getHost()+":"+this.getPort()+"/"+getDatabaseName();
     }
 
@@ -135,7 +136,6 @@ public class DaoFactory {
 
         try {
             Class.forName(driver);
-            System.out.println(driver);
         } catch (ClassNotFoundException ignored) {
 
         }
