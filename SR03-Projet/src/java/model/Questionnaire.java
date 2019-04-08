@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Questionnaire {
+public class Questionnaire implements Serializable {
     private Integer questionnaireID;
     private String name;
     private String topic;
@@ -32,6 +33,14 @@ public class Questionnaire {
         this.setQuestionnaireID(questionnaireID);
         this.setTopic(topic);
         this.setStatus(status);
+        this.setQuestions(new ArrayList<Question>());
+    }
+
+    public Questionnaire(){
+        this.setName("NoName");
+        this.setQuestionnaireID(0);
+        this.setTopic("NoTopic");
+        this.setStatus(false);
         this.setQuestions(new ArrayList<Question>());
     }
 

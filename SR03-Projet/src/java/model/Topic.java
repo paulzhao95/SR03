@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Topic {
+public class Topic implements Serializable {
     private String name;
     private ArrayList<Questionnaire> questionnaires;
 
@@ -14,6 +15,11 @@ public class Topic {
 
     public Topic(String name){
         this.setName(name);
+        this.setQuestionnaires(null);
+    }
+
+    public Topic(){
+        this.setName("NoName");
         this.setQuestionnaires(null);
     }
 

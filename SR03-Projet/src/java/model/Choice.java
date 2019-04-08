@@ -1,6 +1,8 @@
 package model;
 
-public class Choice {
+import java.io.Serializable;
+
+public class Choice implements Serializable {
     private Integer choiceID;
     private Boolean status;
     private String description;
@@ -12,6 +14,13 @@ public class Choice {
         this.status = status;
         this.isRight = isRight;
 
+    }
+
+    public Choice(){
+        this.choiceID = 0;
+        this.description = "";
+        this.status = false;
+        this.isRight = true;
     }
 
 

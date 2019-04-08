@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 
-public class Attempt {
+public class Attempt implements Serializable {
 
     private int id;
     private String topicName;

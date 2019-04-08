@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question {
+public class Question implements Serializable {
     private Integer questionID;
     private Boolean status ;
     private String Description;
@@ -19,6 +20,13 @@ public class Question {
         this.questionID = id;
         this.status = status;
         this.choices = choices;
+    }
+
+    public Question(){
+        this.Description = "";
+        this.questionID = 0;
+        this.status = false;
+        this.choices = null;
     }
 
     public Boolean getStatus() {

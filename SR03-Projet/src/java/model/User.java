@@ -1,9 +1,10 @@
 
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class User {
+public class User implements Serializable {
     private String email;
     private String password;
     private String name;

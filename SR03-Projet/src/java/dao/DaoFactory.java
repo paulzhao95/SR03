@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class DaoFactory {
 
-    private static final String FILE_PROPERTIES = "/dao/dao.properties";
+    private static final String FILE_PROPERTIES = "/home/longen/GI03/SR03/SR03-Projet/src/java/dao/dao.properties";
     private static final String PROPERTY_RDBMS = "rdbms";
     private static final String PROPERTY_HOST = "host";
     private static final String PROPERTY_PORT = "port";
@@ -128,12 +128,14 @@ public class DaoFactory {
             driver = properties.getProperty( PROPERTY_DRIVER );
             userName = properties.getProperty( PROPERTY_USER_NAME );
             password = properties.getProperty( PROPERTY_PASSWORD );
+
         } catch ( IOException e ) {
             throw new DaoException( "Can not get connection properties" + FILE_PROPERTIES + ".");
         }
 
         try {
             Class.forName(driver);
+            System.out.println(driver);
         } catch (ClassNotFoundException ignored) {
 
         }
@@ -145,6 +147,12 @@ public class DaoFactory {
         Connection connexion =  DriverManager.getConnection(getConnectionString(), getUserName(),getPassword());
         connexion.setAutoCommit(false);
         return connexion;
+    }
+
+    public static void main(String[] args) throws DaoException, SQLException {
+        DaoFactory f = newDaoFactory();
+        Connection connection = f.getConnection();
+
     }
 
 }
