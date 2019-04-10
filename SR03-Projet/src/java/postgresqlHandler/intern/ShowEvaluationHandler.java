@@ -15,7 +15,7 @@ public class ShowEvaluationHandler implements ShowEvaluationDao {
 
     private DaoFactory daoFactory ;
 
-    ShowEvaluationHandler(DaoFactory daoFactory) {
+    public ShowEvaluationHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;}
 
     @Override

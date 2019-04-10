@@ -16,7 +16,7 @@ public class QuestionnaireHandler implements QuestionnaireManagerDao {
 
     private DaoFactory daoFactory;
 
-    QuestionnaireHandler(DaoFactory daoFactory) {
+    public QuestionnaireHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;}
 
     @Override

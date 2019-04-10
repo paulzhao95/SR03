@@ -7,11 +7,11 @@ import model.Administrator;
 import model.Intern;
 import java.sql.*;
 
-public class UserHandler implements UserDao {
+public class UserLoginHandler implements UserDao {
 
     private DaoFactory daoFactory;
 
-    UserHandler(DaoFactory daoFactory) {
+    UserLoginHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 

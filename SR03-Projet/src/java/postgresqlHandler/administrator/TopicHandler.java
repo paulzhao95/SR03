@@ -17,7 +17,7 @@ public class TopicHandler implements TopicManagerDao {
 
     private DaoFactory daoFactory;
 
-    TopicHandler(DaoFactory daoFactory) {
+    public TopicHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 

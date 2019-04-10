@@ -16,7 +16,7 @@ public class AdministratorUserHandler implements UserManagerDao {
 
     private DaoFactory daoFactory;
 
-    AdministratorUserHandler(DaoFactory daoFactory) {
+    public AdministratorUserHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 

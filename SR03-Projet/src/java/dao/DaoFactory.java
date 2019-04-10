@@ -1,5 +1,12 @@
 package dao;
 
+import postgresqlHandler.administrator.AdministratorUserHandler;
+import postgresqlHandler.administrator.QuestionHandler;
+import postgresqlHandler.administrator.QuestionnaireHandler;
+import postgresqlHandler.administrator.TopicHandler;
+import postgresqlHandler.intern.ActiveQuestionnaireHandler;
+import postgresqlHandler.intern.ShowEvaluationHandler;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.DriverManager;
@@ -95,9 +102,9 @@ public class DaoFactory {
         this.userName = userName;
     }
 
-    public String getConnectionString(){
-        System.out.println("jdbc:"+this.getRdbms()+"://"+this.getHost()+":"+this.getPort()+"/"+getDatabaseName());
-        return "jdbc:"+this.getRdbms()+"://"+this.getHost()+":"+this.getPort()+"/"+getDatabaseName();
+    public String getConnectionString() {
+        System.out.println("jdbc:" + this.getRdbms() + "://" + this.getHost() + ":" + this.getPort() + "/" + getDatabaseName());
+        return "jdbc:" + this.getRdbms() + "://" + this.getHost() + ":" + this.getPort() + "/" + getDatabaseName();
     }
 
     public static DaoFactory newDaoFactory() throws DaoException {
@@ -116,22 +123,22 @@ public class DaoFactory {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream fileProperties = classLoader.getResourceAsStream(FILE_PROPERTIES);
 
-        if ( fileProperties == null ) {
-            throw new DaoException( FILE_PROPERTIES + " not found." );
+        if (fileProperties == null) {
+            throw new DaoException(FILE_PROPERTIES + " not found.");
         }
 
         try {
-            properties.load( fileProperties );
-            rdbms = properties.getProperty( PROPERTY_RDBMS );
+            properties.load(fileProperties);
+            rdbms = properties.getProperty(PROPERTY_RDBMS);
             host = properties.getProperty(PROPERTY_HOST);
-            port= properties.getProperty( PROPERTY_PORT);
-            databaseName= properties.getProperty(PROPERTY_DATABASE);
-            driver = properties.getProperty( PROPERTY_DRIVER );
-            userName = properties.getProperty( PROPERTY_USER_NAME );
-            password = properties.getProperty( PROPERTY_PASSWORD );
+            port = properties.getProperty(PROPERTY_PORT);
+            databaseName = properties.getProperty(PROPERTY_DATABASE);
+            driver = properties.getProperty(PROPERTY_DRIVER);
+            userName = properties.getProperty(PROPERTY_USER_NAME);
+            password = properties.getProperty(PROPERTY_PASSWORD);
 
-        } catch ( IOException e ) {
-            throw new DaoException( "Can not get connection properties" + FILE_PROPERTIES + ".");
+        } catch (IOException e) {
+            throw new DaoException("Can not get connection properties" + FILE_PROPERTIES + ".");
         }
 
         try {
@@ -140,14 +147,39 @@ public class DaoFactory {
 
         }
 
-        return new DaoFactory(rdbms,host,port,databaseName,driver, userName, password);
+        return new DaoFactory(rdbms, host, port, databaseName, driver, userName, password);
     }
 
     public Connection getConnection() throws SQLException {
-        Connection connexion =  DriverManager.getConnection(getConnectionString(), getUserName(),getPassword());
+        Connection connexion = DriverManager.getConnection(getConnectionString(), getUserName(), getPassword());
         connexion.setAutoCommit(false);
         return connexion;
     }
+
+    public AdministratorUserHandler getAdministratorUserHandler() {
+        return new AdministratorUserHandler(this);
+    }
+
+    public QuestionnaireHandler getQuestionnaireHandler() {
+        return new QuestionnaireHandler(this);
+    }
+
+    public QuestionHandler getQuestionHandler() {
+        return new QuestionHandler(this);
+    }
+
+    public TopicHandler getTopicHandler() {
+        return new TopicHandler(this);
+    }
+
+    public ActiveQuestionnaireHandler getActiveQuestionnaireHandler() {
+        return new ActiveQuestionnaireHandler(this);
+    }
+
+    public ShowEvaluationHandler getShowEvaluationHandler() {
+        return new ShowEvaluationHandler(this);
+    }
+
 
     public static void main(String[] args) throws DaoException, SQLException {
         DaoFactory f = newDaoFactory();

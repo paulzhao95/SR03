@@ -18,7 +18,7 @@ public class ActiveQuestionnaireHandler implements ActiveQuestionnaireDao {
 
     private DaoFactory daoFactory;
 
-    ActiveQuestionnaireHandler(DaoFactory daoFactory) {
+    public ActiveQuestionnaireHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;}
 
     @Override

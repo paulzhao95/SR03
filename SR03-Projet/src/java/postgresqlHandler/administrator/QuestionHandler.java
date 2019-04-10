@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class QuestionHandler implements QuestionManagerDao {
     private DaoFactory daoFactory;
 
-    QuestionHandler(DaoFactory daoFactory) {
+    public QuestionHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;}
 
 
