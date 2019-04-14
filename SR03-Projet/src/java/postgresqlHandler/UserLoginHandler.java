@@ -11,7 +11,7 @@ public class UserLoginHandler implements UserDao {
 
     private DaoFactory daoFactory;
 
-    UserLoginHandler(DaoFactory daoFactory) {
+    public UserLoginHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
@@ -109,5 +109,15 @@ public class UserLoginHandler implements UserDao {
         return intern;
     }
 
+    public static void main(String[] args) throws DaoException, SQLException {
+        DaoFactory daoFactory = DaoFactory.newDaoFactory();
+        UserLoginHandler userLoginHandler = new UserLoginHandler(daoFactory);
+        Connection connection = daoFactory.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select * from users;");
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("email"));
+        }
 
+    }
 }

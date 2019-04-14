@@ -1,5 +1,6 @@
 package dao;
 
+import postgresqlHandler.UserLoginHandler;
 import postgresqlHandler.administrator.AdministratorUserHandler;
 import postgresqlHandler.administrator.QuestionHandler;
 import postgresqlHandler.administrator.QuestionnaireHandler;
@@ -102,7 +103,7 @@ public class DaoFactory {
         this.userName = userName;
     }
 
-    public String getConnectionString() {
+    private String getConnectionString() {
         System.out.println("jdbc:" + this.getRdbms() + "://" + this.getHost() + ":" + this.getPort() + "/" + getDatabaseName());
         return "jdbc:" + this.getRdbms() + "://" + this.getHost() + ":" + this.getPort() + "/" + getDatabaseName();
     }
@@ -178,6 +179,10 @@ public class DaoFactory {
 
     public ShowEvaluationHandler getShowEvaluationHandler() {
         return new ShowEvaluationHandler(this);
+    }
+
+    public UserLoginHandler getUserLoginHandler(){
+        return new UserLoginHandler(this);
     }
 
 
