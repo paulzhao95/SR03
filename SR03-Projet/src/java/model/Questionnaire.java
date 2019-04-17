@@ -80,7 +80,6 @@ public class Questionnaire implements Serializable {
         this.name = name;
     }
 
-
     public ArrayList<Question> getQuestions() {
         return questions;
     }

@@ -4,6 +4,7 @@ package model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+
 public class User implements Serializable {
     private String email;
     private String password;
@@ -11,18 +12,26 @@ public class User implements Serializable {
     private Boolean status;
     private String company;
     private String tel;
-    private Timestamp creatngTime;
-    private String type;
-    
+    private Timestamp creatingTime;
+    private UserType type;
 
-    public User(String email, String password, String name, Boolean status,String company,String tel,Timestamp creatngTime){
+    public enum UserType {
+        Administrator,
+        Intern
+
+    }
+
+
+
+    public User(String email, String password, String name, Boolean status,String company,String tel,Timestamp creatingTime, UserType userType){
         this.email=email;
         this.password=password;
         this.name=name;
         this.status=status;
         this.company=company;
         this.tel=tel;
-        this.creatngTime = creatngTime;
+        this.creatingTime = creatingTime;
+        this.type = userType;
     }
 
     public User() {
@@ -32,22 +41,23 @@ public class User implements Serializable {
         this.status=false;
         this.company="";
         this.tel="";
-        this.creatngTime = null;
+        this.creatingTime = null;
+        this.type = UserType.Intern;
     }
 
-    public void setLogin(String login){
+    public void setEmail(String login){
         this.email = login;
     }
     
-    public String getLogin(){
+    public String getEmail(){
         return this.email;
     }
     
-    public void setPwd(String pwd){
+    public void setPassword(String pwd){
         this.password = pwd;
     }
     
-    public String getPwd(){
+    public String getPassword(){
         return this.password;
     }
     
@@ -84,21 +94,20 @@ public class User implements Serializable {
     }
     
     public void setCreatingTime(Timestamp date){
-        this.creatngTime = date;
+        this.creatingTime = date;
     }
 
     public Timestamp getCreatingTime(){
-        return this.creatngTime;
+        return this.creatingTime;
     }
 
-    public void setType(String type) { this.type = type;}
+    public void setType(UserType userType) { this.type = userType;}
 
-    public String getType() {
+    public UserType getType() {
         return type;
     }
 
-
     public String toString(){
-        return "User{" + "Name= "+ name+ ", login= "+email+", key= "+password;
+        return "User{" + "Name= "+ name+ ", login= "+email+", key= "+password + ", type = "+ (this.type==UserType.Intern ? "Intern":"Administrator");
     }
 }

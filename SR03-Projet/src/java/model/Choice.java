@@ -3,26 +3,61 @@ package model;
 import java.io.Serializable;
 
 public class Choice implements Serializable {
-    private Integer choiceID;
+    private String topic;
+    private int questionnaireId;
+    private int questionId;
+    private int choiceID;
     private Boolean status;
     private String description;
     private Boolean isRight;
 
-    public Choice(Integer choiceId, String description, Boolean status, Boolean isRight){
-        this.choiceID = choiceId;
-        this.description = description;
-        this.status = status;
-        this.isRight = isRight;
-
+    public Choice(String topic, int questionnaireId, int questionId, int choiceId, String description, Boolean status, Boolean isRight) {
+        this.setTopic(topic);
+        this.setQuestionnaireId(questionnaireId);
+        this.setQuestionId(questionId);
+        this.setChoiceID(choiceId);
+        this.setDescription(description);
+        this.setStatus(status);
+        this.setRight(isRight);
     }
 
-    public Choice(){
-        this.choiceID = 0;
-        this.description = "";
-        this.status = false;
-        this.isRight = true;
+    public Choice() {
+        this.setTopic("");
+        this.setQuestionId(0);
+        this.setQuestionnaireId(0);
+        this.setChoiceID(0);
+        this.setDescription("");
+        this.setRight(true);
+        this.setStatus(false);
     }
 
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public int getQuestionnaireId() {
+        return questionnaireId;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setChoiceID(int choiceID) {
+        this.choiceID = choiceID;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
+    public void setQuestionnaireId(int questionnaireId) {
+        this.questionnaireId = questionnaireId;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 
     public String getDescription() {
         return description;

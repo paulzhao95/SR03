@@ -1,12 +1,11 @@
 package dao;
 
-import postgresqlHandler.UserLoginHandler;
-import postgresqlHandler.administrator.AdministratorUserHandler;
-import postgresqlHandler.administrator.QuestionHandler;
-import postgresqlHandler.administrator.QuestionnaireHandler;
+import postgresqlHandler.UserHandler;
+import postgresqlHandler.administrator.AdministratorQuestionnaireHandler;
+import postgresqlHandler.administrator.AdministratorQuestionHandler;
 import postgresqlHandler.administrator.TopicHandler;
-import postgresqlHandler.intern.ActiveQuestionnaireHandler;
-import postgresqlHandler.intern.ShowEvaluationHandler;
+import postgresqlHandler.QuestionnaireHandler;
+import postgresqlHandler.intern.AttemptHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -157,32 +156,32 @@ public class DaoFactory {
         return connexion;
     }
 
-    public AdministratorUserHandler getAdministratorUserHandler() {
-        return new AdministratorUserHandler(this);
+    public postgresqlHandler.administrator.UserHandler getAdministratorUserHandler() {
+        return new postgresqlHandler.administrator.UserHandler(this);
     }
 
-    public QuestionnaireHandler getQuestionnaireHandler() {
-        return new QuestionnaireHandler(this);
+    public AdministratorQuestionnaireHandler getQuestionnaireHandler() {
+        return new AdministratorQuestionnaireHandler(this);
     }
 
-    public QuestionHandler getQuestionHandler() {
-        return new QuestionHandler(this);
+    public AdministratorQuestionHandler getQuestionHandler() {
+        return new AdministratorQuestionHandler(this);
     }
 
     public TopicHandler getTopicHandler() {
         return new TopicHandler(this);
     }
 
-    public ActiveQuestionnaireHandler getActiveQuestionnaireHandler() {
-        return new ActiveQuestionnaireHandler(this);
+    public QuestionnaireHandler getActiveQuestionnaireHandler() {
+        return new QuestionnaireHandler(this);
     }
 
-    public ShowEvaluationHandler getShowEvaluationHandler() {
-        return new ShowEvaluationHandler(this);
+    public AttemptHandler getShowEvaluationHandler() {
+        return new AttemptHandler(this);
     }
 
-    public UserLoginHandler getUserLoginHandler(){
-        return new UserLoginHandler(this);
+    public UserHandler getUserLoginHandler(){
+        return new UserHandler(this);
     }
 
 

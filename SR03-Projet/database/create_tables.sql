@@ -77,35 +77,37 @@ ALTER TABLE Choices add constraint FK_Choice foreign key(Topic, Questionnaire_Id
   references Questions(Topic, Questionnaire_Id,Number) ON DELETE CASCADE;
 
 
-drop table if exists public.Evaluation CASCADE;
-CREATE TABLE public.Evaluation
+drop table if exists public.Attempts CASCADE;
+CREATE TABLE public.Attempts
 (
-  Evaluation_Id serial NOT NULL,
+  Attempt_Id serial NOT NULL,
   Topic character varying NOT NULL,
   Questionnaire_Id integer NOT NULL ,
   User_email character varying NOT NULL,
   Duration time NOT NULL,
   Start_time timestamp NOT NULL,
-  PRIMARY KEY (Evaluation_Id)
+  Score integer not null ,
+  full_marks integer not null ,
+  PRIMARY KEY (Attempt_Id)
 );
 
 
-ALTER TABLE Evaluation add constraint FK_Evaluation_User foreign key(User_email) references Users(Email) ON DELETE CASCADE;
-ALTER TABLE Evaluation add constraint FK_Evaluation_Questionnaire foreign key(Topic, Questionnaire_Id) references Questionnaires (Topic, Number) ON DELETE CASCADE;
+ALTER TABLE Attempts add constraint FK_Evaluation_User foreign key(User_email) references Users(Email) ON DELETE CASCADE;
+ALTER TABLE Attempts add constraint FK_Evaluation_Questionnaire foreign key(Topic, Questionnaire_Id) references Questionnaires (Topic, Number) ON DELETE CASCADE;
 
-drop table if exists public.User_choice CASCADE;
-CREATE TABLE public.User_choice
+drop table if exists public.User_choices CASCADE;
+CREATE TABLE public.User_choices
 (
-  Evaluation_Id integer NOT NULL,
+  Attempt_Id integer NOT NULL,
   Topic character varying NOT NULL,
   Questionnaire_Id integer NOT NULL ,
   Question_Id integer NOT NULL,
   Choice_Id integer NOT NULL,
   Type type_choice NOT NULL,
-  PRIMARY KEY (Evaluation_Id, Topic,Questionnaire_Id,Question_Id ,Choice_Id)
+  PRIMARY KEY (Attempt_Id, Topic,Questionnaire_Id,Question_Id ,Choice_Id)
 );
 
-ALTER TABLE User_choice add constraint FK_UC_Evaluation foreign key(Evaluation_Id) references Evaluation(Evaluation_Id) ON DELETE CASCADE;
-ALTER TABLE User_choice add constraint FK_UC_Choice foreign key(Topic,Questionnaire_Id,Question_Id,Choice_Id) references Choices(Topic,Questionnaire_Id, Question_Id,Number) ON DELETE CASCADE;
+ALTER TABLE User_choices add constraint FK_UC_Evaluation foreign key(Attempt_Id) references Attempts(Attempt_Id) ON DELETE CASCADE;
+ALTER TABLE User_choices add constraint FK_UC_Choice foreign key(Topic,Questionnaire_Id,Question_Id,Choice_Id) references Choices(Topic,Questionnaire_Id, Question_Id,Number) ON DELETE CASCADE;
 
 
