@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
 
     public void init() {
         try {
-            this.daoFactory = DaoFactory.newDaoFactory();
+            this.daoFactory = DaoFactory.getDaoFactoryInstance();
         } catch (DaoException e) {
             e.printStackTrace();
         }
