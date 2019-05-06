@@ -1,4 +1,4 @@
-package postgresqlHandler.intern;
+package postgresqlImpl.intern;
 
 import dao.DaoException;
 import dao.DaoFactory;
@@ -7,10 +7,10 @@ import model.Attempt;
 
 import java.sql.*;
 
-public class AttemptHandler extends postgresqlHandler.AttemptHandler implements AttemptDao {
+public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDao {
 
 
-    public AttemptHandler(DaoFactory daoFactory) {
+    public AttemptImpl(DaoFactory daoFactory) {
         super(daoFactory);
     }
 

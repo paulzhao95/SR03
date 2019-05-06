@@ -1,11 +1,11 @@
-package postgresqlHandler;
+package postgresqlImpl.administrator;
 
 import dao.DaoException;
 import dao.DaoFactory;
-import dao.QuestionnaireDao;
+import dao.administrator.QuestionnaireDao;
 import model.Question;
 import model.Questionnaire;
-import model.Topic;
+import postgresqlImpl.QuestionnaireImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,12 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class QuestionnaireHandler implements QuestionnaireDao {
+public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implements QuestionnaireDao {
 
-    protected DaoFactory daoFactory;
 
-    public QuestionnaireHandler(DaoFactory daoFactory) {
-        this.daoFactory = daoFactory;}
+    public QuestionnaireImpl(DaoFactory daoFactory) {
+        super(daoFactory);}
 
     @Override
     public ArrayList<Questionnaire> getQuestionnaires(String topic) throws DaoException {
@@ -35,8 +34,7 @@ public class QuestionnaireHandler implements QuestionnaireDao {
                             "Q.Topic as Topic " +
                             "from " +
                             "Questionnaires Q " +
-                            "where Q.Topic = ?" +
-                            "and Q.status = 'Active'"
+                            "where Q.Topic = ?"
             );
             preparedStatement.setString(1,topic);
 
@@ -87,9 +85,7 @@ public class QuestionnaireHandler implements QuestionnaireDao {
                             "on Q.Topic = Qs.Topic " +
                             "and Q.Number = Qs.Questionnaire_Id "+
                             "where Q.Topic = ? " +
-                            "and Q.Number = ?" +
-                            "and Q.status = 'Active' " +
-                            "and Qs.status = 'Active'"
+                            "and Q.Number = ?"
             );
             preparedStatement.setString(1,topic);
             preparedStatement.setInt(2,questionnaireId);
@@ -119,5 +115,100 @@ public class QuestionnaireHandler implements QuestionnaireDao {
         return new Questionnaire(questionnaireId, topic, questionnaireName, questionnaireStatus, questions);
 
     }
+
+    @Override
+    public void updateQuestionnaire(Questionnaire questionnaire) throws DaoException {
+
+        Connection connection;
+        PreparedStatement preparedStatement;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("update Questionnaires " +
+                    "set status = ?, " +
+                    "name = ?  " +
+                    "where number = ? " +
+                    "and Topic = ?"                    );
+            preparedStatement.setString(1,questionnaire.getStatus()? "Active":"Inactive");
+            preparedStatement.setString(2, questionnaire.getName());
+            preparedStatement.setInt(3,questionnaire.getQuestionnaireID());
+            preparedStatement.setString(4,questionnaire.getTopic());
+            int i = preparedStatement.executeUpdate();
+            connection.commit();
+            if(i == 0){
+                throw new DaoException("Can not change questionnaire status");
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Change questionnaire status in database failed :) " + e.getMessage());
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Database connection failed");
+        }
+
+    }
+
+    @Override
+    public void addQuestionnaire( String topic, String name) throws DaoException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("call insert_questionnaire(?,?)" );
+            preparedStatement.setString(1,topic);
+            preparedStatement.setString(2,name);
+
+            int i = preparedStatement.executeUpdate();
+            connection.commit();
+            if(i == 0){
+                throw new DaoException("Can not add questionnaire");
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Add questionnaire in database failed :) " + e.getMessage());
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Database connection failed");
+        }
+
+    }
+
+    @Override
+    public void deleteQuestionnaire(Questionnaire questionnaire) throws DaoException {
+
+        Connection connection;
+        PreparedStatement preparedStatement;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("call delete_questionnaire(?,?)");
+            preparedStatement.setString(2,questionnaire.getTopic());
+            preparedStatement.setInt(1,questionnaire.getQuestionnaireID());
+
+            int i = preparedStatement.executeUpdate();
+            connection.commit();
+            if(i == 0){
+                throw new DaoException("Can not delete questionnaire");
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Delete questionnaire in database failed :) " + e.getMessage());
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Database connection failed");
+        }
+    }
+
+
 
 }

@@ -1,13 +1,7 @@
 package dao;
 
-import dao.administrator.ChoiceDao;
-import dao.administrator.QuestionnaireDao;
-import postgresqlHandler.UserHandler;
-import postgresqlHandler.administrator.AdministratorQuestionnaireHandler;
-import postgresqlHandler.administrator.AdministratorQuestionHandler;
-import postgresqlHandler.administrator.TopicHandler;
-import postgresqlHandler.QuestionnaireHandler;
-import postgresqlHandler.intern.AttemptHandler;
+import postgresqlImpl.AttemptImpl;
+import postgresqlImpl.administrator.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -165,41 +159,49 @@ public class DaoFactory {
         return connexion;
     }
 
-//    public postgresqlHandler.administrator.UserHandler getAdministratorUserHandler() {
-//        return new postgresqlHandler.administrator.UserHandler(this);
-//    }
-//    public postgresqlHandler.UserHandler getUserHandler() {
-//        return new postgresqlHandler.UserHandler(this);
-//    }
-//
-//    public AdministratorQuestionnaireHandler getAdministratorQuestionnaireHandler() {
-//        return new AdministratorQuestionnaireHandler(this);
-//    }
-//    public QuestionnaireHandler getQuestionnaireHandler() {
-//        return new QuestionnaireHandler(this);
-//    }
-//
-//
-//    public QuestionnaireDao getAdministratorQuestionHandler() {
-//        return new AdministratorQuestionHandler(this);
-//    }
-//
-//    public AdministratorQuestionHandler getdAdministratorQuestionHandler() {
-//        return new AdministratorQuestionHandler(this);
-//    }
-//
-//    public TopicHandler getTopicHandler() {
-//        return new TopicHandler(this);
-//    }
-//
-//
-//    public AttemptHandler getShowEvaluationHandler() {
-//        return new AttemptHandler(this);
-//    }
-//
-//    public UserHandler getUserLoginHandler(){
-//        return new UserHandler(this);
-//    }
+    public UserImpl getAdministratorUserImpl() {
+        return new UserImpl(this);
+    }
+    public postgresqlImpl.UserImpl getUserImpl() {
+        return new postgresqlImpl.UserImpl(this);
+    }
+
+    public QuestionnaireImpl getAdministratorQuestionnaireImpl() {
+        return new QuestionnaireImpl(this);
+    }
+    public postgresqlImpl.QuestionnaireImpl getQuestionnaireImpl() {
+        return new postgresqlImpl.QuestionnaireImpl(this);
+    }
+
+    public postgresqlImpl.QuestionImpl getQuestionImpl() {
+        return new postgresqlImpl.QuestionImpl(this);
+    }
+    public QuestionImpl getdAdministratorQuestionImpl() {
+        return new QuestionImpl(this);
+    }
+
+    public TopicImpl getAdministratorTopicImpl() {
+        return new TopicImpl(this);
+    }
+    public postgresqlImpl.TopicImpl getTopicImpl() {
+        return new postgresqlImpl.TopicImpl(this);
+    }
+
+    public postgresqlImpl.intern.AttemptImpl getInternAttemptImpl() {
+        return new postgresqlImpl.intern.AttemptImpl(this);
+    }
+
+    public postgresqlImpl.ChoiceImpl getChoiceImpl() {
+        return new postgresqlImpl.ChoiceImpl(this);
+    }
+
+    public ChoiceImpl getAdministratorImpl() {
+        return new ChoiceImpl(this);
+    }
+
+    public AttemptImpl getAttemptImpl() {
+        return new AttemptImpl(this);
+    }
 
 
     public static void main(String[] args) throws DaoException, SQLException {

@@ -1,4 +1,4 @@
-package postgresqlHandler.administrator;
+package postgresqlImpl.administrator;
 
 import dao.DaoException;
 import dao.DaoFactory;
@@ -7,13 +7,12 @@ import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class UserHandler implements UserDao {
+public class UserImpl implements UserDao {
 
     private DaoFactory daoFactory;
 
-    public UserHandler(DaoFactory daoFactory) {
+    public UserImpl(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 

@@ -1,4 +1,4 @@
-package postgresqlHandler.administrator;
+package postgresqlImpl.administrator;
 
 import dao.DaoException;
 import dao.DaoFactory;
@@ -12,9 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AdministratorQuestionHandler extends postgresqlHandler.QuestionHandler implements QuestionDao {
+public class QuestionImpl extends postgresqlImpl.QuestionImpl implements QuestionDao {
 
-    public AdministratorQuestionHandler(DaoFactory daoFactory) {
+    public QuestionImpl(DaoFactory daoFactory) {
         super(daoFactory);
     }
 

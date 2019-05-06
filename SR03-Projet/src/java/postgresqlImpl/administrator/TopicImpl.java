@@ -1,20 +1,17 @@
-package postgresqlHandler.administrator;
+package postgresqlImpl.administrator;
 
 import dao.DaoException;
 import dao.DaoFactory;
 import dao.administrator.TopicDao;
-import model.Questionnaire;
 import model.Topic;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-public class TopicHandler extends postgresqlHandler.TopicHandler implements TopicDao {
+public class TopicImpl extends postgresqlImpl.TopicImpl implements TopicDao {
 
-    public TopicHandler(DaoFactory daoFactory) {
+    public TopicImpl(DaoFactory daoFactory) {
         super(daoFactory);
     }
 

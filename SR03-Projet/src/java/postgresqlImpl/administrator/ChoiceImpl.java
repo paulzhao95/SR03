@@ -1,4 +1,4 @@
-package postgresqlHandler.administrator;
+package postgresqlImpl.administrator;
 
 import dao.DaoException;
 import dao.DaoFactory;
@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AdministratorChoiceHandler extends postgresqlHandler.ChoiceHandler implements ChoiceDao {
+public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
 
 
-    AdministratorChoiceHandler(DaoFactory daoFactory) {
+    public ChoiceImpl(DaoFactory daoFactory) {
         super(daoFactory);
     }
 

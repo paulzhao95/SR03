@@ -2,7 +2,7 @@ package controller;
 
 import dao.DaoException;
 import dao.DaoFactory;
-import postgresqlHandler.UserHandler;
+import postgresqlImpl.UserImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class Login extends HttpServlet {
 
     private DaoFactory daoFactory;
-    private UserHandler userHandler;
+    private UserImpl userImpl;
 
 
     public void init() {
@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
             e.printStackTrace();
         }
 
-        userHandler = daoFactory.getUserLoginHandler();
+        userImpl = daoFactory.getAdministratorUserImpl();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
             e.printStackTrace();
         }
         try {
-            req.setAttribute("eList", userHandler.getIntern("fdfa","aaa"));
+            req.setAttribute("eList", userImpl.getIntern("fdfa","aaa"));
         } catch (DaoException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package postgresqlHandler;
+package postgresqlImpl;
 
 import dao.DaoException;
 import dao.DaoFactory;
@@ -12,11 +12,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TopicHandler implements TopicDao {
+public class TopicImpl implements TopicDao {
 
     protected DaoFactory daoFactory;
 
-    public TopicHandler(DaoFactory daoFactory) {
+    public TopicImpl(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 

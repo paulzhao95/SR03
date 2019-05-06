@@ -1,4 +1,4 @@
-package postgresqlHandler;
+package postgresqlImpl;
 
 import dao.DaoException;
 import dao.ChoiceDao;
@@ -11,11 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ChoiceHandler implements ChoiceDao {
+public class ChoiceImpl implements ChoiceDao {
 
     protected DaoFactory daoFactory;
 
-    public ChoiceHandler(DaoFactory daoFactory) {
+    public ChoiceImpl(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
