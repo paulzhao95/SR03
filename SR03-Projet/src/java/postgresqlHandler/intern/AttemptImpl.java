@@ -7,10 +7,10 @@ import model.Attempt;
 
 import java.sql.*;
 
-public class AttemptHandler extends postgresqlHandler.AttemptHandler implements AttemptDao {
+public class AttemptImpl extends postgresqlHandler.AttemptImpl implements AttemptDao {
 
 
-    public AttemptHandler(DaoFactory daoFactory) {
+    public AttemptImpl(DaoFactory daoFactory) {
         super(daoFactory);
     }
 

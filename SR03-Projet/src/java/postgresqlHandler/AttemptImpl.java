@@ -10,11 +10,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AttemptHandler implements AttemptDao {
+public class AttemptImpl implements AttemptDao {
 
     protected DaoFactory daoFactory;
 
-    public AttemptHandler(DaoFactory daoFactory) {
+    public AttemptImpl(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 

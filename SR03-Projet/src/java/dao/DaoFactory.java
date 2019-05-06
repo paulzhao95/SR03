@@ -1,14 +1,5 @@
 package dao;
 
-import dao.administrator.ChoiceDao;
-import dao.administrator.QuestionnaireDao;
-import postgresqlHandler.UserHandler;
-import postgresqlHandler.administrator.AdministratorQuestionnaireHandler;
-import postgresqlHandler.administrator.AdministratorQuestionHandler;
-import postgresqlHandler.administrator.TopicHandler;
-import postgresqlHandler.QuestionnaireHandler;
-import postgresqlHandler.intern.AttemptHandler;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.DriverManager;
@@ -193,8 +184,8 @@ public class DaoFactory {
 //    }
 //
 //
-//    public AttemptHandler getShowEvaluationHandler() {
-//        return new AttemptHandler(this);
+//    public AttemptImpl getShowEvaluationHandler() {
+//        return new AttemptImpl(this);
 //    }
 //
 //    public UserHandler getUserLoginHandler(){
