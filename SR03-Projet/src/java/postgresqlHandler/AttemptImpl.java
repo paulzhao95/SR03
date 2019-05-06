@@ -1,4 +1,4 @@
-package postgresqlImpl;
+package postgresqlHandler;
 
 import dao.DaoException;
 import dao.AttemptDao;
@@ -8,6 +8,7 @@ import model.Choice;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AttemptImpl implements AttemptDao {
 
