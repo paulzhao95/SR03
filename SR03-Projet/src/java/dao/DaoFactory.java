@@ -1,11 +1,13 @@
 package dao;
 
-import postgresqlHandler.administrator.AdministratorUserHandler;
-import postgresqlHandler.administrator.QuestionHandler;
-import postgresqlHandler.administrator.QuestionnaireHandler;
+import dao.administrator.ChoiceDao;
+import dao.administrator.QuestionnaireDao;
+import postgresqlHandler.UserHandler;
+import postgresqlHandler.administrator.AdministratorQuestionnaireHandler;
+import postgresqlHandler.administrator.AdministratorQuestionHandler;
 import postgresqlHandler.administrator.TopicHandler;
-import postgresqlHandler.intern.ActiveQuestionnaireHandler;
-import postgresqlHandler.intern.ShowEvaluationHandler;
+import postgresqlHandler.QuestionnaireHandler;
+import postgresqlHandler.intern.AttemptHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +37,9 @@ public class DaoFactory {
     private String userName;
     private String password;
 
-    DaoFactory(String rdbms, String host, String port, String databaseName, String driver, String userName, String password) {
+    private static DaoFactory daoFactory;
+
+    private DaoFactory(String rdbms, String host, String port, String databaseName, String driver, String userName, String password) {
         this.rdbms = rdbms;
         this.host = host;
         this.port = port;
@@ -45,7 +49,7 @@ public class DaoFactory {
         this.password = password;
     }
 
-    public String getDatabaseName() {
+    private String getDatabaseName() {
         return databaseName;
     }
 
@@ -54,7 +58,7 @@ public class DaoFactory {
     }
 
 
-    public String getHost() {
+    private String getHost() {
         return host;
     }
 
@@ -62,55 +66,58 @@ public class DaoFactory {
         return password;
     }
 
-    public String getPort() {
+    private String getPort() {
         return port;
     }
 
-    public String getRdbms() {
+    private String getRdbms() {
         return rdbms;
     }
 
-    public String getUserName() {
+    private String getUserName() {
         return userName;
     }
 
-    public void setDatabaseName(String databaseName) {
+    private void setDatabaseName(String databaseName) {
         this.databaseName = databaseName;
     }
 
-    public void setDriver(String driver) {
+    private void setDriver(String driver) {
         this.driver = driver;
     }
 
-    public void setHost(String host) {
+    private void setHost(String host) {
         this.host = host;
     }
 
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
-    public void setPort(String port) {
+    private void setPort(String port) {
         this.port = port;
     }
 
-    public void setRdbms(String rdbms) {
+    private void setRdbms(String rdbms) {
         this.rdbms = rdbms;
     }
 
-    public void setUserName(String userName) {
+    private void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getConnectionString() {
+    private String getConnectionString() {
         System.out.println("jdbc:" + this.getRdbms() + "://" + this.getHost() + ":" + this.getPort() + "/" + getDatabaseName());
         return "jdbc:" + this.getRdbms() + "://" + this.getHost() + ":" + this.getPort() + "/" + getDatabaseName();
     }
 
-    public static DaoFactory newDaoFactory() throws DaoException {
+    public static DaoFactory getDaoFactoryInstance() throws DaoException {
+
+        if (daoFactory != null){
+            return daoFactory;
+        }
 
         Properties properties = new Properties();
-
 
         String rdbms;
         String host;
@@ -147,7 +154,9 @@ public class DaoFactory {
 
         }
 
-        return new DaoFactory(rdbms, host, port, databaseName, driver, userName, password);
+        daoFactory =  new DaoFactory(rdbms, host, port, databaseName, driver, userName, password);
+
+        return daoFactory;
     }
 
     public Connection getConnection() throws SQLException {
@@ -156,33 +165,45 @@ public class DaoFactory {
         return connexion;
     }
 
-    public AdministratorUserHandler getAdministratorUserHandler() {
-        return new AdministratorUserHandler(this);
-    }
-
-    public QuestionnaireHandler getQuestionnaireHandler() {
-        return new QuestionnaireHandler(this);
-    }
-
-    public QuestionHandler getQuestionHandler() {
-        return new QuestionHandler(this);
-    }
-
-    public TopicHandler getTopicHandler() {
-        return new TopicHandler(this);
-    }
-
-    public ActiveQuestionnaireHandler getActiveQuestionnaireHandler() {
-        return new ActiveQuestionnaireHandler(this);
-    }
-
-    public ShowEvaluationHandler getShowEvaluationHandler() {
-        return new ShowEvaluationHandler(this);
-    }
+//    public postgresqlHandler.administrator.UserHandler getAdministratorUserHandler() {
+//        return new postgresqlHandler.administrator.UserHandler(this);
+//    }
+//    public postgresqlHandler.UserHandler getUserHandler() {
+//        return new postgresqlHandler.UserHandler(this);
+//    }
+//
+//    public AdministratorQuestionnaireHandler getAdministratorQuestionnaireHandler() {
+//        return new AdministratorQuestionnaireHandler(this);
+//    }
+//    public QuestionnaireHandler getQuestionnaireHandler() {
+//        return new QuestionnaireHandler(this);
+//    }
+//
+//
+//    public QuestionnaireDao getAdministratorQuestionHandler() {
+//        return new AdministratorQuestionHandler(this);
+//    }
+//
+//    public AdministratorQuestionHandler getdAdministratorQuestionHandler() {
+//        return new AdministratorQuestionHandler(this);
+//    }
+//
+//    public TopicHandler getTopicHandler() {
+//        return new TopicHandler(this);
+//    }
+//
+//
+//    public AttemptHandler getShowEvaluationHandler() {
+//        return new AttemptHandler(this);
+//    }
+//
+//    public UserHandler getUserLoginHandler(){
+//        return new UserHandler(this);
+//    }
 
 
     public static void main(String[] args) throws DaoException, SQLException {
-        DaoFactory f = newDaoFactory();
+        DaoFactory f = getDaoFactoryInstance();
         Connection connection = f.getConnection();
 
     }

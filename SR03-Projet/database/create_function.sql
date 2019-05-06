@@ -1,4 +1,5 @@
 
+DROP PROCEDURE insert_questionnaire(character varying,character varying);
 CREATE OR REPLACE PROCEDURE insert_questionnaire(topic_name character varying, questionnaire_name character varying)
   LANGUAGE plpgsql
 AS $$
@@ -112,11 +113,11 @@ AS $$
 BEGIN
 
 
-  update table questions set number = -1 where topic = topic_name and questionnaire_id = questionnaire_number and number = question_one_number;
+  update  questions set number = -1 where topic = topic_name and questionnaire_id = questionnaire_number and number = question_one_number;
 
-  update table questions set number = question_one_number where topic = topic_name and questionnaire_id = questionnaire_number and number = question_two_number;
+  update  questions set number = question_one_number where topic = topic_name and questionnaire_id = questionnaire_number and number = question_two_number;
 
-  update table questions set number = question_two_number where topic = topic_name and questionnaire_id = questionnaire_number and number = -1;
+  update  questions set number = question_two_number where topic = topic_name and questionnaire_id = questionnaire_number and number = -1;
 
   COMMIT;
 END;
@@ -132,11 +133,11 @@ BEGIN
 
 
 
-  update table choices set number = -1 where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number = choice_one_number;
+  update  choices set number = -1 where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number = choice_one_number;
 
-  update table choices set number = choice_one_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number = question_two_number;
+  update  choices set number = choice_one_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number = question_two_number;
 
-  update table questions set number = choice_two_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and  number = -1;
+  update  questions set number = choice_two_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and  number = -1;
   COMMIT;
 END;
 $$;

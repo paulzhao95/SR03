@@ -6,13 +6,12 @@ import java.sql.Timestamp;
 public class Intern extends User implements Serializable {
 
     public Intern(String email, String password, String name, Boolean status, String company, String tel, Timestamp creatng_time) {
-            super(email, password,name,status,company,tel,creatng_time);
-            this.setType("Intern");
+            super(email, password,name,status,company,tel,creatng_time, UserType.Intern);
     }
 
     public Intern() {
         super();
-        this.setType("Intern");
+        this.setType(UserType.Intern);
 
     }
 

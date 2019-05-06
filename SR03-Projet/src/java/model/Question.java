@@ -4,29 +4,45 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Question implements Serializable {
-    private Integer questionID;
-    private Boolean status ;
+    private String topic;
+    private int questionnaireId;
+    private int questionID;
+    private Boolean status;
     private String Description;
     private ArrayList<Choice> choices;
 
-    public Question(Integer id, String description, Boolean status) {
-        this.Description = description;
-        this.questionID = id;
-        this.status = status;
+    public Question(String topic, int questionnaireId, Integer id, String description, Boolean status) {
+        this.setTopic(topic);
+        this.setQuestionnaireId(questionnaireId);
+        this.setQuestionID(id);
+        this.setDescription(description);
+        this.setStatus(status);
     }
 
     public Question(Integer id, String description, Boolean status, ArrayList<Choice> choices) {
-        this.Description = description;
-        this.questionID = id;
-        this.status = status;
-        this.choices = choices;
+        this.setTopic(topic);
+        this.setQuestionnaireId(questionnaireId);
+        this.setQuestionID(id);
+        this.setDescription(description);
+        this.setStatus(status);
+        this.setChoices(choices);
     }
 
-    public Question(){
-        this.Description = "";
-        this.questionID = 0;
-        this.status = false;
-        this.choices = null;
+    public Question() {
+        this.setTopic("");
+        this.setQuestionnaireId(0);
+        this.setQuestionID(0);
+        this.setDescription("");
+        this.setStatus(false);
+        this.setChoices(new ArrayList<Choice>());
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public int getQuestionnaireId() {
+        return questionnaireId;
     }
 
     public Boolean getStatus() {
@@ -36,7 +52,6 @@ public class Question implements Serializable {
     public Integer getQuestionID() {
         return questionID;
     }
-
 
     public String getDescription() {
         return Description;
@@ -50,7 +65,15 @@ public class Question implements Serializable {
         Description = description;
     }
 
-    public void setQuestionID(Integer questionID) {
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public void setQuestionnaireId(int questionnaireId) {
+        this.questionnaireId = questionnaireId;
+    }
+
+    public void setQuestionID(int questionID) {
         this.questionID = questionID;
     }
 
@@ -61,6 +84,5 @@ public class Question implements Serializable {
     public void setChoices(ArrayList<Choice> choices) {
         this.choices = choices;
     }
-
 
 }

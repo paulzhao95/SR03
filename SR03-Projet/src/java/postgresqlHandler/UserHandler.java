@@ -7,11 +7,11 @@ import model.Administrator;
 import model.Intern;
 import java.sql.*;
 
-public class UserLoginHandler implements UserDao {
+public class UserHandler implements UserDao {
 
-    private DaoFactory daoFactory;
+    protected DaoFactory daoFactory;
 
-    UserLoginHandler(DaoFactory daoFactory) {
+    public UserHandler(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
@@ -25,7 +25,11 @@ public class UserLoginHandler implements UserDao {
         try{
             connection = daoFactory.getConnection();
 
-            preparedStatement = connection.prepareStatement("SELECT * from users where email = ? and password = ? and type_user ='Administrator' "
+            preparedStatement = connection.prepareStatement("SELECT * " +
+                    "from users " +
+                    "where email = ? " +
+                    "and password = ? " +
+                    "and type_user ='Administrator' "
             );
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password)
@@ -41,9 +45,9 @@ public class UserLoginHandler implements UserDao {
                 administrator.setStatus(status);
                 administrator.setTel(tel);
                 administrator.setName(name);
-                administrator.setPwd(password);
+                administrator.setPassword(password);
                 administrator.setCompany(company);
-                administrator.setLogin(login);
+                administrator.setEmail(login);
                 administrator.setCreatingTime(creatingTime);
 
             }else{
@@ -72,7 +76,11 @@ public class UserLoginHandler implements UserDao {
         try {
             connection = daoFactory.getConnection();
 
-            preparedStatement = connection.prepareStatement("SELECT * from Users where Email = ? and Password = ? and Type_user ='Intern' "
+            preparedStatement = connection.prepareStatement("SELECT * " +
+                    "from Users " +
+                    "where Email = ? " +
+                    "and Password = ? " +
+                    "and Type_user ='Intern' "
             );
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password)
@@ -88,9 +96,9 @@ public class UserLoginHandler implements UserDao {
                 intern.setStatus(status);
                 intern.setTel(tel);
                 intern.setName(name);
-                intern.setPwd(password);
+                intern.setPassword(password);
                 intern.setCompany(company);
-                intern.setLogin(login);
+                intern.setEmail(login);
                 intern.setCreatingTime(creatingTime);
 
             } else {
@@ -108,6 +116,5 @@ public class UserLoginHandler implements UserDao {
         }
         return intern;
     }
-
 
 }
