@@ -5,7 +5,6 @@ import dao.DaoFactory;
 import dao.administrator.QuestionnaireDao;
 import model.Question;
 import model.Questionnaire;
-import postgresqlImpl.QuestionnaireImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

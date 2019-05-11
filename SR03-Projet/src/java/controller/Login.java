@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
             e.printStackTrace();
         }
 
-        userImpl = daoFactory.getAdministratorUserImpl();
+        //userImpl = daoFactory.getAdministratorUserImpl();
     }
 
     @Override
