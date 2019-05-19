@@ -43,21 +43,21 @@
 	        <div class="row margin">
 	          <div class="input-field col s12">
 	            <i class="mdi-social-person-outline prefix"></i>
-	            <input id="username" name = "username" type="text" class="validate" placeholder="User Name">
+	            <input id="username" name = "user.name" type="text" class="validate" placeholder="User Name">
 	            <label for="username" class="center-align"></label>
 	          </div>
 	        </div>
 	        <div class="row margin">
 	          <div class="input-field col s12">
 	            <i class="mdi-communication-email prefix"></i>
-	            <input id="email" name = "email" type="email" class="validate" placeholder="Email">
+	            <input id="email" name = "user.email" type="email" class="validate" placeholder="Email">
 	            <label for="email" class="center-align"></label>
 	          </div>
 	        </div>
 	        <div class="row margin">
 	          <div class="input-field col s12">
 	            <i class="mdi-action-lock-outline prefix"></i>
-	            <input id="password" name = "password" type="password" class="validate" placeholder="Password">
+	            <input id="password" name = "user.password" type="password" class="validate" placeholder="Password">
 	            <label for="password"></label>
 	          </div>
 	        </div>
@@ -71,24 +71,24 @@
 			  <div class="row margin">
 				  <div class="input-field col s12">
 					  <i class="mdi-social-person-outline prefix"></i>
-					  <input id="telephone" name = "telephone" type="text" class="validate" placeholder="T&eacute;l&eacute;phone">
+					  <input id="telephone" name = "user.tel" type="text" class="validate" placeholder="T&eacute;l&eacute;phone">
 					  <label for="telephone"></label>
 				  </div>
 			  </div>
 			  <div class="row margin">
 				  <div class="input-field col s12">
 					  <i class="mdi-social-person-outline prefix"></i>
-					  <input id="company" name = "company" type="text" class="validate" placeholder="Company">
+					  <input id="company" name = "user.company" type="text" class="validate" placeholder="Company">
 					  <label for="company"></label>
 				  </div>
 			  </div>
 			  <div class="row margin">
 				  <div class="input-field col s12">
 					  <i class="mdi-social-person-outline prefix"></i>
-					  <input type="radio" id="Amdin" name="person" value="Amdin"
+					  <input type="radio" id="Amdin" name="user.status" value="Admin"
 							 checked>
 					  <label for="Amdin">Amdin</label>
-					  <input type="radio" id="Intern" name="person" value="Intern">
+					  <input type="radio" id="Intern" name="user.status" value="Intern">
 					  <label for="Intern">Intern</label>
 				  </div>
 			  </div>

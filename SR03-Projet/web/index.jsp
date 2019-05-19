@@ -48,6 +48,16 @@
 	            <label for="password"></label>
 	          </div>
 	        </div>
+			  <div class="row margin">
+				  <div class="input-field col s12">
+					  <i class="mdi-social-person-outline prefix"></i>
+					  <input type="radio" id="Amdin" name="person" value="Admin"
+							 checked>
+					  <label for="Amdin">Amdin</label>
+					  <input type="radio" id="Intern" name="person" value="Intern">
+					  <label for="Intern">Intern</label>
+				  </div>
+			  </div>
 	        <div class="row">
 	          <div class="input-field col s12">
 	            <input type="submit" value = "LOG IN" class = "input_control">
