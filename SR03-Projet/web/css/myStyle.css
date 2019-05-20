@@ -185,7 +185,7 @@ p.subtitle {
 
 }
 .personalnformation-content{
-    width: 60%;
+    width: 80%;
     height: 150px;
     margin: 0 auto;
     display: flex;
@@ -201,14 +201,13 @@ p.subtitle {
 
 }
 .personalnformation-content-right{
-    width: 50%;
+    width: 60%;
     height: 110px;
     margin-top: 2%;
 }
 .personalnformation-content-right-p{
     font-size: 18px;
     font-family: "微软雅黑";
-    font-weight: 400px;
     margin-left: 1%;
     margin-top: 14%;
     line-height: 0px;

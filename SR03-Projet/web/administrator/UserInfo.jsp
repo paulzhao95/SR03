@@ -13,7 +13,7 @@
     String password = request.getParameter("password");
     String telephone = request.getParameter("tel");
     String company = request.getParameter("company");
-    String creating_time = "2012";
+    String creating_time = "2019";
     Boolean status = request.getParameter("status").equals("true") ;
     String type = request.getParameter("type");%>
 <div>
@@ -24,15 +24,14 @@
                     <div class="personalnformation-content-left">
                         <img src="../picture/default_avatar.png"/>
                     </div>
-                    <div class="personalnformation-content-right">
-                        <p class="personalnformation-content-right-p">Nom: <%=user%> </p>
-                        <p class="personalnformation-content-right-p">Email: <%=email%> </p>
-                        <p class="personalnformation-content-right-p">Password: <%=password%> </p>
-                        <p class="personalnformation-content-right-p">Telephone: <%=telephone%> </p>
-                        <p class="personalnformation-content-right-p">Company: <%=company%> </p>
-                        <p class="personalnformation-content-right-p">Status: <%=status%> </p>
-                        <p class="personalnformation-content-right-p">Create Time: <%=creating_time%></p>
-                        <p class="personalnformation-content-right-p">Type: <%=type%></p>
+                    <div>
+                        <p>Nom: <%=user%> </p>
+                        <p>Email: <br><%=email%> </p>
+                        <p>Password: <%=password%> </p>
+                        <p>Telephone: <%=telephone%> </p>
+                        <p>Company: <%=company%> </p>
+                        <p>Status: <%=status%> </p>
+                        <p>Type: <%=type%></p>
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
@@ -45,14 +44,6 @@
     </div>
 </div>
 </div>
-<script type="text/javascript">
-    $('.tab-button').click(function() {
-        var tab = $(this).data('tab')
-        $(this).addClass('cur').siblings('.tab-button').removeClass('cur');
-        $('#tab-' + tab + '').addClass('active').siblings('.tab-item').removeClass('active');
-    });
-
-</script>
 </body>
 </html>
 

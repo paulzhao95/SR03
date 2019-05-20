@@ -5,6 +5,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <%
+        String path = request.getRequestURI();
+        String basePath = request.getScheme() + "://"
+                +request.getServerName() + ":" + request.getServerPort()
+                + path;
+    %>
+    <base href="<%=basePath%>">
     <title>Administrator Panel</title>
     <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
     <script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
@@ -24,9 +31,9 @@
                         <img src="../picture/default_avatar.png"/>
                     </div>
                     <div class="personalnformation-content-right">
-                        <p class="personalnformation-content-right-p">Nom：<%=s%> </p>
-                        <p class="personalnformation-content-right-p">Email：<%=s%> </p>
-                        <p class="personalnformation-content-right-p">Create Time：13519494861</p>
+                        <p class="personalnformation-content-right-p">Nom：</p>
+                        <p class="personalnformation-content-right-p">Email：</p>
+                        <p class="personalnformation-content-right-p">Create Time：2019</p>
                     </div>
             </div>
                 <div style="float: right;margin: 150px;">
@@ -80,6 +87,16 @@
                     </div>
                 </div>
 
+                <div class="tab-item" id="tab-two">
+                    <div class="information-tab ">
+                        <div class="information-record">
+                            <div class="information-top-head-left">
+                                <p class="information-top-head-p">User Name</p>
+                            </div>
+                            <div class="information-top-head-right">
+                                <p class="information-top-head-p">Delete</p>
+                            </div>
+
 
                 <s:iterator value="users">
                     <div class="information-top-content-left">
@@ -90,16 +107,6 @@
                         <a href="" class="information-top-content-p">Delete</a>
                     </div>
                 </s:iterator>
-
-                <div class="tab-item" id="tab-two">
-                    <div class="information-tab ">
-                        <div class="information-record">
-                            <div class="information-top-head-left">
-                                <p class="information-top-head-p">User Name</p>
-                            </div>
-                            <div class="information-top-head-right">
-                                <p class="information-top-head-p">Delete</p>
-                            </div>
 
 
 
