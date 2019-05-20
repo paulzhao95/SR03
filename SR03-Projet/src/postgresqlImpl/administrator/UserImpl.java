@@ -314,7 +314,8 @@ public class UserImpl implements UserDao {
                     "name = ? , " +
                     "company = ?, " +
                     "tel = ?, " +
-                    "type = ?"+
+                    "type_user = cast(? as type_user)," +
+                    "status = cast(? as states) "+
                     "where email = ? "
             );
             preparedStatement.setString(1, user.getPassword());
@@ -322,7 +323,8 @@ public class UserImpl implements UserDao {
             preparedStatement.setString(3, user.getCompany());
             preparedStatement.setString(4, user.getTel());
             preparedStatement.setString(5, user.getType() == User.UserType.Intern ? "Intern":"Administrator");
-            preparedStatement.setString(6, user.getEmail());
+            preparedStatement.setString(6,user.getStatus() ? "Active":"Inactive");
+            preparedStatement.setString(7, user.getEmail());
 
 
             int i = preparedStatement.executeUpdate();
