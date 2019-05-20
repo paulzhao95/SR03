@@ -89,7 +89,7 @@ public class UserImpl implements UserDao {
                 String company = result.getString("company");
                 Timestamp creatingTime = result.getTimestamp("creating_time");
                 String email = result.getString("email");
-                User.UserType type_user = result.getString("type_user") == "Administrator" ? User.UserType.Administrator : User.UserType.Intern;
+                User.UserType type_user = result.getString("type_user").equals("Administrator") ? User.UserType.Administrator : User.UserType.Intern;
 
                 users.add(new User(email, password, name, status, company, tel, creatingTime, type_user));
 
@@ -309,7 +309,7 @@ public class UserImpl implements UserDao {
         try {
             connection = daoFactory.getConnection();
 
-            preparedStatement = connection.prepareStatement("update table Users " +
+            preparedStatement = connection.prepareStatement("update  Users " +
                     "set password = ?, " +
                     "name = ? , " +
                     "company = ?, " +

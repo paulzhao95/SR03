@@ -25,8 +25,8 @@
         </action>
 
         <action name="updateUser" class="controller.administrator.UpdateUserAction" method="execute">
-            <result name="success">administrator/User-Topic_List.jsp</result>
-            <result name="failed">test.jsp</result>
+            <result type="redirectAction" name="updateUserSucceed">getUsers</result>
+            <result name="updateUserFailed">test.jsp</result>
         </action>
 
     </package>

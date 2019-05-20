@@ -18,6 +18,7 @@ public class UpdateUserAction {
         }
 
         try {
+            user.setStatus(!user.getStatus());
             administratorUserImpl.updateUser(user);
             return "updateUserSucceed";
         } catch (DaoException e) {

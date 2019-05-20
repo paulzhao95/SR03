@@ -81,7 +81,15 @@
                 </div>
 
 
-
+                <s:iterator value="users">
+                    <div class="information-top-content-left">
+                        <a href="http://localhost:8080/SR03_Projet_war_exploded/administrator/UserInfo.jsp?name=<s:property value='name'/>&password=<s:property value='password'/>&email=<s:property value='email'/>&tel=<s:property value='tel'/>&company=<s:property value='company'/>&type=<s:property value='type'/>&status=<s:property value='status'/>" class="information-top-content-p"><s:property value='name'/></a>
+                    </div>
+                    <div class="information-top-content-right">
+                        <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
+                        <a href="" class="information-top-content-p">Delete</a>
+                    </div>
+                </s:iterator>
 
                 <div class="tab-item" id="tab-two">
                     <div class="information-tab ">
@@ -94,20 +102,6 @@
                             </div>
 
 
-                            <%
-                                for(int i=0;i<100;i++){
-                            %>
-
-                            <div class="information-top-content-left">
-                                <a href="" class="information-top-content-p"><%=i%></a>
-                            </div>
-                            <div class="information-top-content-right">
-                                <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                                <a href="" class="information-top-content-p">Delete</a>
-                            </div>
-                            <%
-                                }
-                            %>
 
                         </div>
                     </div>

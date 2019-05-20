@@ -8,13 +8,14 @@
     <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
 </head>
 <body>
-<%String user = "Zhaolongen";
-    String email = "zhao@126.com";
-    String password = "111";
-    String telephone = "00000000";
-    String company = "aaa";
+<%String user = request.getParameter("name");
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    String telephone = request.getParameter("tel");
+    String company = request.getParameter("company");
     String creating_time = "2012";
-    String status = "ACTIVE";%>
+    Boolean status = request.getParameter("status").equals("true") ;
+    String type = request.getParameter("type");%>
 <div>
     <div class="content">
         <div class="tab-block information-tab">
@@ -31,10 +32,11 @@
                         <p class="personalnformation-content-right-p">Company: <%=company%> </p>
                         <p class="personalnformation-content-right-p">Status: <%=status%> </p>
                         <p class="personalnformation-content-right-p">Create Time: <%=creating_time%></p>
+                        <p class="personalnformation-content-right-p">Type: <%=type%></p>
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
-                    <a href="" class="link_class">Change Status</a>
+                    <a href="http://localhost:8080/SR03_Projet_war_exploded/default/updateUser?user.name=<%=user%>&user.password=<%=password%>&user.email=<%=email%>&user.tel=<%=telephone%>&user.company=<%=company%>&user.type=<%=type%>&user.status=<%=status%>" class="link_class">Change Status</a>
                     <br>
                     <a href="User-Topic_List.jsp" class="link_class">RETURN</a>
                 </div>
