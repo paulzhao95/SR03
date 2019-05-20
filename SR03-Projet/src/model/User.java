@@ -18,7 +18,6 @@ public class User implements Serializable {
     public enum UserType {
         Administrator,
         Intern
-
     }
 
 

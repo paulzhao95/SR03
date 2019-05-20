@@ -5,4 +5,18 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <package name="default" extends="struts-default">
+        <action name="signUp" class="controller.SignUpAction" method="execute">
+            <result name="sighUpSucceed">index.jsp</result>
+            <result name="signUpFailed">index.jsp</result>
+            <result name="dataBaseConnectionFailed">index.jsp</result>
+
+        </action>
+        <action name="login" class="controller.LoginAction" method="execute">
+            <result name="administratorLoginSucceed">test.jsp</result>
+            <result name="internLoginSucceed">test.jsp</result>
+            <result name="loginFailed">test.jsp</result>
+            <result name="dataBaseConnectionFailed">test.jsp</result>
+        </action>
+    </package>
 </struts>

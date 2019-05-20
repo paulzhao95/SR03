@@ -207,7 +207,6 @@ public class DaoFactory {
     public static void main(String[] args) throws DaoException, SQLException {
         DaoFactory f = getDaoFactoryInstance();
         Connection connection = f.getConnection();
-
     }
 
 }

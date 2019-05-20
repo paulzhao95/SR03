@@ -1,0 +1,77 @@
+package controller;
+
+import dao.DaoException;
+import dao.DaoFactory;
+import model.User;
+import org.apache.struts2.interceptor.SessionAware;
+import postgresqlImpl.UserImpl;
+
+import java.util.Map;
+
+public class LoginAction implements SessionAware {
+    private String email;
+    private String password;
+    private String type;
+    private Map<String, Object> session;
+
+    public String execute()  {
+        UserImpl userImpl;
+        try{
+            DaoFactory daoFactoryInstance = DaoFactory.getDaoFactoryInstance();
+            userImpl = daoFactoryInstance.getUserImpl();
+
+        } catch (DaoException e) {
+            return "dataBaseConnectionFailed";
+        }
+        User user;
+        try{
+
+            if (type.equals("Administrator")) {
+                user = userImpl.getAdministrator(email, password);
+                session.put("user", user);
+
+                return "administratorLoginSucceed";
+            }
+            else {
+                user = userImpl.getIntern(email, password);
+                session.put("user", user);
+                return "internLoginSucceed";
+
+            }
+
+        } catch (DaoException e) {
+
+            return "loginFailed";
+        }
+
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> map) {
+        this.session = map;
+    }
+}

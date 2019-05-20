@@ -14,8 +14,14 @@ public class Administrator extends User implements Serializable {
         super.setType(UserType.Administrator);
     }
 
+    public Administrator(User user) {
+        super(user.getEmail(),user.getPassword(),user.getName(),user.getStatus(),user.getCompany(),user.getTel(), user.getCreatingTime(),user.getType());
+        super.setType(UserType.Administrator);
+    }
     @Override
     public String toString(){
         return super.toString()+"type= Administrator";
     }
+
+
 }

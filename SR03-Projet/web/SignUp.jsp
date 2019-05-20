@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="zh">
@@ -33,7 +34,7 @@
 <body class="blue">
 	<div id="login-page" class="row">
 	    <div class="col s12 z-depth-6 card-panel">
-	      <form action="test.jsp" class="login-form">
+	      <form action="signUp.action" class="login-form">
 	        <div class="row">
 	          <div class="input-field col s12 center">
 	            <img src="picture/UTC_logo.png" alt="" class="responsive-img valign profile-image-login">
@@ -43,7 +44,7 @@
 	        <div class="row margin">
 	          <div class="input-field col s12">
 	            <i class="mdi-social-person-outline prefix"></i>
-	            <input id="username" name = "user.name" type="text" class="validate" placeholder="User Name">
+	            <input id="username" name = "userName" type="text" class="validate" placeholder="User Name">
 	            <label for="username" class="center-align"></label>
 	          </div>
 	        </div>
@@ -85,10 +86,10 @@
 			  <div class="row margin">
 				  <div class="input-field col s12">
 					  <i class="mdi-social-person-outline prefix"></i>
-					  <input type="radio" id="Amdin" name="user.status" value="Admin"
+					  <input type="radio" id="admin" name="user.type" value="Administrator"
 							 checked>
-					  <label for="Amdin">Amdin</label>
-					  <input type="radio" id="Intern" name="user.status" value="Intern">
+					  <label for="Admin">Admin</label>
+					  <input type="radio" id="Intern" name="user.type" value="Intern">
 					  <label for="Intern">Intern</label>
 				  </div>
 			  </div>

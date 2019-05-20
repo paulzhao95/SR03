@@ -28,7 +28,7 @@
 <body class="red">
 	<div id="login-page" class="row">
 	    <div class="col s12 z-depth-6 card-panel">
-	      <form action="test.jsp" class="login-form">
+	      <form action="login.action" class="login-form">
 	        <div class="row">
 	          <div class="input-field col s12 center">
 	            <img src="picture/UTC_logo.png" alt="" class="responsive-img valign profile-image-login">
@@ -37,24 +37,24 @@
 	        <div class="row margin">
 	          <div class="input-field col s12">
 	            <i class="mdi-social-person-outline prefix"></i>
-	            <input class="validate" id="email" type="email" placeholder="Email">
+	            <input class="validate" id="email" name="email" type="email" placeholder="Email">
 	            <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
 	          </div>
 	        </div>
 	        <div class="row margin">
 	          <div class="input-field col s12">
 	            <i class="mdi-action-lock-outline prefix"></i>
-	            <input id="password" type="password" placeholder="Password">
+	            <input id="password" name="password" type="password" placeholder="Password">
 	            <label for="password"></label>
 	          </div>
 	        </div>
 			  <div class="row margin">
 				  <div class="input-field col s12">
 					  <i class="mdi-social-person-outline prefix"></i>
-					  <input type="radio" id="Amdin" name="person" value="Admin"
+					  <input type="radio" id="Amdin" name="type" value="Administrator"
 							 checked>
 					  <label for="Amdin">Amdin</label>
-					  <input type="radio" id="Intern" name="person" value="Intern">
+					  <input type="radio" id="Intern" name="type" value="Intern">
 					  <label for="Intern">Intern</label>
 				  </div>
 			  </div>
