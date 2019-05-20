@@ -44,7 +44,7 @@
 	        <div class="row margin">
 	          <div class="input-field col s12">
 	            <i class="mdi-social-person-outline prefix"></i>
-	            <input id="username" name = "userName" type="text" class="validate" placeholder="User Name">
+	            <input id="username" name = "user.name" type="text" class="validate" placeholder="User Name">
 	            <label for="username" class="center-align"></label>
 	          </div>
 	        </div>

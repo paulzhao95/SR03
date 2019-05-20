@@ -170,7 +170,7 @@ public class UserImpl implements UserDao {
         try {
             connection = daoFactory.getConnection();
 
-            preparedStatement = connection.prepareStatement("insert into Users values (?,?,?,?,?,?,NOW(),?,?)"
+            preparedStatement = connection.prepareStatement("insert into Users(password, status, name, company, tel, creating_time, email, type_user) values (?,cast(? as states),?,?,?,NOW(),?,cast(? as type_user))"
             );
             preparedStatement.setString(1, intern.getPassword());
             preparedStatement.setString(2, intern.getStatus() ? "Active" : "Inactive");
@@ -207,7 +207,7 @@ public class UserImpl implements UserDao {
         try {
             connection = daoFactory.getConnection();
 
-            preparedStatement = connection.prepareStatement("insert into Users values (?,?,?,?,?,?,NOW(),?,?)"
+            preparedStatement = connection.prepareStatement("insert into Users(password, status, name, company, tel, creating_time, email, type_user) values (?,cast(? as states),?,?,?,NOW(),?,cast(? as type_user))"
             );
             preparedStatement.setString(1, administrator.getPassword());
             preparedStatement.setString(2, administrator.getStatus() ? "Active" : "Inactive");

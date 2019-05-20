@@ -26,7 +26,7 @@ public class SignUpAction {
             if (user.getType().toString().equals("Administrator")) {
                 administratorUserImpl.addAdministrator(new Administrator(user));
             } else {
-                administratorUserImpl.addIntern((Intern) user);
+                administratorUserImpl.addIntern(new Intern(user));
             }
         } catch (DaoException e) {
             return ("signUpFailed");
