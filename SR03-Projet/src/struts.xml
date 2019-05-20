@@ -10,13 +10,24 @@
             <result name="signUpSucceed">index.jsp</result>
             <result name="signUpFailed">index.jsp</result>
             <result name="dataBaseConnectionFailed">index.jsp</result>
-
         </action>
+
         <action name="login" class="controller.LoginAction" method="execute">
-            <result name="administratorLoginSucceed">test.jsp</result>
+            <result type="chain" name="administratorLoginSucceed">getUsers</result>
             <result name="internLoginSucceed">test.jsp</result>
             <result name="loginFailed">SignUp.jsp</result>
             <result name="dataBaseConnectionFailed">test.jsp</result>
         </action>
+
+        <action name="getUsers" class="controller.administrator.ShowUsersAction" method="execute">
+            <result name="success">administrator/User-Topic_List.jsp</result>
+            <result name="dataBaseConnectionFailed">test.jsp</result>
+        </action>
+
+        <action name="updateUser" class="controller.administrator.UpdateUserAction" method="execute">
+            <result name="success">administrator/User-Topic_List.jsp</result>
+            <result name="failed">test.jsp</result>
+        </action>
+
     </package>
 </struts>

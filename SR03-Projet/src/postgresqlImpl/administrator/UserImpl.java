@@ -80,7 +80,8 @@ public class UserImpl implements UserDao {
             );
             ;
             ResultSet result = preparedStatement.executeQuery();
-            if (result.next()) {
+            while (result.next()) {
+
                 String password = result.getString("password");
                 Boolean status = (result.getString("status").equals("Active"));
                 String name = result.getString("name");
@@ -92,8 +93,6 @@ public class UserImpl implements UserDao {
 
                 users.add(new User(email, password, name, status, company, tel, creatingTime, type_user));
 
-            } else {
-                throw new DaoException("Users not found.");
             }
         } catch (SQLException e) {
             throw new DaoException("Get users from database failed");
