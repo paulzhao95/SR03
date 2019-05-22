@@ -37,7 +37,7 @@ public class User implements Serializable {
         this.email="";
         this.password="";
         this.name="";
-        this.status=false;
+        this.status=true;
         this.company="";
         this.tel="";
         this.creatingTime = null;

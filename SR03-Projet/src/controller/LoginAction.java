@@ -1,5 +1,6 @@
 package controller;
 
+import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
 import model.User;
@@ -8,7 +9,7 @@ import postgresqlImpl.UserImpl;
 
 import java.util.Map;
 
-public class LoginAction implements SessionAware {
+public class LoginAction extends ActionSupport implements SessionAware {
     private String email;
     private String password;
     private String type;

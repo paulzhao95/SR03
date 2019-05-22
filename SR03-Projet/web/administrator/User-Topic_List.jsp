@@ -15,6 +15,7 @@
 <%String s = "abababa"; %>
 
 
+
 <div>
     <div class="content">
         <div class="tab-block information-tab">
@@ -24,7 +25,7 @@
                         <img src="../picture/default_avatar.png"/>
                     </div>
                     <div class="personalnformation-content-right">
-                        <p class="personalnformation-content-right-p">Nom：<%=s%> </p>
+                        <p class="personalnformation-content-right-p">Nom：<s:property value="email"/> </p>
                         <p class="personalnformation-content-right-p">Email：<%=s%> </p>
                         <p class="personalnformation-content-right-p">Create Time：13519494861</p>
                     </div>

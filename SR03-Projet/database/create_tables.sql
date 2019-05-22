@@ -27,7 +27,7 @@ CREATE TABLE public.Users
   Tel character varying,
   Creating_time timestamp without time zone NOT NULL,
   Email character varying NOT NULL,
-  Type Type_user NOT NULL,
+  Type_user Type_user NOT NULL,
   PRIMARY KEY (Email)
 );
 
