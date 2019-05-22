@@ -88,7 +88,7 @@
 					  <i class="mdi-social-person-outline prefix"></i>
 					  <input type="radio" id="admin" name="user.type" value="Administrator"
 							 checked>
-					  <label for="Admin">Admin</label>
+					  <label for="admin">Admin</label>
 					  <input type="radio" id="Intern" name="user.type" value="Intern">
 					  <label for="Intern">Intern</label>
 				  </div>
