@@ -10,6 +10,8 @@
         String basePath = request.getScheme() + "://"
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
+
+        User user = (User)session.getAttribute("user");
     %>
     <base href="<%=basePath%>">
     <title>Administrator Panel</title>
@@ -32,11 +34,8 @@
                         <img src="../picture/default_avatar.png"/>
                     </div>
                     <div class="personalnformation-content-right">
-                        <p class="personalnformation-content-right-p">Nom：</p>
-                        <p class="personalnformation-content-right-p">Email：</p>
-                        <p class="personalnformation-content-right-p">Create Time：2019</p>
-                        <p class="personalnformation-content-right-p">Nom：<s:property value="email"/> </p>
-                        <p class="personalnformation-content-right-p">Email：<%=s%> </p>
+                        <p class="personalnformation-content-right-p">Nom：<%=user.getName()%> </p>
+                        <p class="personalnformation-content-right-p">Email：<%=user.getEmail()%> </p>
                         <p class="personalnformation-content-right-p">Create Time：13519494861</p>
                     </div>
             </div>
