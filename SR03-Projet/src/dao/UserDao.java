@@ -1,11 +1,10 @@
 package dao;
 
-import model.Administrator;
-import model.Intern;
+import model.User;
+
 
 public interface UserDao {
-    Administrator getAdministrator(String login,String password) throws DaoException;
-    Intern getIntern(String login, String password) throws DaoException;
+    User getUser(String login, String password, String typeUser) throws DaoException;
 
 }
 

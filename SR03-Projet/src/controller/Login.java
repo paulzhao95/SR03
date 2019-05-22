@@ -32,30 +32,30 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // just for test
-        Connection connection = null;
-        ResultSet re = null;
-        try {
-            connection = daoFactory.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            re = statement.executeQuery("select * from users");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            req.setAttribute("eList", userImpl.getIntern("fdfa","aaa"));
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
+//        // just for test
+//        Connection connection = null;
+//        ResultSet re = null;
+//        try {
+//            connection = daoFactory.getConnection();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        Statement statement = null;
+//        try {
+//            statement = connection.createStatement();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            re = statement.executeQuery("select * from users");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            req.setAttribute("eList", userImpl.getIntern("fdfa","aaa"));
+//        } catch (DaoException e) {
+//            e.printStackTrace();
+//        }
         req.getRequestDispatcher("index1.jsp").forward(req,resp);
 
 

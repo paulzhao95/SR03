@@ -3,8 +3,8 @@ package postgresqlImpl;
 import dao.DaoException;
 import dao.DaoFactory;
 import dao.UserDao;
-import model.Administrator;
-import model.Intern;
+import model.User;
+
 import java.sql.*;
 
 public class UserImpl implements UserDao {
@@ -16,10 +16,10 @@ public class UserImpl implements UserDao {
     }
 
     @Override
-    public Administrator getAdministrator(String login, String password) throws DaoException {
+    public User getUser(String login, String password, String typeUser) throws DaoException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        Administrator administrator = new Administrator();
+        User user = new User();
 
 
         try{
@@ -29,10 +29,12 @@ public class UserImpl implements UserDao {
                     "from users " +
                     "where email = ? " +
                     "and password = ? " +
-                    "and type_user ='Administrator' "
+                    "and type_user = cast (? as type_user) " +
+                    "and status = 'Active'"
             );
             preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password)
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, typeUser);
             ;
             ResultSet result = preparedStatement.executeQuery();
             if(result.next()){
@@ -42,13 +44,14 @@ public class UserImpl implements UserDao {
                 String company = result.getString("Company");
                 Timestamp creatingTime = result.getTimestamp("Creating_time");
 
-                administrator.setStatus(status);
-                administrator.setTel(tel);
-                administrator.setName(name);
-                administrator.setPassword(password);
-                administrator.setCompany(company);
-                administrator.setEmail(login);
-                administrator.setCreatingTime(creatingTime);
+
+                user.setStatus(status);
+                user.setTel(tel);
+                user.setName(name);
+                user.setPassword(password);
+                user.setCompany(company);
+                user.setEmail(login);
+                user.setCreatingTime(creatingTime);
 
             }else{
                 throw new DaoException("Administrator not found.");
@@ -63,58 +66,8 @@ public class UserImpl implements UserDao {
         } catch (SQLException e) {
             throw new DaoException("Connection to database failed");
         }
-        return administrator;
+        return user;
     }
 
-    @Override
-    public Intern getIntern(String login, String password) throws DaoException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        Intern intern = new Intern();
-
-
-        try {
-            connection = daoFactory.getConnection();
-
-            preparedStatement = connection.prepareStatement("SELECT * " +
-                    "from Users " +
-                    "where Email = ? " +
-                    "and Password = ? " +
-                    "and Type_user ='Intern' "
-            );
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password)
-            ;
-            ResultSet result = preparedStatement.executeQuery();
-            if (result.next()) {
-                Boolean status = (result.getString("Status").equals("Active"));
-                String name = result.getString("Name");
-                String tel = result.getString("Tel");
-                String company = result.getString("Company");
-                Timestamp creatingTime = result.getTimestamp("Creating_time");
-
-                intern.setStatus(status);
-                intern.setTel(tel);
-                intern.setName(name);
-                intern.setPassword(password);
-                intern.setCompany(company);
-                intern.setEmail(login);
-                intern.setCreatingTime(creatingTime);
-
-            } else {
-                throw new DaoException("Intern not found.");
-            }
-        } catch (SQLException e) {
-            throw new DaoException("Get intern from database failed");
-        }
-
-        try {
-            preparedStatement.close();
-            connection.close();
-        } catch (SQLException e) {
-            throw new DaoException("Connection to database failed");
-        }
-        return intern;
-    }
 
 }

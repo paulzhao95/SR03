@@ -2,10 +2,7 @@ package action;
 
 import dao.DaoException;
 import dao.DaoFactory;
-import model.Administrator;
-import model.Intern;
 import model.User;
-import postgresqlImpl.administrator.ChoiceImpl;
 import postgresqlImpl.administrator.UserImpl;
 
 public class SignUpAction {
@@ -23,11 +20,8 @@ public class SignUpAction {
         UserImpl administratorUserImpl = daoFactoryInstance.getAdministratorUserImpl();
 
         try {
-            if (user.getType().toString().equals("Administrator")) {
-                administratorUserImpl.addAdministrator(new Administrator(user));
-            } else {
-                administratorUserImpl.addIntern(new Intern(user));
-            }
+            administratorUserImpl.addUser(user);
+
         } catch (DaoException e) {
             return ("signUpFailed");
         }
