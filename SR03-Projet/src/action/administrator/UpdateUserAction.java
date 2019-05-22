@@ -1,33 +1,37 @@
-package controller.administrator;
+package action.administrator;
 
 import dao.DaoException;
 import dao.DaoFactory;
 import model.User;
 import postgresqlImpl.administrator.UserImpl;
 
-import java.util.ArrayList;
-
-public class ShowUsersAction {
-    ArrayList<User> users = new ArrayList<User>();
+public class UpdateUserAction {
+    private User user = new User();
 
     public String execute() {
         UserImpl administratorUserImpl;
         try {
             DaoFactory daoFactoryInstance = DaoFactory.getDaoFactoryInstance();
             administratorUserImpl = daoFactoryInstance.getAdministratorUserImpl();
-            users = administratorUserImpl.getUsers();
-
         } catch (DaoException e) {
             return "dataBaseConnectionFailed";
         }
-        return "success";
+
+        try {
+            user.setStatus(!user.getStatus());
+            administratorUserImpl.updateUser(user);
+            return "updateUserSucceed";
+        } catch (DaoException e) {
+            return "updateUserFailed";
+        }
+
     }
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

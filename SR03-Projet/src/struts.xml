@@ -6,25 +6,25 @@
 
 <struts>
     <package name="default" extends="struts-default">
-        <action name="signUp" class="controller.SignUpAction" method="execute">
+        <action name="signUp" class="action.SignUpAction" method="execute">
             <result name="signUpSucceed">index.jsp</result>
             <result name="signUpFailed">index.jsp</result>
             <result name="dataBaseConnectionFailed">index.jsp</result>
         </action>
 
-        <action name="login" class="controller.LoginAction" method="execute">
+        <action name="login" class="action.LoginAction" method="execute">
             <result type="chain" name="administratorLoginSucceed">getUsers</result>
             <result name="internLoginSucceed">test.jsp</result>
             <result name="loginFailed">SignUp.jsp</result>
             <result name="dataBaseConnectionFailed">test.jsp</result>
         </action>
 
-        <action name="getUsers" class="controller.administrator.ShowUsersAction" method="execute">
+        <action name="getUsers" class="action.administrator.ShowUsersAction" method="execute">
             <result name="success">administrator/User-Topic_List.jsp</result>
             <result name="dataBaseConnectionFailed">test.jsp</result>
         </action>
 
-        <action name="updateUser" class="controller.administrator.UpdateUserAction" method="execute">
+        <action name="updateUser" class="action.administrator.UpdateUserAction" method="execute">
             <result type="redirectAction" name="updateUserSucceed">getUsers</result>
             <result name="updateUserFailed">test.jsp</result>
         </action>

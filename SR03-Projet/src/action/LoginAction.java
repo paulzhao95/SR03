@@ -1,4 +1,4 @@
-package controller;
+package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
