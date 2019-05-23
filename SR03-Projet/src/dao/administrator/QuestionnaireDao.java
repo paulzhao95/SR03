@@ -11,7 +11,7 @@ public interface QuestionnaireDao extends dao.QuestionnaireDao {
 
     void updateQuestionnaire(Questionnaire questionnaire) throws DaoException;
 
-    void addQuestionnaire(String topic, String name) throws DaoException;
+    void addQuestionnaire(Questionnaire questionnaire) throws DaoException;
 
     void deleteQuestionnaire(Questionnaire questionnaire) throws DaoException;
 

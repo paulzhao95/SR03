@@ -27,7 +27,7 @@ BEGIN
 
   delete from Questionnaires where number = questionnaire_number and topic = topic_name;
 
-  update questionnaire set number = number -1 where topic = topic_name and number >current_num;
+  update questionnaires set number = number -1 where topic = topic_name and number >current_num;
   COMMIT;
 END;
 $$;
@@ -80,7 +80,7 @@ BEGIN
 
   if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
 
-  insert into Choice (topic, questionnaire_id, question_id, number, description,status, type) values (topic_name,questionnaire_number,question_number,max_num,choice_description,'Active',is_right);
+  insert into Choices (topic, questionnaire_id, question_id, number, description,status, type) values (topic_name,questionnaire_number,question_number,max_num,choice_description,'Active',is_right);
 
   COMMIT;
 END;
@@ -135,9 +135,11 @@ BEGIN
 
   update  choices set number = -1 where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number = choice_one_number;
 
-  update  choices set number = choice_one_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number = question_two_number;
+  update  choices set number = choice_one_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number = choice_two_number;
 
-  update  questions set number = choice_two_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and  number = -1;
+  update  choices set number = choice_two_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and  number = -1;
+
+  delete from choices where number = -1;
   COMMIT;
 END;
 $$;

@@ -1,21 +1,18 @@
 package action;
 
+import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
 import model.User;
 import postgresqlImpl.administrator.UserImpl;
 
-public class SignUpAction {
+public class SignUpAction extends ActionSupport {
     private User user = new User();
 
-    public String execute() {
+    public String execute() throws DaoException {
 
-        DaoFactory daoFactoryInstance;
-        try {
-            daoFactoryInstance= DaoFactory.getDaoFactoryInstance();
-        } catch (DaoException e) {
-            return ("dataBaseConnectionFailed");
-        }
+        DaoFactory daoFactoryInstance = DaoFactory.getDaoFactoryInstance();
+
 
         UserImpl administratorUserImpl = daoFactoryInstance.getAdministratorUserImpl();
 
@@ -23,10 +20,10 @@ public class SignUpAction {
             administratorUserImpl.addUser(user);
 
         } catch (DaoException e) {
-            return ("signUpFailed");
+            return ERROR;
         }
 
-        return ("signUpSucceed");
+        return SUCCESS;
     }
 
     public User getUser() {

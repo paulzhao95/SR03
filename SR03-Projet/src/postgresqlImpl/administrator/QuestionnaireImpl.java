@@ -151,14 +151,14 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
     }
 
     @Override
-    public void addQuestionnaire( String topic, String name) throws DaoException {
+    public void addQuestionnaire( Questionnaire questionnaire) throws DaoException {
         Connection connection;
         PreparedStatement preparedStatement;
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("call insert_questionnaire(?,?)" );
-            preparedStatement.setString(1,topic);
-            preparedStatement.setString(2,name);
+            preparedStatement.setString(1,questionnaire.getTopic());
+            preparedStatement.setString(2,questionnaire.getName());
 
             int i = preparedStatement.executeUpdate();
             connection.commit();

@@ -16,31 +16,34 @@
 
 
         <action name="signUp" class="action.SignUpAction" method="execute">
-            <result name="signUpSucceed">index.jsp</result>
-            <result name="signUpFailed">index.jsp</result>
-            <result name="dataBaseConnectionFailed">index.jsp</result>
-
+            <result name="success">index.jsp</result>
+            <result name="error">index.jsp</result>
         </action>
 
-        <action name="login" class="action.LoginAction" method="execute">
+        <action name="login" class="action.LoginAction" method="execute" >
             <result type="chain" name="administratorLoginSucceed">getUsers</result>
             <result name="internLoginSucceed">test.jsp</result>
             <result name="loginFailed">SignUp.jsp</result>
-            <result name="dataBaseConnectionFailed">test.jsp</result>
         </action>
 
-        <action name="getUsers" class="action.administrator.ShowUsersAction" method="execute">
+        <action name="getUsers" class="action.administrator.UserAction" method="get">
             <result name="success">administrator/User-Topic_List.jsp</result>
             <result name="dataBaseConnectionFailed">test.jsp</result>
         </action>
 
-        <action name="updateUser" class="action.administrator.UpdateUserAction" method="execute">
+        <action name="updateUser" class="action.administrator.UserAction" method="update">
             <result type="redirectAction" name="updateUserSucceed">getUsers</result>
             <result name="updateUserFailed">test.jsp</result>
         </action>
+        <action name="deleteUser" class="action.administrator.UserAction" method="delete">
+            <result name="deleteUserSucceed">administrator/User-Topic_List.jsp</result>
+            <result name="deleteUserFailed">test.jsp</result>
+        </action>
 
-
-
+        <action name="addeUser" class="action.administrator.UserAction" method="add">
+            <result name="addUserSucceed">administrator/User-Topic_List.jsp</result>
+            <result name="addUserFailed">test.jsp</result>
+        </action>
     </package>
 
 </struts>

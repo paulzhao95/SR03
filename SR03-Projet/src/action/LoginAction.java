@@ -15,15 +15,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private String type;
     private Map<String, Object> session;
 
-    public String execute()  {
-        UserImpl userImpl;
-        try{
-            DaoFactory daoFactoryInstance = DaoFactory.getDaoFactoryInstance();
-            userImpl = daoFactoryInstance.getUserImpl();
+    public String execute() throws DaoException {
+        UserImpl userImpl = DaoFactory.getDaoFactoryInstance().getUserImpl();
 
-        } catch (DaoException e) {
-            return "dataBaseConnectionFailed";
-        }
         User user;
         try{
             user = userImpl.getUser(email, password,type);

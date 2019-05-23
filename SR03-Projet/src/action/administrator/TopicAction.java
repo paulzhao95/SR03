@@ -1,14 +1,20 @@
 package action.administrator;
 
+import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
 import model.Topic;
 import postgresqlImpl.administrator.TopicImpl;
 
-public class TopicAction {
+import java.util.ArrayList;
+
+// TODO: 5/23/19 test
+public class TopicAction extends ActionSupport {
     private Topic topic = new Topic();
+    private ArrayList<Topic> topics = new ArrayList<>();
     private  TopicImpl administratorTopicImpl = DaoFactory.getDaoFactoryInstance().getAdministratorTopicImpl();
     private String newTopicName = "";
+
     public TopicAction() throws DaoException {
     }
 
@@ -16,9 +22,9 @@ public class TopicAction {
         try {
             administratorTopicImpl.addTopic(topic);
         } catch (DaoException e) {
-            return "addTopicFailed";
+            return ERROR;
         }
-        return "addTopicSucceed";
+        return SUCCESS;
     }
 
     public String delete() {
@@ -26,27 +32,27 @@ public class TopicAction {
             administratorTopicImpl.deleteTopic(topic);
 
         } catch (DaoException e) {
-            return "deleteTopicFailed";
+            return ERROR;
         }
-        return "deleteTopicSucceed";
+        return SUCCESS;
     }
 
     public String update() {
         try {
             administratorTopicImpl.updateTopic(topic.getName(), newTopicName);
         } catch (DaoException e) {
-            return "updateTopicFailed";
+            return ERROR;
         }
-        return "updateTopicSucceed";
+        return SUCCESS;
     }
 
-    public String getTopics() {
+    public String get() {
         try {
             administratorTopicImpl.getTopics();
         } catch (DaoException e) {
-            return "getTopicFailed";
+            return ERROR;
         }
-        return "getTopicSucceed";
+        return SUCCESS;
     }
 
 
@@ -58,11 +64,19 @@ public class TopicAction {
         this.topic = topic;
     }
 
+    public ArrayList<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(ArrayList<Topic> topics) {
+        this.topics = topics;
+    }
+
     public String getNewTopicName() {
         return newTopicName;
     }
 
-    public void setAdministratorTopicImpl(TopicImpl administratorTopicImpl) {
-        this.administratorTopicImpl = administratorTopicImpl;
+    public void setNewTopicName(String newTopicName) {
+        this.newTopicName = newTopicName;
     }
 }
