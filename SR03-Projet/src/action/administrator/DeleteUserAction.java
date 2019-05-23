@@ -6,11 +6,12 @@ import model.User;
 import postgresqlImpl.administrator.UserImpl;
 
 // TODO: 5/23/19 debug
-public class AddUserAction {
-    User user = new User();
+public class DeleteUserAction {
+
+    private User user = new User();
 
     public String execute() {
-        DaoFactory daoFactoryInstance ;
+        DaoFactory daoFactoryInstance;
         try {
             daoFactoryInstance = DaoFactory.getDaoFactoryInstance();
         } catch (DaoException e) {
@@ -18,11 +19,13 @@ public class AddUserAction {
         }
         UserImpl administratorUserImpl = daoFactoryInstance.getAdministratorUserImpl();
         try {
-            administratorUserImpl.addUser(user);
+            administratorUserImpl.deleteUser(user);
         } catch (DaoException e) {
             return "addUserFailed";
         }
+
         return "addUserSucceed";
+
     }
 
     public User getUser() {

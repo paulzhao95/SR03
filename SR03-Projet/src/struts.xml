@@ -6,10 +6,20 @@
 
 <struts>
     <package name="default" extends="struts-default">
+
+        <global-results>
+            <result name="dataBaseConnectionFailed">test.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="dao.DaoException" result="dataBaseConnectionFailed" />
+        </global-exception-mappings>
+
+
         <action name="signUp" class="action.SignUpAction" method="execute">
             <result name="signUpSucceed">index.jsp</result>
             <result name="signUpFailed">index.jsp</result>
             <result name="dataBaseConnectionFailed">index.jsp</result>
+
         </action>
 
         <action name="login" class="action.LoginAction" method="execute">
@@ -29,5 +39,8 @@
             <result name="updateUserFailed">test.jsp</result>
         </action>
 
+
+
     </package>
+
 </struts>
