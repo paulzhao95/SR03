@@ -1,16 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: caitianyang
-  Date: 2019-05-25
-  Time: 18:26
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <title>Changement du Topic</title>
+    <link rel="stylesheet" type="text/css" href="../css/myStyle2.css" />
 </head>
+
 <body>
+<%String topic = request.getParameter("topic");%>
+<img class="bgone" src="../picture/1.jpg" />
+<img class="pic" src="../picture/a.png" />
+
+<div class="table">
+    <%String hint = "Name of Questionnaire";%>
+    <div class="wel">Cr&eacute;er une nouvelle questionnaire</div>
+    <form action="../test.jsp">
+        <div class="password">
+            <div id="yonghu"><img src="../picture/yhm.png" /></div>
+            <input type="text" name="questionnaire.name" placeholder=<%=hint%>/>
+            <input type="hidden" name="questionnaire.topic" value=<%=topic%>/>
+        </div>
+        <input class="btn" type="submit" name="Validation" value="Validation" />
+    </form>
+</div>
 
 </body>
 </html>
