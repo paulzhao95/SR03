@@ -8,19 +8,30 @@
 </head>
 
 <body>
-
+<%String name = request.getParameter("name");
+  Boolean status = request.getParameter("status").equals("true");
+    String check = "checked";
+    String topic = request.getParameter("topic");%>
 <img class="bgone" src="../picture/1.jpg" />
 <img class="pic" src="../picture/a.png" />
 
 <div class="table">
-    <%String topic = "exemple1";%>
-    <div class="wel">Changez le nom de cette questionnaire</div>
+    <div class="wel">Changez l'information de cette questionnaire</div>
     <form action="">
-        <div class="password">
+        <div class="user">
             <div id="yonghu"><img src="../picture/yhm.png" /></div>
-            <input type="text" name="topic" placeholder=<%=topic%>/>
+            <input type="text" name="questionnaire.name" value="<%=name%>" />
+            <input type="hidden" name="questionnaire.topic" value="<%=topic%>" />
         </div>
-        <input class="btn" type="button" name="Validation" value="Validation" />
+        <div class = "password">
+            Active
+            <input type="radio" style="width:140px;height:25px" name="questionnaire.status" value="true"
+                    <%if (status){%> <%=check%> <%}%>/>
+            Inactive
+            <input type="radio" style="width:140px;height:25px" name="questionnaire.status" value="false"
+                    <%if (!status){%> <%=check%> <%}%>/>
+        </div>
+        <input class="btn" type="submit" name="Validation" value="Validation" />
     </form>
 </div>
 

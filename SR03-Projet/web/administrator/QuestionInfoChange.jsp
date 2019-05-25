@@ -76,24 +76,24 @@
                         <li id="qu_0_0">
                             <div class="test_content_nr_tt">
                                 <i>*</i><font>
-                                <input id="question" class = "input_control" name = "question" type="text" onchange="changeValue()" value = <%=question%>>
+                                <input id="question" class = "input_control" name = "question" type="text" onchange="changeValue()" value = "<%=question%>">
                                 <label for="question"></label></font>
                             </div>
                             <div class="test_content_nr_main">
                                 <ul>
 
                                     <li class="option">
-                                        <input id="answer1" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer1" type="text" onchange="changeValue()" value = <%=answer1%>>
+                                        <input id="answer1" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer1" type="text" onchange="changeValue()" value = "<%=answer1%>">
                                         <div align="right">A</div>
                                     </li>
 
                                     <li class="option">
-                                        <input id="answer2" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer2" type="text" onchange="changeValue()" value = <%=answer2%>>
+                                        <input id="answer2" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer2" type="text" onchange="changeValue()" value = "<%=answer2%>">
                                         <div align="right">B</div>
                                     </li>
 
                                     <li class="option">
-                                        <input id="answer3" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer3" type="text" onchange="changeValue()" value = <%=answer3%>>
+                                        <input id="answer3" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer3" type="text" onchange="changeValue()" value = "<%=answer3%>">
                                         <div align="right">C</div>
                                     </li>
                                 </ul>

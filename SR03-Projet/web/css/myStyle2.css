@@ -35,6 +35,17 @@
     right: 4rem;
     display: flex;
 }
+
+
+.ratio{
+    position: absolute;
+    top: 12.8rem;
+    right: 4rem;
+    left: 20rem;
+    display: flex;
+}
+
+
 .btn{
     position: absolute;
     top: 18.5rem;

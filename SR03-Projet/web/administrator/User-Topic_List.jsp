@@ -21,10 +21,6 @@
 </head>
 <body>
 
-<%String s = "abababa"; %>
-
-
-
 <div>
     <div class="content">
         <div class="tab-block information-tab">
@@ -36,7 +32,7 @@
                     <div class="personalnformation-content-right">
                         <p class="personalnformation-content-right-p">Nom：<%=user.getName()%> </p>
                         <p class="personalnformation-content-right-p">Email：<%=user.getEmail()%> </p>
-                        <p class="personalnformation-content-right-p">Create Time：13519494861</p>
+                        <p class="personalnformation-content-right-p">Create Time：2019</p>
                     </div>
             </div>
                 <div style="float: right;margin: 150px;">
@@ -67,23 +63,20 @@
 
 
 
-                            <%
 
-
-                                for(int i=0;i<10;i++){
-                            %>
-
+                            <s:iterator value="topics">
                             <div class="information-top-content-left">
-
-                                <a href="" class="information-top-content-p"><%=i%></a>
+                                <!-- 这里要加action-->
+                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/actionxxxxx?topic.name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
                             </div>
                             <div class="information-top-content-right">
-                                <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
                                 <a href="" class="information-top-content-p">Delete</a>
                             </div>
-                            <%
-                                }
-                            %>
+                            </s:iterator>
+
+
+
+
 
 
                         </div>
@@ -103,7 +96,7 @@
 
                 <s:iterator value="users">
                     <div class="information-top-content-left">
-                        <a href="http://localhost:8080/SR03_Projet_war_exploded/administrator/UserInfo.jsp?name=<s:property value='name'/>&password=<s:property value='password'/>&email=<s:property value='email'/>&tel=<s:property value='tel'/>&company=<s:property value='company'/>&type=<s:property value='type'/>&status=<s:property value='status'/>" class="information-top-content-p"><s:property value='name'/></a>
+                        <a href="http://localhost:8080/SR03_Projet_war_exploded/administrator/UserInfoChangeAdmin.jsp?name=<s:property value='name'/>&password=<s:property value='password'/>&email=<s:property value='email'/>&tel=<s:property value='tel'/>&company=<s:property value='company'/>&type=<s:property value='type'/>&status=<s:property value='status'/>" class="information-top-content-p"><s:property value='name'/></a>
                     </div>
                     <div class="information-top-content-right">
                         <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->

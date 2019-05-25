@@ -1,4 +1,5 @@
 <!doctype html>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -31,16 +32,20 @@
 </head>
 <body class="blue">
 
-<%String user = "Zhaolongen";
-    String email = "zhao@126.com";
-    String password = "111";
-    String telephone = "00000000";
-    String company = "aaa";%>
+<%String user = request.getParameter("name");
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    String telephone = request.getParameter("tel");
+    String company = request.getParameter("company");
+    String creating_time = "2019";
+    Boolean status = request.getParameter("status").equals("true");
+    String type = request.getParameter("type");
+    String check = "checked";%>
 
 
 <div id="login-page" class="row">
     <div class="col s12 z-depth-6 card-panel">
-        <form action="../test.jsp" class="login-form">
+        <form action="" class="login-form">
             <div class="row">
                 <div class="input-field col s12 center">
                     <img src="../picture/UTC_logo.png" alt="" class="responsive-img valign profile-image-login">
@@ -50,53 +55,58 @@
             <div class="row margin">
                 <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
-                    <input id="username" name = "username" type="text" class="validate" onchange="changeValue()" value = <%=user%>>
+                    <input id="username" name = "user.name" type="text" class="validate" onchange="changeValue()" value = "<%=user%>">
                     <label for="username" class="center-align"></label>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
                     <i class="mdi-communication-email prefix"></i>
-                    <input id="email" name = "email" type="email" class="validate" onchange="changeValue()" value = <%=email%>>
+                    <input id="email" name = "user.email" type="email" class="validate" onchange="changeValue()" value = "<%=email%>">
                     <label for="email" class="center-align"></label>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
                     <i class="mdi-action-lock-outline prefix"></i>
-                    <input id="password" name = "password" type="password" onchange="changeValue()" class="validate" value = <%=password%>>
+                    <input id="password" name = "user.password" type="text" onchange="changeValue()" class="validate" value = "<%=password%>">
                     <label for="password"></label>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
-                    <i class="mdi-action-lock-outline prefix"></i>
-                    <input id="password-again" type="password" onchange="changeValue()" value = <%=password%>>
-                    <label for="password-again"></label>
-                </div>
-            </div>
-            <div class="row margin">
-                <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
-                    <input id="telephone" name = "telephone" type="text" class="validate" onchange="changeValue()" value = <%=telephone%>>
+                    <input id="telephone" name = "user.tel" type="text" class="validate" onchange="changeValue()" value = "<%=telephone%>">
                     <label for="telephone"></label>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
-                    <input id="company" name = "company" type="text" onchange="changeValue()" class="validate" value = <%=company%>>
+                    <input id="company" name = "user.company" type="text" onchange="changeValue()" class="validate" value = "<%=company%>">
                     <label for="company"></label>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
-                    <input type="radio" id="Amdin" name="person" value="Amdin"
-                           checked>
+                    <input type="radio" id="Amdin" name="user.type" value="Amdin"
+                            <%if (type.equals("Administrator")){%> <%=check%> <%}%>/>
                     <label for="Amdin">Amdin</label>
-                    <input type="radio" id="Intern" name="person" value="Intern">
+                    <input type="radio" id="Intern" name="user.type" value="Intern"
+                            <%if (type.equals("Intern")){%> <%=check%> <%}%>/>
                     <label for="Intern">Intern</label>
+                </div>
+            </div>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    <input type="radio" id="Status_true" name="user.status" value="true"
+                            <%if (status){%> <%=check%> <%}%>/>
+                    <label for="Status_true">Active</label>
+                    <input type="radio" id="Status_false" name="user.status" value="false"
+                            <%if (!status){%> <%=check%> <%}%>/>
+                    <label for="Status_false">Inactive</label>
                 </div>
             </div>
             <div class="row">
