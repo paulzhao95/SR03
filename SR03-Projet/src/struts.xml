@@ -61,7 +61,7 @@
 
 <!--        administrator questionnaire action -->
         <action name="getQuestionnaires" class="action.administrator.QuestionnaireAction" method="get">
-            <result type="redirect" name="success">administrator/QuestionnaireList.jsp</result>
+            <result name="success">administrator/QuestionnaireList.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 

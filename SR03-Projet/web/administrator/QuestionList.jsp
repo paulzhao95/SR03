@@ -12,6 +12,7 @@
 
         User user = (User)session.getAttribute("user");
     %>
+    <base href="<%=basePath%>">
     <title>Administrator Panel</title>
     <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
     <script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>

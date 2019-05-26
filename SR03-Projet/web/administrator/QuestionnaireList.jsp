@@ -9,8 +9,10 @@
         String basePath = request.getScheme() + "://"
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
+
         User user = (User)session.getAttribute("user");
     %>
+    <base href="<%=basePath%>">
     <title>Administrator Panel</title>
     <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
     <script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
@@ -63,7 +65,7 @@
                             <s:iterator value="questionnaires">
                             <div class="information-top-content-left">
                                 <!-- 这里写action，还没填，要改-->
-                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/actionxxxxx?questionnaire.name=<s:property value='name'/>&questionnaire.status=<s:property value='status'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p"><s:property value='name'/></a>
+                                <a href="http://localhost:8080/SR03_Projet_war_exploded/actionxxxxx?questionnaire.name=<s:property value='name'/>&questionnaire.status=<s:property value='status'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p"><s:property value='name'/></a>
                             </div>
                             <div class="information-top-content-right">
                                 <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
