@@ -19,9 +19,9 @@ public class Questionnaire implements Serializable {
         this.setStatus(status);
     }
 
-    public Questionnaire(Integer questionnaireID, String topic, String name){
+    public Questionnaire(String topic, String name){
         this.setName(name);
-        this.setQuestionnaireID(questionnaireID);
+        this.setQuestionnaireID(0);
         this.setTopic(topic);
         this.setStatus(true);
         this.setQuestions(new ArrayList<Question>());

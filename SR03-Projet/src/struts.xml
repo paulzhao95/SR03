@@ -61,10 +61,14 @@
 
 <!--        administrator questionnaire action -->
         <action name="getQuestionnaires" class="action.administrator.QuestionnaireAction" method="get">
-            <result type="redirect" name="success">QuestionnaireList.jsp</result>
+            <result type="redirect" name="success">administrator/QuestionnaireList.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 
+        <action name="addQuestionnaires" class="action.administrator.QuestionnaireAction" method="add">
+            <result type="redirectAction" name="success">getQuestionnaires</result>
+            <result name="error">test.jsp</result>
+        </action>
 
 
     </package>

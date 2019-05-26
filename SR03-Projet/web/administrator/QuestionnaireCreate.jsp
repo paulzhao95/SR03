@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 
@@ -15,11 +16,11 @@
 <div class="table">
     <%String hint = "Name of Questionnaire";%>
     <div class="wel">Cr&eacute;er une nouvelle questionnaire</div>
-    <form action="../test.jsp">
+    <form action="addQuestionnaires.action">
         <div class="password">
             <div id="yonghu"><img src="../picture/yhm.png" /></div>
             <input type="text" name="questionnaire.name" placeholder=<%=hint%>/>
-            <input type="hidden" name="questionnaire.topic" value=<%=topic%>/>
+            <input type="hidden" name="questionnaire.topic" value=<s:property value="topic" /> />
         </div>
         <input class="btn" type="submit" name="Validation" value="Validation" />
     </form>

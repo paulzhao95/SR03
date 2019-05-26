@@ -12,19 +12,21 @@
         User user = (User)session.getAttribute("user");
     %>
     <title>Administrator Panel</title>
-    <link rel="stylesheet" type="text/css" href="css/myStyle.css" />
-    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-    <style>body{background:url("picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
+    <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
+    <script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
 </head>
 <body>
-<%String topic = request.getParameter("topic");%>
+<%String topic = request.getParameter("topic");
+    System.out.println(topic);
+%>
 <div>
     <div class="content">
         <div class="tab-block information-tab">
             <div class="personalnformation">
                 <div class="personalnformation-content">
                     <div class="personalnformation-content-left">
-                        <img src="picture/default_avatar.png"/>
+                        <img src="../picture/default_avatar.png"/>
                     </div>
                     <div class="personalnformation-content-right">
                         <p class="personalnformation-content-right-p">Nom：<%=user.getName()%> </p>
@@ -34,7 +36,7 @@
                 </div>
                 <div style="float: right;margin: 150px;">
                     <br>
-                    <a href="administrator/QuestionnaireCreate.jsp?topic=<s:property value='#topic.name'/>" class="link_class">New Questionnaire</a>
+                    <a href="QuestionnaireCreate.jsp?topic=<s:property value='topic'/>" class="link_class">New Questionnaire</a>
                 </div>
             </div>
 
