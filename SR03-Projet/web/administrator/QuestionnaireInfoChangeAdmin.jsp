@@ -20,7 +20,7 @@
     <form action="">
         <div class="user">
             <div id="yonghu"><img src="../picture/yhm.png" /></div>
-            <input type="text" name="questionnaire.name" value="<%=name%>" />
+            <input type="text" name="questionnaire.name" value="<%=name%>" onchange="changeValue()"/>
             <input type="hidden" name="questionnaire.topic" value="<%=topic%>" />
         </div>
         <div class = "password">
@@ -34,6 +34,10 @@
         <input class="btn" type="submit" name="Validation" value="Validation" />
     </form>
 </div>
-
+<script>
+    function changeValue(obj){
+        $(obj).attr("value",$(obj).val());
+    }
+</script>
 </body>
 </html>
