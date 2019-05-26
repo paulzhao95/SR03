@@ -15,7 +15,7 @@
 <div class="table">
     <%String hint = "Name of Topic";%>
     <div class="wel">Cr&eacute;er un nouveau topic</div>
-    <form action="../test.jsp">
+    <form action="addTopic.action">
         <div class="password">
             <div id="yonghu"><img src="../picture/yhm.png" /></div>
             <input type="text" name="topic.name" placeholder=<%=hint%>/>
