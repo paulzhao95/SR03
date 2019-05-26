@@ -18,11 +18,15 @@
     <form action="">
     <div class="password">
         <div id="yonghu"><img src="../picture/yhm.png" /></div>
-        <input type="text" name="topic" placeholder=<%=topic%>/>
+        <input type="text" name="topic" value="<%=topic%>" onchange="changeValue()" />
     </div>
     <input class="btn" type="button" name="Validation" value="Validation" />
     </form>
 </div>
-
+<script>
+    function changeValue(obj){
+        $(obj).attr("value",$(obj).val());
+    }
+</script>
 </body>
 </html>

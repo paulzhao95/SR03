@@ -61,9 +61,6 @@
                                 <p class="information-top-head-p">Delete</p>
                             </div>
 
-
-
-
                             <s:iterator value="topics">
                             <div class="information-top-content-left">
                                 <!-- 这里要加action-->
@@ -73,11 +70,6 @@
                                 <a href="" class="information-top-content-p">Delete</a>
                             </div>
                             </s:iterator>
-
-
-
-
-
 
                         </div>
                     </div>
@@ -103,9 +95,6 @@
                         <a href="" class="information-top-content-p">Delete</a>
                     </div>
                 </s:iterator>
-
-
-
                         </div>
                     </div>
                 </div>
