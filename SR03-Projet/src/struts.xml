@@ -55,9 +55,17 @@
         </action>
 
         <action name="addTopic" class="action.administrator.TopicAction" method="add">
-            <result name="success">administrator/User-Topic_List.jsp</result>
+            <result type="redirectAction" name="success">getUsers</result>
             <result name="error">test.jsp</result>
         </action>
+
+<!--        administrator questionnaire action -->
+        <action name="getQuestionnaires" class="action.administrator.QuestionnaireAction" method="get">
+            <result type="redirect" name="success">QuestionnaireList.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+
 
     </package>
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class QuestionnaireAction extends ActionSupport {
     private ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
     private Questionnaire questionnaire = new Questionnaire();
+    private String topic = "";
 
     QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
 
@@ -21,7 +22,7 @@ public class QuestionnaireAction extends ActionSupport {
 
     public String get() {
 
-        String topic = ServletActionContext.getRequest().getParameter("Topic");
+//        String topic = ServletActionContext.getRequest().getParameter("Topic");
         try {
             questionnaires = questionnaireImpl.getQuestionnaires(topic);
         } catch (DaoException e) {
@@ -73,5 +74,13 @@ public class QuestionnaireAction extends ActionSupport {
 
     public void setQuestionnaires(ArrayList<Questionnaire> questionnaires) {
         this.questionnaires = questionnaires;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 }

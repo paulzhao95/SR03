@@ -64,7 +64,7 @@
                             <s:iterator value="topics">
                             <div class="information-top-content-left">
                                 <!-- 这里要加action-->
-                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/actionxxxxx?topic.name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
+                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/getQuestionnaires.action?topic=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
                             </div>
                             <div class="information-top-content-right">
                                 <a href="" class="information-top-content-p">Delete</a>

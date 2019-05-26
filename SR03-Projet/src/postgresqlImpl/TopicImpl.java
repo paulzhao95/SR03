@@ -23,45 +23,61 @@ public class TopicImpl implements TopicDao {
 
     @Override
     public ArrayList<Topic> getTopics() throws DaoException {
+//        Connection connection ;
+//        PreparedStatement preparedStatement ;
+//        String preTopicName = "";
+//
+//        ArrayList<Topic> topics = new ArrayList<Topic>();
+//        ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
+//
+//        int index = 0;
+//        try {
+//            connection = daoFactory.getConnection();
+//            preparedStatement = connection.prepareStatement(
+//                    "select T.Topic as Topic, " +
+//                            "Q.Number as Number," +
+//                            "Q.Name as Name " +
+//                            "from " +
+//                            "Topics T join Questionnaires Q " +
+//                            "on T.Topic = Q.Topic " +
+//                            "order by T.Topic , Q.Number"
+//            );
+//
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()){
+//                String topicName = resultSet.getString("topic");
+//                int questionnaireId = resultSet.getInt("number");
+//                String questionnaireName = resultSet.getString("name");
+//
+//                if (!topicName.equals(preTopicName)){
+//                    if (index>0){
+//                        topics.add(new Topic(preTopicName,questionnaires));
+//                        questionnaires.clear();
+//                    }
+//                    index++;
+//                    preTopicName = topicName;
+//                }
+//                questionnaires.add(new Questionnaire(questionnaireId,topicName,questionnaireName));
+//            }
+//            topics.add(new Topic(preTopicName, questionnaires));
+//
+//            resultSet.close();
+
         Connection connection ;
         PreparedStatement preparedStatement ;
-        String preTopicName = "";
-
         ArrayList<Topic> topics = new ArrayList<Topic>();
-        ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
 
-        int index = 0;
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement(
-                    "select T.Topic as Topic, " +
-                            "Q.Number as Number," +
-                            "Q.Name as Name " +
-                            "from " +
-                            "Topics T join Questionnaires Q " +
-                            "on T.Topic = Q.Topic " +
-                            "order by T.Topic , Q.Number"
-            );
+            preparedStatement = connection.prepareStatement("select  * from topics");
 
             ResultSet resultSet = preparedStatement.executeQuery();
+
+
             while (resultSet.next()){
                 String topicName = resultSet.getString("topic");
-                int questionnaireId = resultSet.getInt("number");
-                String questionnaireName = resultSet.getString("name");
-
-                if (!topicName.equals(preTopicName)){
-                    if (index>0){
-                        topics.add(new Topic(preTopicName,questionnaires));
-                        questionnaires.clear();
-                    }
-                    index++;
-                    preTopicName = topicName;
-                }
-                questionnaires.add(new Questionnaire(questionnaireId,topicName,questionnaireName));
+                topics.add(new Topic(topicName));
             }
-            topics.add(new Topic(preTopicName, questionnaires));
-
-            resultSet.close();
         } catch (SQLException e) {
             throw new DaoException("Get topics from database failed : "+e.getMessage());
         }
