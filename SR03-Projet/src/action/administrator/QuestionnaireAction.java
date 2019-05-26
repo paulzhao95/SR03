@@ -5,17 +5,21 @@ import dao.DaoException;
 import dao.DaoFactory;
 import model.Questionnaire;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 import postgresqlImpl.administrator.QuestionnaireImpl;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 
-public class QuestionnaireAction extends ActionSupport {
+public class QuestionnaireAction extends ActionSupport implements SessionAware {
     private ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
     private Questionnaire questionnaire = new Questionnaire();
     private String topic = "";
 
-    QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
+    private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
+
+    private Map<String, Object> session;
 
     public QuestionnaireAction() throws DaoException {
     }
@@ -23,11 +27,15 @@ public class QuestionnaireAction extends ActionSupport {
     public String get() {
 
 //        String topic = ServletActionContext.getRequest().getParameter("Topic");
+        if (topic.equals( "")) {
+            topic = (String)session.get("topic");
+        }
         try {
             questionnaires = questionnaireImpl.getQuestionnaires(topic);
         } catch (DaoException e) {
             return ERROR;
         }
+        session.put("topic", topic);
         return SUCCESS;
     }
 
@@ -82,5 +90,10 @@ public class QuestionnaireAction extends ActionSupport {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> map) {
+        this.session = map;
     }
 }

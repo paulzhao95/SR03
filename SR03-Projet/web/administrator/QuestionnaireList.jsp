@@ -69,7 +69,7 @@
                             </div>
                             <div class="information-top-content-right">
                                 <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                                <a href="" class="information-top-content-p">Delete</a>
+                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/deleteQuestionnaire?questionnaire.questionnaireID=<s:property value='questionnaireID'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p">Delete</a>
                             </div>
                             </s:iterator>
 

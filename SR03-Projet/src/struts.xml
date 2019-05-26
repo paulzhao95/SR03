@@ -30,7 +30,7 @@
 
         <action name="getUsers" class="action.administrator.UserAction" method="get">
             <result type="chain" name="success">getTopics</result>
-            <result name="dataBaseConnectionFailed">test.jsp</result>
+            <result name="dataBaseConnectionFailed">/test.jsp</result>
         </action>
 
         <action name="updateUser" class="action.administrator.UserAction" method="update">
@@ -39,29 +39,29 @@
         </action>
 
         <action name="deleteUser" class="action.administrator.UserAction" method="delete">
-            <result name="deleteUserSucceed">administrator/User-Topic_List.jsp</result>
+            <result name="deleteUserSucceed">/administrator/User-Topic_List.jsp</result>
             <result name="deleteUserFailed">test.jsp</result>
         </action>
 
         <action name="addeUser" class="action.administrator.UserAction" method="add">
-            <result name="addUserSucceed">administrator/User-Topic_List.jsp</result>
+            <result name="addUserSucceed">/administrator/User-Topic_List.jsp</result>
             <result name="addUserFailed">test.jsp</result>
         </action>
 
 <!--        administrator topic action-->
 
         <action name="getTopics" class="action.administrator.TopicAction" method="get">
-            <result name="success">administrator/User-Topic_List.jsp</result>
+            <result name="success">/administrator/User-Topic_List.jsp</result>
         </action>
 
         <action name="addTopic" class="action.administrator.TopicAction" method="add">
             <result type="redirectAction" name="success">getUsers</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/test.jsp</result>
         </action>
 
 <!--        administrator questionnaire action -->
         <action name="getQuestionnaires" class="action.administrator.QuestionnaireAction" method="get">
-            <result name="success">administrator/QuestionnaireList.jsp</result>
+            <result name="success">/administrator/QuestionnaireList.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 
@@ -70,6 +70,10 @@
             <result name="error">test.jsp</result>
         </action>
 
+        <action name="deleteQuestionnaire" class="action.administrator.QuestionnaireAction" method="delete">
+            <result type="chain" name="success">getQuestionnaires</result>
+            <result name="error">test.jsp</result>
+        </action>
 
     </package>
 

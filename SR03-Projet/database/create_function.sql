@@ -22,12 +22,10 @@ AS $$
 DECLARE
   current_num   integer;
 BEGIN
-  set current_num = questionnaire_number;
-
+  select questionnaire_number into current_num;
   delete from Questionnaires where number = questionnaire_number and topic = topic_name;
 
   update questionnaires set number = number -1 where topic = topic_name and number >current_num;
-  COMMIT;
 END;
 $$;
 

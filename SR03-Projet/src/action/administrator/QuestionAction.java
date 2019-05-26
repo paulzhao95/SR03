@@ -14,18 +14,18 @@ public class QuestionAction extends ActionSupport {
     private Question question = new Question();
     private QuestionImpl questionImpl = DaoFactory.getDaoFactoryInstance().getdAdministratorQuestionImpl();
     private String topic = "";
-    private int questionnaireId ;
+    private int questionnaireId  = -1;
 
 
     public QuestionAction() throws DaoException {
     }
 
     public String get() {
-        try {
-            questionImpl.getQuestions(topic, questionnaireId);
-        } catch (DaoException e) {
-            return ERROR;
-        }
+//        try {
+//            questionImpl.getQuestions(topic, questionnaireId);
+//        } catch (DaoException e) {
+//            return ERROR;
+//        }
         return SUCCESS;
     }
 

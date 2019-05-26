@@ -181,25 +181,33 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
     public void deleteQuestionnaire(Questionnaire questionnaire) throws DaoException {
 
         Connection connection;
-        PreparedStatement preparedStatement;
+//        PreparedStatement preparedStatement;
+        CallableStatement callableStatement;
+
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call delete_questionnaire(?,?)");
-            preparedStatement.setString(2,questionnaire.getTopic());
-            preparedStatement.setInt(1,questionnaire.getQuestionnaireID());
+//            preparedStatement = connection.prepareStatement("call delete_questionnaire(?,?)");
+//            preparedStatement.setString(2,questionnaire.getTopic());
+//            preparedStatement.setInt(1,questionnaire.getQuestionnaireID());
+            callableStatement = connection.prepareCall("call delete_questionnaire(?,?)");
+            callableStatement.setString(1, questionnaire.getTopic());
+            callableStatement.setInt(2, questionnaire.getQuestionnaireID());
 
-            int i = preparedStatement.executeUpdate();
+
+//            int i = preparedStatement.executeUpdate();
+
+            callableStatement.executeUpdate();
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not delete questionnaire");
-            }
+//            if(i == 0){
+//                throw new DaoException("Can not delete questionnaire");
+//            }
 
         } catch (SQLException e) {
             throw new DaoException("Delete questionnaire in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
