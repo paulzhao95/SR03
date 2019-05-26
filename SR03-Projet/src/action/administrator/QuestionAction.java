@@ -1,7 +1,6 @@
 package action.administrator;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.javaws.exceptions.ErrorCodeResponseException;
 import dao.DaoException;
 import dao.DaoFactory;
 import model.Question;
@@ -14,7 +13,10 @@ public class QuestionAction extends ActionSupport {
     private Question question = new Question();
     private QuestionImpl questionImpl = DaoFactory.getDaoFactoryInstance().getdAdministratorQuestionImpl();
     private String topic = "";
-    private int questionnaireId  = -1;
+    private int questionnaireID = -1;
+    private Boolean status = true;
+    private String name = "";
+
 
 
     public QuestionAction() throws DaoException {
@@ -22,7 +24,7 @@ public class QuestionAction extends ActionSupport {
 
     public String get() {
 //        try {
-//            questionImpl.getQuestions(topic, questionnaireId);
+//            questionImpl.getQuestions(topic, questionnaireID);
 //        } catch (DaoException e) {
 //            return ERROR;
 //        }
@@ -65,12 +67,12 @@ public class QuestionAction extends ActionSupport {
         this.topic = topic;
     }
 
-    public int getQuestionnaireId() {
-        return questionnaireId;
+    public int getQuestionnaireID() {
+        return questionnaireID;
     }
 
-    public void setQuestionnaireId(int questionnaireId) {
-        this.questionnaireId = questionnaireId;
+    public void setQuestionnaireID(int questionnaireID) {
+        this.questionnaireID = questionnaireID;
     }
 
     public ArrayList<Question> getQuestions() {
@@ -89,4 +91,19 @@ public class QuestionAction extends ActionSupport {
         this.question = question;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
 }

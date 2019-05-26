@@ -120,7 +120,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("update Questionnaires " +
-                    "set status = ?, " +
+                    "set status = CAST(? as states), " +
                     "name = ?  " +
                     "where number = ? " +
                     "and Topic = ?"                    );

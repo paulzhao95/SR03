@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="model.User" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="S" uri="/struts-tags" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -38,7 +39,7 @@
                     <br>
                     <a href="" class="link_class">Add new Question</a>
                     <br>
-                    <a href="QuestionnaireInfoChangeAdmin.jsp?name=<s:property value='#questionnaire.name'/>&status=<s:property value='#questionnaire.status'/>&topic=<s:property value='#questionnaire.topic'/>" class="link_class">Update Questionnaire</a>
+                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireID=<S:property value="questionnaireID"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>
                 </div>
             </div>
 

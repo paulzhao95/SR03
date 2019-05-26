@@ -75,6 +75,17 @@
             <result name="error">test.jsp</result>
         </action>
 
+        <action name="updateQuestionnaire" class="action.administrator.QuestionnaireAction" method="update">
+            <result type="redirectAction" name="success">getQuestionnaires</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+
+<!--        administrator question action -->
+        <action name="getQuestions" class="action.administrator.QuestionAction" method="get">
+            <result name="success">/administrator/QuestionList.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
     </package>
 
 </struts>

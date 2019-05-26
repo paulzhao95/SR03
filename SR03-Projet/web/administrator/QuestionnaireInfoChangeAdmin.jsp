@@ -8,20 +8,24 @@
 </head>
 
 <body>
-<%String name = request.getParameter("name");
-  Boolean status = request.getParameter("status").equals("true");
+<%
+    String name = request.getParameter("name");
+    Boolean status = request.getParameter("status").equals("true");
     String check = "checked";
-    String topic = request.getParameter("topic");%>
+    String topic = request.getParameter("topic");
+    int questionnaireID = Integer.parseInt(request.getParameter("questionnaireID"));%>
+
 <img class="bgone" src="../picture/1.jpg" />
 <img class="pic" src="../picture/a.png" />
 
 <div class="table">
     <div class="wel">Changez l'information de cette questionnaire</div>
-    <form action="">
+    <form action="updateQuestionnaire.action">
         <div class="user">
             <div id="yonghu"><img src="../picture/yhm.png" /></div>
             <input type="text" name="questionnaire.name" value="<%=name%>" onchange="changeValue()"/>
             <input type="hidden" name="questionnaire.topic" value="<%=topic%>" />
+            <input type="hidden" name="questionnaire.questionnaireID" value="<%=questionnaireID%>" />
         </div>
         <div class = "password">
             Active
