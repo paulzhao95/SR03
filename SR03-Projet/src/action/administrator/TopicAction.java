@@ -46,12 +46,8 @@ public class TopicAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String get() {
-        try {
-            administratorTopicImpl.getTopics();
-        } catch (DaoException e) {
-            return ERROR;
-        }
+    public String get() throws DaoException {
+        topics = administratorTopicImpl.getTopics();
         return SUCCESS;
     }
 

@@ -26,8 +26,10 @@
             <result name="loginFailed">SignUp.jsp</result>
         </action>
 
+<!--        administrator user action-->
+
         <action name="getUsers" class="action.administrator.UserAction" method="get">
-            <result name="success">administrator/User-Topic_List.jsp</result>
+            <result type="chain" name="success">getTopics</result>
             <result name="dataBaseConnectionFailed">test.jsp</result>
         </action>
 
@@ -35,6 +37,7 @@
             <result type="redirectAction" name="updateUserSucceed">getUsers</result>
             <result name="updateUserFailed">test.jsp</result>
         </action>
+
         <action name="deleteUser" class="action.administrator.UserAction" method="delete">
             <result name="deleteUserSucceed">administrator/User-Topic_List.jsp</result>
             <result name="deleteUserFailed">test.jsp</result>
@@ -44,6 +47,18 @@
             <result name="addUserSucceed">administrator/User-Topic_List.jsp</result>
             <result name="addUserFailed">test.jsp</result>
         </action>
+
+<!--        administrator topic action-->
+
+        <action name="getTopics" class="action.administrator.TopicAction" method="get">
+            <result name="success">administrator/User-Topic_List.jsp</result>
+        </action>
+
+        <action name="addTopic" class="action.administrator.TopicAction" method="add">
+            <result name="success">administrator/User-Topic_List.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
+
     </package>
 
 </struts>
