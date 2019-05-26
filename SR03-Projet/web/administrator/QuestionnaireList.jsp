@@ -38,7 +38,7 @@
                 </div>
                 <div style="float: right;margin: 150px;">
                     <br>
-                    <a href="QuestionnaireCreate.jsp?topic=<s:property value='topic'/>" class="link_class">New Questionnaire</a>
+                    <a href="http://localhost:8080/SR03_Projet_war_exploded/administrator/QuestionnaireCreate.jsp?topic=<s:property value="topic"/>" class="link_class">New Questionnaire</a>
                 </div>
             </div>
 

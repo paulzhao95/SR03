@@ -12,7 +12,6 @@ BEGIN
 
   insert into Questionnaires (number, name, topic, status) values (max_num,questionnaire_name,topic_name,'Active');
 
-  COMMIT;
 END;
 $$;
 

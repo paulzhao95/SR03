@@ -6,10 +6,7 @@ import dao.administrator.QuestionnaireDao;
 import model.Question;
 import model.Questionnaire;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implements QuestionnaireDao {
@@ -153,25 +150,26 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
     @Override
     public void addQuestionnaire( Questionnaire questionnaire) throws DaoException {
         Connection connection;
-        PreparedStatement preparedStatement;
+//        PreparedStatement preparedStatement;
+        CallableStatement callableStatement;
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call insert_questionnaire(?,?)" );
-            preparedStatement.setString(1,questionnaire.getTopic());
-            preparedStatement.setString(2,questionnaire.getName());
+            callableStatement = connection.prepareCall("call insert_questionnaire(?,?)");
+            callableStatement.setString(1,questionnaire.getTopic());
+            callableStatement.setString(2,questionnaire.getName());
 
-            int i = preparedStatement.executeUpdate();
+            callableStatement.executeUpdate();
+
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not add questionnaire");
-            }
+
 
         } catch (SQLException e) {
             throw new DaoException("Add questionnaire in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+//            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
