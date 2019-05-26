@@ -36,7 +36,7 @@
                     </div>
             </div>
                 <div style="float: right;margin: 150px;">
-                    <a href="" class="link_class">Add new Topics</a>
+                    <a href="CreateTopic.jsp" class="link_class">Add new Topics</a>
                     <br>
                     <a href="" class="link_class">Add new Users</a>
                 </div>
