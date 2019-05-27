@@ -5,10 +5,7 @@ import dao.DaoFactory;
 import dao.administrator.ChoiceDao;
 import model.Choice;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
@@ -121,28 +118,25 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
     @Override
     public void deleteChoice(Choice choice) throws DaoException {
         Connection connection;
-        PreparedStatement preparedStatement;
-
+        CallableStatement callableStatement;
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call delete_choice(?,?,?,?)" );
-            preparedStatement.setString(1,choice.getTopic());
-            preparedStatement.setInt(2,choice.getQuestionnaireId());
-            preparedStatement.setInt(3,choice.getQuestionId());
-            preparedStatement.setInt(4, choice.getChoiceID());
+            callableStatement = connection.prepareCall("call delete_choice(?,?,?,?)" );
+            callableStatement.setString(1,choice.getTopic());
+            callableStatement.setInt(2,choice.getQuestionnaireId());
+            callableStatement.setInt(3,choice.getQuestionId());
+            callableStatement.setInt(4, choice.getChoiceID());
 
-            int i = preparedStatement.executeUpdate();
+            callableStatement.executeUpdate();
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not delete choice ");
-            }
+
 
         } catch (SQLException e) {
             throw new DaoException("Delete choice in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
@@ -152,30 +146,27 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
     @Override
     public void addChoice(Choice choice) throws DaoException {
         Connection connection;
-        PreparedStatement preparedStatement;
+        CallableStatement callableStatement;
         String type = choice.getRight() ? "Right_choice" : "Wrong_choice";
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call insert_choice(?,?,?,?,?)" );
-            preparedStatement.setString(1,choice.getTopic());
-            preparedStatement.setInt(2,choice.getQuestionnaireId());
-            preparedStatement.setInt(3,choice.getQuestionId());
-            preparedStatement.setString(4,choice.getDescription());
-            preparedStatement.setString(5, type);
+            callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,?)" );
+            callableStatement.setString(1,choice.getTopic());
+            callableStatement.setInt(2,choice.getQuestionnaireId());
+            callableStatement.setInt(3,choice.getQuestionId());
+            callableStatement.setString(4,choice.getDescription());
+            callableStatement.setString(5, type);
 
-            int i = preparedStatement.executeUpdate();
+            int i = callableStatement.executeUpdate();
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not add choice ");
-            }
 
         } catch (SQLException e) {
             throw new DaoException("Add choice in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
@@ -226,29 +217,26 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
     @Override
     public void exchangeChoices(Choice choice1, Choice choice2) throws DaoException {
         Connection connection;
-        PreparedStatement preparedStatement;
+        CallableStatement callableStatement;
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call exchange_choice_order(?,?,?,?,?) " );
-            preparedStatement.setString(1,choice1.getTopic());
-            preparedStatement.setInt(2,choice1.getQuestionnaireId());
-            preparedStatement.setInt(3,choice1.getQuestionId());
-            preparedStatement.setInt(4, choice1.getChoiceID());
-            preparedStatement.setInt(4, choice2.getChoiceID());
+            callableStatement = connection.prepareCall("call exchange_choice_order(?,?,?,?,?) " );
+            callableStatement.setString(1,choice1.getTopic());
+            callableStatement.setInt(2,choice1.getQuestionnaireId());
+            callableStatement.setInt(3,choice1.getQuestionId());
+            callableStatement.setInt(4, choice1.getChoiceID());
+            callableStatement.setInt(4, choice2.getChoiceID());
 
-            int i = preparedStatement.executeUpdate();
+            callableStatement.executeUpdate();
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not change choice order");
-            }
 
         } catch (SQLException e) {
             throw new DaoException("change choice order in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");

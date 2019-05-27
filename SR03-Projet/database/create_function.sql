@@ -42,7 +42,6 @@ BEGIN
 
   insert into Questions (topic, questionnaire_id, number, description,status) values (topic_name,questionnaire_number,max_num,question_name,'Active');
 
-  COMMIT;
 END;
 $$;
 
@@ -61,7 +60,6 @@ BEGIN
 
   update Questions set number = number -1 where  topic = topic_name and questionnaire_id = questionnaire_number and number >current_num;
 
-  COMMIT;
 END;
 $$;
 
@@ -79,7 +77,6 @@ BEGIN
 
   insert into Choices (topic, questionnaire_id, question_id, number, description,status, type) values (topic_name,questionnaire_number,question_number,max_num,choice_description,'Active',is_right);
 
-  COMMIT;
 END;
 $$;
 
@@ -98,7 +95,6 @@ BEGIN
 
   update Choices set number = number -1 where  topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and number >current_num;
 
-  COMMIT;
 END;
 $$;
 
@@ -116,7 +112,6 @@ BEGIN
 
   update  questions set number = question_two_number where topic = topic_name and questionnaire_id = questionnaire_number and number = -1;
 
-  COMMIT;
 END;
 $$;
 
@@ -137,7 +132,6 @@ BEGIN
   update  choices set number = choice_two_number where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number and  number = -1;
 
   delete from choices where number = -1;
-  COMMIT;
 END;
 $$;
 

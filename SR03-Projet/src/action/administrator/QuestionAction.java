@@ -23,11 +23,11 @@ public class QuestionAction extends ActionSupport {
     }
 
     public String get() {
-//        try {
-//            questionImpl.getQuestions(topic, questionnaireID);
-//        } catch (DaoException e) {
-//            return ERROR;
-//        }
+        try {
+            questionImpl.getQuestions(topic, questionnaireID);
+        } catch (DaoException e) {
+            return ERROR;
+        }
         return SUCCESS;
     }
 

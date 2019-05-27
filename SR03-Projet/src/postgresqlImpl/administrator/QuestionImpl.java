@@ -3,13 +3,11 @@ package postgresqlImpl.administrator;
 import dao.DaoException;
 import dao.DaoFactory;
 import dao.administrator.QuestionDao;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 import model.Choice;
 import model.Question;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class QuestionImpl extends postgresqlImpl.QuestionImpl implements QuestionDao {
@@ -153,28 +151,26 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
     @Override
     public void addQuestion(Question question) throws DaoException {
         Connection connection;
-        PreparedStatement preparedStatement;
+        CallableStatement callableStatement;
 
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call insert_question(?,?,?)" );
-            preparedStatement.setString(1,question.getTopic());
-            preparedStatement.setInt(2,question.getQuestionnaireId());
-            preparedStatement.setString(3,question.getDescription());
+            callableStatement = connection.prepareCall("call insert_question(?,?,?)" );
+            callableStatement.setString(1,question.getTopic());
+            callableStatement.setInt(2,question.getQuestionnaireId());
+            callableStatement.setString(3,question.getDescription());
 
-            int i = preparedStatement.executeUpdate();
+            callableStatement.executeUpdate();
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not add question");
-            }
+
 
         } catch (SQLException e) {
             throw new DaoException("Add question in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
@@ -184,27 +180,24 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
     @Override
     public void deleteQuestion(Question question) throws DaoException {
         Connection connection;
-        PreparedStatement preparedStatement;
+        CallableStatement callableStatement;
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call delete_question(?,?,?)" );
-            preparedStatement.setString(1,question.getTopic());
-            preparedStatement.setInt(2,question.getQuestionnaireId());
-            preparedStatement.setInt(3,question.getQuestionID());
+            callableStatement = connection.prepareCall("call delete_question(?,?,?)" );
+            callableStatement.setString(1,question.getTopic());
+            callableStatement.setInt(2,question.getQuestionnaireId());
+            callableStatement.setInt(3,question.getQuestionID());
 
-            int i = preparedStatement.executeUpdate();
+            callableStatement.executeUpdate();
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not delete question");
-            }
 
         } catch (SQLException e) {
             throw new DaoException("Delete question in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
@@ -218,7 +211,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("update table questions " +
+            preparedStatement = connection.prepareStatement("update questions " +
                     "set description = ? " +
                     "where topic = ? " +
                     "and questionnaire_id = ? " +
@@ -249,28 +242,25 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
     @Override
     public void exchangeQuestions(Question question1, Question question2) throws DaoException {
         Connection connection;
-        PreparedStatement preparedStatement;
-
+        CallableStatement callableStatement;
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("call exchange_question_order(?,?,?,?) " );
-            preparedStatement.setString(1,question1.getTopic());
-            preparedStatement.setInt(2,question1.getQuestionnaireId());
-            preparedStatement.setInt(3,question1.getQuestionID());
-            preparedStatement.setInt(4, question2.getQuestionID());
+            callableStatement = connection.prepareCall("call exchange_question_order(?,?,?,?) " );
+            callableStatement.setString(1,question1.getTopic());
+            callableStatement.setInt(2,question1.getQuestionnaireId());
+            callableStatement.setInt(3,question1.getQuestionID());
+            callableStatement.setInt(4, question2.getQuestionID());
 
-            int i = preparedStatement.executeUpdate();
+            callableStatement.executeUpdate();
             connection.commit();
-            if(i == 0){
-                throw new DaoException("Can not change question order");
-            }
+
 
         } catch (SQLException e) {
             throw new DaoException("change question order in database failed :) " + e.getMessage());
         }
 
         try {
-            preparedStatement.close();
+            callableStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
