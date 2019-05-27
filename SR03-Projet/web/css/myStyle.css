@@ -254,6 +254,26 @@ p.subtitle {
     height: 50px;
 
 }
+
+
+.information-top-content-left-question{
+    border: 1px solid #d8d8d8;
+    width: 800px;
+    height: 200px;
+
+}
+.information-top-content-right-question{
+    border: 1px solid #d8d8d8;
+    width: 200px;
+    height: 200px;
+
+}
+
+
+
+
+
+
 .information-top-notes{
     border: 1px solid #d8d8d8;
     width: 1000px;
