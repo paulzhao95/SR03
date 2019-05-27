@@ -38,7 +38,7 @@
                     <br>
                     <a href="" class="link_class">Add new Question</a>
                     <br>
-                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireID=<S:property value="questionnaireID"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>
+                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireID=<s:property value="questionnaireID"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>
                 </div>
             </div>
 
