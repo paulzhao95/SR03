@@ -20,7 +20,12 @@
     <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
 </head>
 <body>
-
+<%  int number = 1;
+    String s = "checked";
+    String question = "在生产管理信息系统中，下列操作步骤能正确将工单推进流程的是()";
+    String answer1 = "在工具栏中点击“workflow”标签";
+    String answer2 = "在缺陷单界面中点击“推进流程”按钮";
+    String answer3 = "在缺陷单界面中点击“提交”按钮";%>
 <div>
     <div class="content">
         <div class="tab-block information-tab">
@@ -62,15 +67,23 @@
                             </div>
 
 
-                            <s:iterator value="questions">
-                            <div class="information-top-content-left">
-                                <a href="" class="information-top-content-p"><s:property value='Description'/></a>
+                            <% for(int i = 0; i < 10; i+=1) { %>
+                            <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
+                                <form>
+                                <a href="" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><%=question%></a>
+                                    <br>
+                                <input type="radio" name="answer1" disabled <%if (number == 1){%> <%=s%> <%}%>/><%=answer1%>
+                                    <br>
+                                    <input type="radio" name="answer2" disabled /><%=answer2%>
+                                    <br>
+                                    <input type="radio" name="answer3" disabled /><%=answer3%>
+                                </form>
                             </div>
-                            <div class="information-top-content-right">
+                            <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">
                                 <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
                                 <a href="" class="information-top-content-p">Delete</a>
                             </div>
-                            </s:iterator>
+                            <% } %>
                         </div>
                     </div>
                 </div>
