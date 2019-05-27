@@ -24,7 +24,7 @@ public class QuestionAction extends ActionSupport {
 
     public String get() {
         try {
-            questionImpl.getQuestions(topic, questionnaireID);
+            questions = questionImpl.getQuestions(topic, questionnaireID);
         } catch (DaoException e) {
             return ERROR;
         }

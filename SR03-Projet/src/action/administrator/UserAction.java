@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class UserAction extends ActionSupport {
     private User user = new User();
     private ArrayList<User> users = new ArrayList<User>();
+    private String email;
 
     private UserImpl administratorUserImpl = DaoFactory.getDaoFactoryInstance().getAdministratorUserImpl();
 
@@ -18,6 +19,7 @@ public class UserAction extends ActionSupport {
     public UserAction() throws DaoException {
     }
 
+    // TODO: 5/27/19 change
     public String update() {
         try {
             user.setStatus(!user.getStatus());
@@ -26,11 +28,19 @@ public class UserAction extends ActionSupport {
             return ERROR;
         }
         return SUCCESS;
+    }
+
+    public String getUserInfo() {
+        try {
+            user = administratorUserImpl.getUser(email);
+        } catch (DaoException e) {
+            return ERROR;
+        }
+        return SUCCESS;
 
     }
 
 
-    // TODO: 5/23/19 test
     public String add() {
         try {
             administratorUserImpl.addUser(user);
@@ -51,7 +61,6 @@ public class UserAction extends ActionSupport {
         return SUCCESS;
     }
 
-    // TODO: 5/23/19  test
     public String delete() {
         try {
             administratorUserImpl.deleteUser(user);

@@ -34,7 +34,7 @@
 <body class="blue">
 	<div id="login-page" class="row">
 	    <div class="col s12 z-depth-6 card-panel">
-	      <form action="addUser.action" class="login-form">
+	      <form action="../addUser.action" class="login-form">
 	        <div class="row">
 	          <div class="input-field col s12 center">
 	            <img src="picture/UTC_logo.png" alt="" class="responsive-img valign profile-image-login">

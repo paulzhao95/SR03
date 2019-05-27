@@ -8,7 +8,6 @@ import postgresqlImpl.administrator.TopicImpl;
 
 import java.util.ArrayList;
 
-// TODO: 5/23/19 test
 public class TopicAction extends ActionSupport {
     private Topic topic = new Topic();
     private ArrayList<Topic> topics = new ArrayList<>();
