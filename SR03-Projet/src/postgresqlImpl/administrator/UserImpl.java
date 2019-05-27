@@ -81,6 +81,7 @@ public class UserImpl implements UserDao {
                 String tel = result.getString("Tel");
                 String company = result.getString("Company");
                 Timestamp creatingTime = result.getTimestamp("Creating_time");
+                String type_user = result.getString("type_user");
 
                 user.setStatus(status);
                 user.setTel(tel);
@@ -89,7 +90,7 @@ public class UserImpl implements UserDao {
                 user.setCompany(company);
                 user.setEmail(login);
                 user.setCreatingTime(creatingTime);
-
+                user.setType(User.UserType.valueOf(type_user));
             } else {
                 throw new DaoException("Intern not found.");
             }

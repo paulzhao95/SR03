@@ -33,6 +33,11 @@
             <result name="error">/test.jsp</result>
         </action>
 
+        <action name="getUser" class="action.administrator.UserAction" method="getUserInfo">
+            <result name="success">/administrator/UserInfoChangeAdmin.jsp</result>
+            <result name="error">/test.jsp</result>
+        </action>
+
         <action name="updateUser" class="action.administrator.UserAction" method="update">
             <result type="redirectAction" name="success">getUsers</result>
             <result name="error">test.jsp</result>

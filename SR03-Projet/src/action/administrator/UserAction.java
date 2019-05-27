@@ -22,7 +22,6 @@ public class UserAction extends ActionSupport {
     // TODO: 5/27/19 change
     public String update() {
         try {
-            user.setStatus(!user.getStatus());
             administratorUserImpl.updateUser(user);
         } catch (DaoException e) {
             return ERROR;
@@ -85,5 +84,13 @@ public class UserAction extends ActionSupport {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

@@ -88,7 +88,7 @@
 
                 <s:iterator value="users">
                     <div class="information-top-content-left">
-                        <a href="http://localhost:8080/SR03_Projet_war_exploded/administrator/UserInfoChangeAdmin.jsp?name=<s:property value='name'/>&password=<s:property value='password'/>&email=<s:property value='email'/>&tel=<s:property value='tel'/>&company=<s:property value='company'/>&type=<s:property value='type'/>&status=<s:property value='status'/>" class="information-top-content-p"><s:property value='name'/></a>
+                        <a href="getUser.action?email=<s:property value='email'/>" class="information-top-content-p"><s:property value='name'/></a>
                     </div>
                     <div class="information-top-content-right">
                         <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
