@@ -20,7 +20,7 @@
         <div class="password">
             <div id="yonghu"><img src="../picture/yhm.png" /></div>
             <input type="text" name="questionnaire.name" placeholder=<%=hint%>/>
-            <input type="hidden" name="questionnaire.topic" value=<%=request.getParameter("topic")%>> />
+            <input type="hidden" name="questionnaire.topic" value=<%=request.getParameter("topic")%>>
         </div>
         <input class="btn" type="submit" name="Validation" value="Validation" />
     </form>
