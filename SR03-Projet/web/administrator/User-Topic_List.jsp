@@ -38,7 +38,7 @@
                 <div style="float: right;margin: 150px;">
                     <a href="CreateTopic.jsp" class="link_class">Add new Topics</a>
                     <br>
-                    <a href="" class="link_class">Add new Users</a>
+                    <a href="AddUser.jsp" class="link_class">Add new Users</a>
                 </div>
             </div>
 
@@ -92,7 +92,7 @@
                     </div>
                     <div class="information-top-content-right">
                         <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                        <a href="" class="information-top-content-p">Delete</a>
+                        <a href="deleteUser.action?user.email=<s:property value="email"/>" class="information-top-content-p">Delete</a>
                     </div>
                 </s:iterator>
                         </div>

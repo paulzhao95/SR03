@@ -30,22 +30,22 @@
 
         <action name="getUsers" class="action.administrator.UserAction" method="get">
             <result type="chain" name="success">getTopics</result>
-            <result name="dataBaseConnectionFailed">/test.jsp</result>
+            <result name="error">/test.jsp</result>
         </action>
 
         <action name="updateUser" class="action.administrator.UserAction" method="update">
-            <result type="redirectAction" name="updateUserSucceed">getUsers</result>
-            <result name="updateUserFailed">test.jsp</result>
+            <result type="redirectAction" name="success">getUsers</result>
+            <result name="error">test.jsp</result>
         </action>
 
         <action name="deleteUser" class="action.administrator.UserAction" method="delete">
-            <result name="deleteUserSucceed">/administrator/User-Topic_List.jsp</result>
-            <result name="deleteUserFailed">test.jsp</result>
+            <result type="redirectAction" name="success">getUsers</result>
+            <result name="error">test.jsp</result>
         </action>
 
-        <action name="addeUser" class="action.administrator.UserAction" method="add">
-            <result name="addUserSucceed">/administrator/User-Topic_List.jsp</result>
-            <result name="addUserFailed">test.jsp</result>
+        <action name="addUser" class="action.administrator.UserAction" method="add">
+            <result type="redirectAction" name="success">getUsers</result>
+            <result name="error">test.jsp</result>
         </action>
 
 <!--        administrator topic action-->

@@ -44,8 +44,12 @@ public class User implements Serializable {
         this.type = UserType.Intern;
     }
 
-    public void setEmail(String login){
-        this.email = login;
+    public User(String email) {
+        this.email = email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
     
     public String getEmail(){
@@ -107,6 +111,6 @@ public class User implements Serializable {
     }
 
     public String toString(){
-        return "User{" + "Name= "+ name+ ", login= "+email+", key= "+password + ", type = "+ (this.type==UserType.Intern ? "Intern":"Administrator");
+        return "User{" + "Name= "+ name+ ", email= "+email+", key= "+password + ", type = "+ (this.type==UserType.Intern ? "Intern":"Administrator");
     }
 }
