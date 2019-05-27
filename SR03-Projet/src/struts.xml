@@ -59,6 +59,16 @@
             <result name="error">/test.jsp</result>
         </action>
 
+        <action name="updateTopic" class="action.administrator.TopicAction" method="update">
+            <result type="redirectAction" name="success">getUsers</result>
+            <result name="error">/test.jsp</result>
+        </action>
+
+        <action name="deleteTopic" class="action.administrator.TopicAction" method="delete">
+            <result type="redirectAction" name="success">getUsers</result>
+            <result name="error">/test.jsp</result>
+        </action>
+
 <!--        administrator questionnaire action -->
         <action name="getQuestionnaires" class="action.administrator.QuestionnaireAction" method="get">
             <result name="success">/administrator/QuestionnaireList.jsp</result>

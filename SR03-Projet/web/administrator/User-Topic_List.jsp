@@ -67,7 +67,7 @@
                                 <a href="http://localhost:8080/SR03_Projet_war_exploded/getQuestionnaires.action?topic=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
                             </div>
                             <div class="information-top-content-right">
-                                <a href="" class="information-top-content-p">Delete</a>
+                                <a href="deleteTopic.action?topic.name=<s:property value='name'/>" class="information-top-content-p">Delete</a>
                             </div>
                             </s:iterator>
 
