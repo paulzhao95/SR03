@@ -85,4 +85,8 @@ public class Question implements Serializable {
         this.choices = choices;
     }
 
+    public ArrayList<Choice> getChoices() {
+        return choices;
+    }
+
 }

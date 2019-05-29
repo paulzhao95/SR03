@@ -3,6 +3,7 @@ package postgresqlImpl.administrator;
 import dao.DaoException;
 import dao.DaoFactory;
 import dao.administrator.QuestionnaireDao;
+import model.Choice;
 import model.Question;
 import model.Questionnaire;
 
@@ -14,6 +15,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
 
     public QuestionnaireImpl(DaoFactory daoFactory) {
         super(daoFactory);}
+
 
     @Override
     public ArrayList<Questionnaire> getQuestionnaires(String topic) throws DaoException {
@@ -68,23 +70,28 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement(
-                    "select  Q.Number as Questionnaire_id," +
-                            "Q.Name as Questionnaire_Name , " +
-                            "Q.Status as Questionnaire_Status ," +
-                            "Q.Topic as Topic, " +
-                            "Qs.Number as question_id, " +
-                            "Qs.Description as description ," +
-                            "Qs.Status as question_status "+
-                            "from " +
-                            "Questionnaires  Q  join Questions Qs " +
-                            "on Q.Topic = Qs.Topic " +
-                            "and Q.Number = Qs.Questionnaire_Id "+
-                            "where Q.Topic = ? " +
-                            "and Q.Number = ?"
-            );
-            preparedStatement.setString(1,topic);
-            preparedStatement.setInt(2,questionnaireId);
+//            preparedStatement = connection.prepareStatement(
+//                    "select  Q.Number as Questionnaire_id," +
+//                            "Q.Name as Questionnaire_Name , " +
+//                            "Q.Status as Questionnaire_Status ," +
+//                            "Q.Topic as Topic, " +
+//                            "Qs.Number as question_id, " +
+//                            "Qs.Description as description ," +
+//                            "Qs.Status as question_status "+
+//                            "from " +
+//                            "Questionnaires  Q  join Questions Qs " +
+//                            "on Q.Topic = Qs.Topic " +
+//                            "and Q.Number = Qs.Questionnaire_Id "+
+//                            "where Q.Topic = ? " +
+//                            "and Q.Number = ?"
+//            );
+
+            preparedStatement = connection.prepareStatement("select qs.number, qs.name, qs.topic, qs.status, " +
+                    "q.status, q.number, q.description , " +
+                    "c.number, c.status, c.type, c.description " +
+                    "from questionnaires qs join questions q on qs.topic = q.topic and qs.number = q.questionnaire_id join choices c on q.topic = c.topic and q.questionnaire_id = c.questionnaire_id and q.number = c.question_id");
+//            preparedStatement.setString(1,topic);
+//            preparedStatement.setInt(2,questionnaireId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -150,7 +157,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
     @Override
     public void addQuestionnaire( Questionnaire questionnaire) throws DaoException {
         Connection connection;
-//        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement;
         CallableStatement callableStatement;
         try {
             connection = daoFactory.getConnection();
@@ -161,6 +168,42 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
             callableStatement.executeUpdate();
 
             connection.commit();
+
+            // get questionnaire number
+            preparedStatement = connection.prepareStatement("select number from questionnaires where name = ?");
+            preparedStatement.setString(1, questionnaire.getName());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            int questionnaireId = 0;
+            while (resultSet.next()) {
+                questionnaireId = resultSet.getInt("number");
+            }
+
+
+            for (Question question : questionnaire.getQuestions()) {
+                callableStatement = connection.prepareCall("call insert_question(?,?,?)");
+                callableStatement.setString(1, question.getTopic());
+                callableStatement.setInt(2,questionnaireId);
+                callableStatement.setString(3, question.getDescription());
+
+                callableStatement.executeUpdate();
+                connection.commit();
+
+                for (Choice choice : question.getChoices()) {
+                    callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,?)");
+                    callableStatement.setString(1, choice.getTopic());
+                    callableStatement.setInt(2, choice.getQuestionnaireId());
+                    callableStatement.setInt(3, choice.getQuestionId());
+                    callableStatement.setString(4, choice.getDescription());
+                    callableStatement.setString(5, choice.getRight().toString());
+
+                    callableStatement.executeUpdate();
+                    connection.commit();
+                }
+            }
+
+
 
 
         } catch (SQLException e) {

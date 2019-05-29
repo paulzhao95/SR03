@@ -3,16 +3,19 @@ package action.administrator;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
+import model.Question;
 import model.Questionnaire;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import postgresqlImpl.administrator.QuestionnaireImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Map;
 
 
-public class QuestionnaireAction extends ActionSupport implements SessionAware {
+public class QuestionnaireAction extends ActionSupport implements SessionAware, ServletRequestAware {
     private ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
     private Questionnaire questionnaire = new Questionnaire();
     private String topic = "";
@@ -20,6 +23,10 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware {
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
 
     private Map<String, Object> session;
+
+    private ArrayList<Question> questions = new ArrayList<Question>();
+
+    private HttpServletRequest httpServletRequest;
 
     public QuestionnaireAction() throws DaoException {
     }
@@ -39,7 +46,7 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware {
         return SUCCESS;
     }
 
-    public String add() {
+    public String  add() {
         try {
             questionnaireImpl.addQuestionnaire(questionnaire);
         } catch (DaoException e) {
@@ -95,5 +102,14 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware {
     @Override
     public void setSession(Map<String, Object> map) {
         this.session = map;
+    }
+
+    @Override
+    public void setServletRequest(HttpServletRequest httpServletRequest) {
+        this.httpServletRequest = httpServletRequest;
+    }
+
+    public HttpServletRequest getHttpServletRequest() {
+        return httpServletRequest;
     }
 }

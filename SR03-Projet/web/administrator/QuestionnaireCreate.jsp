@@ -80,7 +80,7 @@
                     <li><input type="submit" id="AddMoreFileBox" name="single" value="ADD New Question"/></li>
                 </ul>
             </div>
-            <form action="">
+            <form action="addQuestionnaire.action">
                 <input type="hidden" name="questionnaire.topic" value=<%=request.getParameter("topic")%>>
                 <div class='Content' style='clear:both;height:auto;text-align:left;padding: 15px 24px 15px 25px;margin-left:auto;margin-right:auto;'>
                     <div class='InvestigationHead' onclick='Investigation.InvestigationHeadClick();'><h1 id='investigation_title' style='font-size:24px;font-weight:bold;color:steelblue;padding:15px 0;line-height:24px;'>Le titre de Questionnaire</h1><div id='investigation_desc' class='investigationdescription'>Enter the title of this questionnaire</div></div>
@@ -101,13 +101,13 @@
                             <li>
                                 <div class="test_content_nr_tt">
                                     <i>*</i><font>
-                                    <input class = "input_control" type="text" name="Question1" placeholder="Question1"/></font>
+                                    <input class = "input_control" type="text" name="questions" placeholder="Question1"/></font>
                                 </div>
                                 <div class="test_content_nr_main">
                                     <ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="Question1.Choice1" placeholder="Question1.Choice1"/>
+                                                <input type="text" style="width:800px;" name="questions.Choice1" placeholder="Question1.Choice1"/>
                                             </li>
                                         </ul>
                                         <ul>
