@@ -130,7 +130,10 @@
                             </li>
                             <div>
                                 <div align="right">
-                                <input id = "right_answer" style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "right_answer" type = "text" placeholder="Answer">
+                                    Answer:   A<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[0].isRight" type = "checkbox" value="true">
+                                    B<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[1].isRight" type = "checkbox" value="true">
+                                    C<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[2].isRight" type = "checkbox" value="true">
+                                    D<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[3].isRight" type = "checkbox" value="true">
                                 </div>
                                 <a href="#" class="removeclass"><input class="button" type="button" value='Delete'></a>
                             </div>
