@@ -87,7 +87,7 @@
                     <div class='InvestigationTitle' style='display:none;margin:0 auto;width:530px;height:300px;padding-left:10px;padding-top:20px;z-index:10005'>
                         <table style='margin:0 auto;'>
                             <tr><td><p>The Title：</p></td>
-                                <td><textarea rows="2" cols="20" style="height:150px;display:inline-block;" name="questionnaire.description">Enter the title of this questionnaire</textarea></td>
+                                <td><textarea rows="2" cols="20" style="height:150px;display:inline-block;" name="questionnaire.name">Enter the title of this questionnaire</textarea></td>
                             </tr>
                         </table>
                         <div style='margin-top:10px;text-align:center;'>
@@ -101,28 +101,28 @@
                             <li>
                                 <div class="test_content_nr_tt">
                                     <i>*</i><font>
-                                    <input class = "input_control" type="text" name="questions" placeholder="Question1"/></font>
+                                    <input class = "input_control" type="text" name="questionnaire.questions[%(1)]" placeholder="Question1"/></font>
                                 </div>
                                 <div class="test_content_nr_main">
                                     <ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questions.Choice1" placeholder="Question1.Choice1"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(1)]" placeholder="Question1.Choice1"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="Question1.Choice2" placeholder="Question1.Choice2"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(2)]" placeholder="Question1.Choice2"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="Question1.Choice3" placeholder="Question1.Choice3"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(3)]" placeholder="Question1.Choice3"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="Question1.Choice4" placeholder="Question1.Choice4"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(4)]" placeholder="Question1.Choice4"/>
                                             </li>
                                         </ul>
                                     </ul>
