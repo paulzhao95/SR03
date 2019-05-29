@@ -127,11 +127,11 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("update Questionnaires " +
-                    "set status = CAST(? as states), " +
+                    "set status = ? , " +
                     "name = ?  " +
                     "where number = ? " +
                     "and Topic = ?"                    );
-            preparedStatement.setString(1,questionnaire.getStatus()? "Active":"Inactive");
+            preparedStatement.setBoolean(1,questionnaire.getStatus());
             preparedStatement.setString(2, questionnaire.getName());
             preparedStatement.setInt(3,questionnaire.getQuestionnaireID());
             preparedStatement.setString(4,questionnaire.getTopic());
@@ -193,12 +193,12 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
                 }
 
                 for (Choice choice : question.getChoices()) {
-                    callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,cast (? as type_choice),?)");
+                    callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,?,?)");
                     callableStatement.setString(1, choice.getTopic());
                     callableStatement.setInt(2, choice.getQuestionnaireId());
                     callableStatement.setInt(3, questionId);
                     callableStatement.setString(4, choice.getDescription());
-                    callableStatement.setString(5, choice.getRight()?"Right_choice":"Wrong_choice");
+                    callableStatement.setBoolean(5, choice.getRight());
                     callableStatement.setBoolean(6,choice.getStatus());
 
                     callableStatement.executeUpdate();

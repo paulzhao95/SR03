@@ -38,7 +38,7 @@ public class UserImpl implements UserDao {
             ;
             ResultSet result = preparedStatement.executeQuery();
             if(result.next()){
-                Boolean status= (result.getString("Status").equals("Active"));
+                Boolean status= (result.getBoolean("Status"));
                 String name = result.getString("Name");
                 String tel = result.getString("Tel");
                 String company = result.getString("Company");

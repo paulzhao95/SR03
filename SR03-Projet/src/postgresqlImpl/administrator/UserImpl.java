@@ -119,10 +119,10 @@ public class UserImpl implements UserDao {
         try {
             connection = daoFactory.getConnection();
 
-            preparedStatement = connection.prepareStatement("insert into Users(password, status, name, company, tel, creating_time, email, type_user) values (?,cast(? as states),?,?,?,NOW(),?,cast(? as type_user))"
+            preparedStatement = connection.prepareStatement("insert into Users(password, status, name, company, tel, creating_time, email, type_user) values (?,?,?,?,?,NOW(),?,cast(? as type_user))"
             );
             preparedStatement.setString(1, user.getPassword());
-            preparedStatement.setString(2, user.getStatus() ? "Active" : "Inactive");
+            preparedStatement.setBoolean(2, user.getStatus());
             preparedStatement.setString(3, user.getName());
             preparedStatement.setString(4, user.getCompany());
             preparedStatement.setString(5, user.getTel());
@@ -196,7 +196,7 @@ public class UserImpl implements UserDao {
                     "company = ?, " +
                     "tel = ?, " +
                     "type_user = cast(? as type_user)," +
-                    "status = cast(? as states) "+
+                    "status = ?  "+
                     "where email = ? "
             );
             preparedStatement.setString(1, user.getPassword());
@@ -204,7 +204,7 @@ public class UserImpl implements UserDao {
             preparedStatement.setString(3, user.getCompany());
             preparedStatement.setString(4, user.getTel());
             preparedStatement.setString(5, user.getType() == User.UserType.Intern ? "Intern":"Administrator");
-            preparedStatement.setString(6,user.getStatus() ? "Active":"Inactive");
+            preparedStatement.setBoolean(6,user.getStatus() );
             preparedStatement.setString(7, user.getEmail());
 
 

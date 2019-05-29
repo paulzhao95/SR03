@@ -28,13 +28,9 @@ AS $$
         from Questionnaires
         where Questionnaires.topic = topic_name;
         if max_num isnull then max_num := 0; else max_num := max_num + 1; end if;
-        if questionnaire_status then
-            insert into Questionnaires (number, name, topic, status)
-            values (max_num, questionnaire_name, topic_name, 'Active');
-        else
-            insert into Questionnaires (number, name, topic, status)
-            values (max_num, questionnaire_name, topic_name, 'Inactive');
-        end if;
+        insert into Questionnaires (number, name, topic, status)
+            values (max_num, questionnaire_name, topic_name, questionnaire_status);
+
         return max_num;
     END;
 $$;
@@ -52,26 +48,22 @@ BEGIN
   update questionnaires set number = number -1 where topic = topic_name and number >current_num;
 END;
 $$;
-drop procedure insert_question(topic_name character varying, questionnaire_number INT, question_name character varying, question_status boolean);
-
-CREATE OR REPLACE PROCEDURE insert_question(topic_name character varying, questionnaire_number INT, question_name character varying,question_status boolean)
-  LANGUAGE plpgsql
-AS $$
-
-DECLARE
-  max_num   integer;
-BEGIN
-  select max(number) into max_num from Questions where topic = topic_name and questionnaire_id = questionnaire_number;
-  if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
-  if question_status then
-      insert into Questions (topic, questionnaire_id, number, description, status)
-      values (topic_name, questionnaire_number, max_num, question_name, 'Active');
-  else
-      insert into Questions (topic, questionnaire_id, number, description, status)
-      values (topic_name, questionnaire_number, max_num, question_name, 'Inactive');
-  end if;
-END;
-$$;
+-- drop procedure insert_question(topic_name character varying, questionnaire_number INT, question_name character varying, question_status boolean);
+--
+-- CREATE OR REPLACE PROCEDURE insert_question(topic_name character varying, questionnaire_number INT, question_name character varying,question_status boolean)
+--   LANGUAGE plpgsql
+-- AS $$
+--
+-- DECLARE
+--   max_num   integer;
+-- BEGIN
+--   select max(number) into max_num from Questions where topic = topic_name and questionnaire_id = questionnaire_number;
+--   if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
+--   insert into Questions (topic, questionnaire_id, number, description, status)
+--       values (topic_name, questionnaire_number, max_num, question_name, question_status);
+--
+-- END;
+-- $$;
 
 create or replace function insert_question(topic_name character varying, questionnaire_number INT,
                                            question_name character varying, question_status boolean) returns integer
@@ -84,13 +76,10 @@ DECLARE
 BEGIN
     select max(number) into max_num from Questions where topic = topic_name and questionnaire_id = questionnaire_number;
     if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
-    if question_status then
-        insert into Questions (topic, questionnaire_id, number, description, status)
-        values (topic_name, questionnaire_number, max_num, question_name, 'Active');
-    else
-        insert into Questions (topic, questionnaire_id, number, description, status)
-        values (topic_name, questionnaire_number, max_num, question_name, 'Inactive');
-    end if;
+
+    insert into Questions (topic, questionnaire_id, number, description, status)
+        values (topic_name, questionnaire_number, max_num, question_name, question_status);
+
 
     return max_num;
 
@@ -126,14 +115,9 @@ BEGIN
   select max(number) into max_num from choices where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number;
 
   if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
-  if choice_status then
-      insert into Choices (topic, questionnaire_id, question_id, number, description, status, type)
-      values (topic_name, questionnaire_number, question_number, max_num, choice_description, 'Active', is_right);
-  else
-      insert into Choices (topic, questionnaire_id, question_id, number, description, status, type)
-      values (topic_name, questionnaire_number, question_number, max_num, choice_description, 'Inactive', is_right);
-  end if;
-  END;
+
+  insert into Choices (topic, questionnaire_id, question_id, number, description, status, type)  values (topic_name, questionnaire_number, question_number, max_num, choice_description, choice_status, is_right);
+END;
 
 $$;
 

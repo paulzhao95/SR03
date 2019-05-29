@@ -1,11 +1,5 @@
-drop type if exists States cascade ;
-CREATE TYPE States as enum ('Active','Inactive');
-
 drop type if exists Type_user cascade ;
 CREATE TYPE Type_user as enum ('Administrator','Intern');
-
-drop type if exists Type_choice cascade ;
-CREATE TYPE Type_choice as enum ('Wrong_choice','Right_choice');
 
 drop table if exists public.Topics CASCADE;
 
@@ -21,7 +15,7 @@ drop table if exists public.Users CASCADE;
 CREATE TABLE public.Users
 (
   Password character varying NOT NULL,
-  Status states NOT NULL,
+  Status BOOLEAN NOT NULL,
   Name character varying NOT NULL,
   Company character varying,
   Tel character varying,
@@ -38,7 +32,7 @@ CREATE TABLE public.Questionnaires
   Number integer NOT NULL,
   Name character varying not null ,
   Topic character varying NOT NULL,
-  Status states,
+  Status boolean,
   PRIMARY KEY (Topic,Number)
 );
 
@@ -52,7 +46,7 @@ CREATE TABLE public.Questions
   Questionnaire_Id integer NOT NULL ,
   Number integer NOT NULL,
   Description character varying not null ,
-  Status States NOT NULL,
+  Status boolean NOT NULL,
   PRIMARY KEY (Topic,Questionnaire_Id, Number)
 );
 
@@ -68,8 +62,8 @@ CREATE TABLE public.Choices
   Question_Id integer NOT NULL,
   Number integer NOT NULL,
   Description character varying,
-  Status States NOT NULL,
-  Type type_choice NOT NULL,
+  Status boolean NOT NULL,
+  Type boolean NOT NULL,
   PRIMARY KEY (Topic, Questionnaire_Id, Question_Id,Number)
 );
 
@@ -103,7 +97,7 @@ CREATE TABLE public.User_choices
   Questionnaire_Id integer NOT NULL ,
   Question_Id integer NOT NULL,
   Choice_Id integer NOT NULL,
-  Type type_choice NOT NULL,
+  Type boolean NOT NULL,
   PRIMARY KEY (Attempt_Id, Topic,Questionnaire_Id,Question_Id ,Choice_Id)
 );
 
