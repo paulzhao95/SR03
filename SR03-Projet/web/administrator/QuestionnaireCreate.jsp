@@ -101,28 +101,28 @@
                             <li>
                                 <div class="test_content_nr_tt">
                                     <i>*</i><font>
-                                    <input class = "input_control" type="text" name="questionnaire.questions[%(1)]" placeholder="Question1"/></font>
+                                    <input class = "input_control" type="text" name="questionnaire.questions[0].Description" placeholder="Question1"/></font>
                                 </div>
                                 <div class="test_content_nr_main">
                                     <ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(1)]" placeholder="Question1.Choice1"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[0].description" placeholder="Question1.Choice1"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(2)]" placeholder="Question1.Choice2"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[1].description" placeholder="Question1.Choice2"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(3)]" placeholder="Question1.Choice3"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[2].description" placeholder="Question1.Choice3"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[%(1)].choices[%(4)]" placeholder="Question1.Choice4"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[3].description" placeholder="Question1.Choice4"/>
                                             </li>
                                         </ul>
                                     </ul>
@@ -130,7 +130,10 @@
                             </li>
                             <div>
                                 <div align="right">
-                                <input id = "right_answer" style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "right_answer" type = "text" placeholder="Answer">
+                                    Answer:   A<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[0].isRight" type = "checkbox" value="true">
+                                    B<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[1].isRight" type = "checkbox" value="true">
+                                    C<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[2].isRight" type = "checkbox" value="true">
+                                    D<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions[0].choices[3].isRight" type = "checkbox" value="true">
                                 </div>
                                 <a href="#" class="removeclass"><input class="button" type="button" value='Delete'></a>
                             </div>

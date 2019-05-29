@@ -5,7 +5,7 @@ $(document).ready(function() {
     var AddButton       = $("#AddMoreFileBox"); //Add button ID
 
     var x = InputsWrapper.length; //initlal text box count
-    var QuestionCount=1; //to keep track of text box added
+    var QuestionCount=0; //to keep track of text box added
 
     $(AddButton).click(function (e)  //on add input button click
     {
@@ -13,14 +13,7 @@ $(document).ready(function() {
         {
             QuestionCount++; //text box added increment
             //add input box
-            $(InputsWrapper).append('<div class="test_content_nr"><ul><li><div class="test_content_nr_tt"><i>*</i><font><input class = "input_control" type="text" name="Question'+QuestionCount+'" placeholder="Question '+ QuestionCount +'"/></font></div><div class="test_content_nr_main"><ul><ul><li class="option"><input type="text" style="width:800px;" name="Question'+QuestionCount+'.Choice1" placeholder="Question'+QuestionCount+'.Choice1"/></li></ul><ul><li class="option"><input type="text" style="width:800px;" name="Question'+QuestionCount+'.Choice2" placeholder="Question'+QuestionCount+'.Choice2"/></li></ul><ul><li class="option"><input type="text" style="width:800px;" name="Question'+QuestionCount+'.Choice3" placeholder="Question'+QuestionCount+'.Choice3"/></li></ul><ul><li class="option"><input type="text" style="width:800px;" name="Question'+QuestionCount+'.Choice4" placeholder="Question'+QuestionCount+'.Choice4"/></li></ul></ul></div></li><div><div align="right"><input id = "right_answer" style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "right_answer" type = "text" placeholder="Answer"></div><a href="#" class="removeclass"><input style="        background-color: #79aef0; /* Green */\n' +
-                '        border: none;\n' +
-                '        color: white;\n' +
-                '        padding: 10px 22px;\n' +
-                '        text-align: center;\n' +
-                '        text-decoration: none;\n' +
-                '        display: inline-block;\n' +
-                '        font-size: 13px;" type="button" value="Delete"></a></div></div></li></ul></div>');
+            $(InputsWrapper).append('<div class="test_content_nr"><ul><li><div class="test_content_nr_tt"><i>*</i><font><input class = "input_control" type="text" name="questionnaire.questions['+QuestionCount+'].Description" placeholder="Question '+ QuestionCount +'"/></font></div><div class="test_content_nr_main"><ul><ul><li class="option"><input type="text" style="width:800px;" name="questionnaire.questions['+QuestionCount+'].choices[0].description" placeholder="Choice1"/></li></ul><ul><li class="option"><input type="text" style="width:800px;" name="questionnaire.questions['+QuestionCount+'].choices[1].description" placeholder="Choice2"/></li></ul><ul><li class="option"><input type="text" style="width:800px;" name="questionnaire.questions['+QuestionCount+'].choices[2].description" placeholder="Choice3"/></li></ul><ul><li class="option"><input type="text" style="width:800px;" name="questionnaire.questions['+QuestionCount+'].choices[3].description" placeholder="Choice4"/></li></ul></ul></div></li><div><div align="right">Answer:   A<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions['+QuestionCount+'].choices[0].isRight" type = "checkbox" value="true">B<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions['+QuestionCount+'].choices[1].isRight" type = "checkbox" value="true">C<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions['+QuestionCount+'].choices[2].isRight" type = "checkbox" value="true">D<input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questionnaire.questions['+QuestionCount+'].choices[3].isRight" type = "checkbox" value="true"></div><a href="#" class="removeclass"><input style="background-color: #79aef0;border: none;color: white;padding: 10px 22px;text-align: center;text-decoration: none;display: inline-block;font-size: 13px;" type="button" value="Delete"></a></div></div></li></ul></div>');
             x++; //text box increment
         }
         return false;
