@@ -158,7 +158,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
     public void addQuestionnaire( Questionnaire questionnaire) throws DaoException {
         Connection connection;
         PreparedStatement preparedStatement;
-        CallableStatement callableStatement;
+        CallableStatement callableStatement = null;
         try {
             connection = daoFactory.getConnection();
             preparedStatement= connection.prepareStatement("select insert_questionnaire(?,?,?) as questionnaireID");
@@ -211,8 +211,10 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
         }
 
         try {
-//            preparedStatement.close();
             preparedStatement.close();
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");

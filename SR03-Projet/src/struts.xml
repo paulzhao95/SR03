@@ -81,7 +81,7 @@
         </action>
 
         <action name="addQuestionnaire" class="action.administrator.QuestionnaireAction" method="add">
-            <result type="chain" name="success">getQuestionnaires</result>
+            <result type="redirectAction" name="success">getQuestionnaires</result>
             <result name="error">test.jsp</result>
         </action>
 

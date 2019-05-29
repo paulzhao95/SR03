@@ -22,12 +22,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
         try{
             user = userImpl.getUser(email, password,type);
             session.put("user", user);
-
-            return "administratorLoginSucceed";
-
-
+            if (type.equals("Administrator")) {
+                return "administratorLoginSucceed";
+            } else {
+                return "internLoginSucceed";
+            }
         } catch (DaoException e) {
-
             return "loginFailed";
         }
 

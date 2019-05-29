@@ -105,7 +105,7 @@ $$;
 
 
 
-CREATE OR REPLACE PROCEDURE insert_choice(topic_name character varying, questionnaire_number INT, question_number int ,choice_description character varying, is_right character varying, choice_status boolean)
+CREATE OR REPLACE PROCEDURE insert_choice(topic_name character varying, questionnaire_number INT, question_number int ,choice_description character varying, is_right boolean, choice_status boolean)
   LANGUAGE plpgsql
 AS $$
 

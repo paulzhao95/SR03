@@ -30,7 +30,7 @@ public class UserImpl implements UserDao {
                     "where email = ? " +
                     "and password = ? " +
                     "and type_user = cast (? as type_user) " +
-                    "and status = 'Active'"
+                    "and status = TRUE "
             );
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
@@ -52,6 +52,7 @@ public class UserImpl implements UserDao {
                 user.setCompany(company);
                 user.setEmail(login);
                 user.setCreatingTime(creatingTime);
+                user.setType(User.UserType.valueOf(typeUser));
 
             }else{
                 throw new DaoException("Administrator not found.");
