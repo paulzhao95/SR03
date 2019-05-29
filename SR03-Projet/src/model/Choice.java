@@ -71,7 +71,7 @@ public class Choice implements Serializable {
         return isRight;
     }
 
-    public Integer getChoiceID() {
+    public int getChoiceID() {
         return choiceID;
     }
 

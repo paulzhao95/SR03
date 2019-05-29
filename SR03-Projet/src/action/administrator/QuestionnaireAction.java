@@ -3,6 +3,7 @@ package action.administrator;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
+import model.Choice;
 import model.Question;
 import model.Questionnaire;
 import org.apache.struts2.ServletActionContext;
@@ -47,6 +48,14 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     }
 
     public String  add() {
+        // complete questionnaire content
+        for (Question question : questionnaire.getQuestions()) {
+            question.setTopic(questionnaire.getTopic());
+            for (Choice choice : question.getChoices()) {
+                choice.setTopic(question.getTopic());
+            }
+        }
+
         try {
             questionnaireImpl.addQuestionnaire(questionnaire);
         } catch (DaoException e) {

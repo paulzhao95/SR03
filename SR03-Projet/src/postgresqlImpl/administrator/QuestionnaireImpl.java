@@ -161,50 +161,50 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
         CallableStatement callableStatement;
         try {
             connection = daoFactory.getConnection();
-            callableStatement = connection.prepareCall("call insert_questionnaire(?,?)");
-            callableStatement.setString(1,questionnaire.getTopic());
-            callableStatement.setString(2,questionnaire.getName());
-
-            callableStatement.executeUpdate();
-
-            connection.commit();
-
-            // get questionnaire number
-            preparedStatement = connection.prepareStatement("select number from questionnaires where name = ?");
-            preparedStatement.setString(1, questionnaire.getName());
+            preparedStatement= connection.prepareStatement("select insert_questionnaire(?,?,?) as questionnaireID");
+            preparedStatement.setString(1,questionnaire.getTopic());
+            preparedStatement.setString(2,questionnaire.getName());
+            preparedStatement.setBoolean(3,questionnaire.getStatus());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            connection.commit();
+
             int questionnaireId = 0;
             while (resultSet.next()) {
-                questionnaireId = resultSet.getInt("number");
+                questionnaireId = resultSet.getInt("questionnaireID");
             }
 
 
             for (Question question : questionnaire.getQuestions()) {
-                callableStatement = connection.prepareCall("call insert_question(?,?,?)");
-                callableStatement.setString(1, question.getTopic());
-                callableStatement.setInt(2,questionnaireId);
-                callableStatement.setString(3, question.getDescription());
+                preparedStatement = connection.prepareCall("select insert_question(?,?,?,?) as questionID");
+                preparedStatement.setString(1, question.getTopic());
+                preparedStatement.setInt(2,questionnaireId);
+                preparedStatement.setString(3, question.getDescription());
+                preparedStatement.setBoolean(4,question.getStatus());
 
-                callableStatement.executeUpdate();
+                resultSet = preparedStatement.executeQuery();
+
                 connection.commit();
 
+                int questionId = 0;
+                while (resultSet.next()) {
+                    questionId = resultSet.getInt("questionID");
+                }
+
                 for (Choice choice : question.getChoices()) {
-                    callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,?)");
+                    callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,cast (? as type_choice),?)");
                     callableStatement.setString(1, choice.getTopic());
                     callableStatement.setInt(2, choice.getQuestionnaireId());
-                    callableStatement.setInt(3, choice.getQuestionId());
+                    callableStatement.setInt(3, questionId);
                     callableStatement.setString(4, choice.getDescription());
-                    callableStatement.setString(5, choice.getRight().toString());
+                    callableStatement.setString(5, choice.getRight()?"Right_choice":"Wrong_choice");
+                    callableStatement.setBoolean(6,choice.getStatus());
 
                     callableStatement.executeUpdate();
                     connection.commit();
                 }
             }
-
-
-
 
         } catch (SQLException e) {
             throw new DaoException("Add questionnaire in database failed :) " + e.getMessage());
@@ -212,7 +212,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
 
         try {
 //            preparedStatement.close();
-            callableStatement.close();
+            preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");

@@ -8,7 +8,7 @@ public class Question implements Serializable {
     private int questionnaireId;
     private int questionID;
     private Boolean status;
-    private String Description;
+    private String description;
     private ArrayList<Choice> choices;
 
     public Question(String topic, int questionnaireId, Integer id, String description, Boolean status) {
@@ -54,7 +54,7 @@ public class Question implements Serializable {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setStatus(Boolean status) {
@@ -62,7 +62,7 @@ public class Question implements Serializable {
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public void setTopic(String topic) {

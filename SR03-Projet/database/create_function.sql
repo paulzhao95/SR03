@@ -1,18 +1,42 @@
+--
+-- CREATE OR REPLACE PROCEDURE insert_questionnaire(topic_name character varying, questionnaire_name character varying, questionnaire_status boolean)
+--   LANGUAGE plpgsql
+-- AS $$
+--
+-- DECLARE
+--   max_num   integer;
+-- BEGIN
+--   select max(number) into max_num from Questionnaires where Questionnaires.topic = topic_name;
+--   if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
+--   if questionnaire_status then
+--     insert into Questionnaires (number, name, topic, status) values (max_num,questionnaire_name,topic_name,'Active');
+--   else
+--     insert into Questionnaires (number, name, topic, status) values (max_num,questionnaire_name,topic_name,'Inactive');
+--   end if;
+-- END;
+-- $$;
+--
+-- drop procedure insert_questionnaire(topic_name character varying, questionnaire_name character varying, questionnaire_status boolean);
 
-DROP PROCEDURE insert_questionnaire(character varying,character varying);
-CREATE OR REPLACE PROCEDURE insert_questionnaire(topic_name character varying, questionnaire_name character varying)
-  LANGUAGE plpgsql
+create or replace function insert_questionnaire (topic_name character varying, questionnaire_name character varying, questionnaire_status boolean) returns INTEGER
+    LANGUAGE plpgsql
 AS $$
-
-DECLARE
-  max_num   integer;
-BEGIN
-  select max(number) into max_num from Questionnaires where Questionnaires.topic = topic_name;
-  if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
-
-  insert into Questionnaires (number, name, topic, status) values (max_num,questionnaire_name,topic_name,'Active');
-
-END;
+    DECLARE
+        max_num integer;
+    BEGIN
+        select max(number) into max_num
+        from Questionnaires
+        where Questionnaires.topic = topic_name;
+        if max_num isnull then max_num := 0; else max_num := max_num + 1; end if;
+        if questionnaire_status then
+            insert into Questionnaires (number, name, topic, status)
+            values (max_num, questionnaire_name, topic_name, 'Active');
+        else
+            insert into Questionnaires (number, name, topic, status)
+            values (max_num, questionnaire_name, topic_name, 'Inactive');
+        end if;
+        return max_num;
+    END;
 $$;
 
 CREATE OR REPLACE PROCEDURE delete_questionnaire(topic_name character varying, questionnaire_number INT)
@@ -28,9 +52,9 @@ BEGIN
   update questionnaires set number = number -1 where topic = topic_name and number >current_num;
 END;
 $$;
+drop procedure insert_question(topic_name character varying, questionnaire_number INT, question_name character varying, question_status boolean);
 
-
-CREATE OR REPLACE PROCEDURE insert_question(topic_name character varying, questionnaire_number INT, question_name character varying)
+CREATE OR REPLACE PROCEDURE insert_question(topic_name character varying, questionnaire_number INT, question_name character varying,question_status boolean)
   LANGUAGE plpgsql
 AS $$
 
@@ -39,12 +63,39 @@ DECLARE
 BEGIN
   select max(number) into max_num from Questions where topic = topic_name and questionnaire_id = questionnaire_number;
   if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
-
-  insert into Questions (topic, questionnaire_id, number, description,status) values (topic_name,questionnaire_number,max_num,question_name,'Active');
-
+  if question_status then
+      insert into Questions (topic, questionnaire_id, number, description, status)
+      values (topic_name, questionnaire_number, max_num, question_name, 'Active');
+  else
+      insert into Questions (topic, questionnaire_id, number, description, status)
+      values (topic_name, questionnaire_number, max_num, question_name, 'Inactive');
+  end if;
 END;
 $$;
 
+create or replace function insert_question(topic_name character varying, questionnaire_number INT,
+                                           question_name character varying, question_status boolean) returns integer
+
+LANGUAGE plpgsql
+AS $$
+
+DECLARE
+    max_num   integer;
+BEGIN
+    select max(number) into max_num from Questions where topic = topic_name and questionnaire_id = questionnaire_number;
+    if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
+    if question_status then
+        insert into Questions (topic, questionnaire_id, number, description, status)
+        values (topic_name, questionnaire_number, max_num, question_name, 'Active');
+    else
+        insert into Questions (topic, questionnaire_id, number, description, status)
+        values (topic_name, questionnaire_number, max_num, question_name, 'Inactive');
+    end if;
+
+    return max_num;
+
+END;
+$$;
 
 
 CREATE OR REPLACE PROCEDURE delete_question(topic_name character varying, questionnaire_number INT, question_number int)
@@ -64,7 +115,8 @@ END;
 $$;
 
 
-CREATE OR REPLACE PROCEDURE insert_choice(topic_name character varying, questionnaire_number INT, question_number int ,choice_description character varying, is_right character varying)
+
+CREATE OR REPLACE PROCEDURE insert_choice(topic_name character varying, questionnaire_number INT, question_number int ,choice_description character varying, is_right character varying, choice_status boolean)
   LANGUAGE plpgsql
 AS $$
 
@@ -74,10 +126,15 @@ BEGIN
   select max(number) into max_num from choices where topic = topic_name and questionnaire_id = questionnaire_number and question_id = question_number;
 
   if max_num isnull then max_num:=0; else max_num := max_num+1; end if ;
+  if choice_status then
+      insert into Choices (topic, questionnaire_id, question_id, number, description, status, type)
+      values (topic_name, questionnaire_number, question_number, max_num, choice_description, 'Active', is_right);
+  else
+      insert into Choices (topic, questionnaire_id, question_id, number, description, status, type)
+      values (topic_name, questionnaire_number, question_number, max_num, choice_description, 'Inactive', is_right);
+  end if;
+  END;
 
-  insert into Choices (topic, questionnaire_id, question_id, number, description,status, type) values (topic_name,questionnaire_number,question_number,max_num,choice_description,'Active',is_right);
-
-END;
 $$;
 
 
