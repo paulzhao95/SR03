@@ -72,7 +72,6 @@
                                     <p>Your Answer: <s:property value='choiceAnswer'/></p>
                                 </div>
                                 <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">
-                                    <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
                                     <p><%=score%></p>
                                 </div>
                             </s:iterator>
