@@ -19,7 +19,8 @@
     <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
 </head>
 <body>
-<%String checked = "checked";%>
+<%String checked = "checked";
+ String score = "100分";%>
 <div>
     <div class="content">
         <div class="tab-block information-tab">
@@ -35,17 +36,15 @@
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
-                    <br>
-                    <a href="AddQuestion.jsp?questionnaireID=<s:property value="questionnaireID"/>" class="link_class">Add new Question</a>
-                    <br>
-                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireID=<s:property value="questionnaireID"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>
+                    <!-- 这里需要一个问卷的总的通过时间,我不知道最后传过来的变量叫啥，记得要改 -->
+                    <p>Durée du passage: <s:property value='durationInSeconds'/></p>
                 </div>
             </div>
 
 
 
             <div class="tab-buttons ">
-                <h3 class="tab-button cur" data-tab="one">Management Questions</h3>
+                <h3 class="tab-button cur" data-tab="one">History Questions List</h3>
             </div>
 
             <div class="tabs">
@@ -57,25 +56,25 @@
                                 <p class="information-top-head-p">Questions</p>
                             </div>
                             <div class="information-top-head-right">
-                                <p class="information-top-head-p">Delete</p>
+                                <p class="information-top-head-p">Scores</p>
                             </div>
 
 
                             <s:iterator value="questions">
-                            <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
-                                <form>
-                                <a href="actionxxxxxx.action?question.questionID=<s:property value='questionID'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
-                                    <br>
-                                <s:iterator value="choices" var="id">
-                                    <input type="radio" name="answer1" disabled <s:if test="%{#id.isRight}"> <%=checked%> </s:if>/><s:property value='description'/>
-                                    <br>
-                                </s:iterator>
-                                </form>
-                            </div>
-                            <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">
-                                <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                                <a href="" class="information-top-content-p">Delete</a>
-                            </div>
+                                <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
+                                        <p><s:property value='Description'/></p>
+                                        <br>
+                                        <s:iterator value="choices" var="id">
+                                            <input type="radio" name="answer1" disabled <s:if test="%{#id.isRight}"> <%=checked%> </s:if>/><s:property value='description'/>
+                                            <br>
+                                        </s:iterator>
+                                    <!-- 这里也需要将value的名字改为对应代表的intern选择的那个选项的变量 -->
+                                    <p>Your Answer: <s:property value='choiceAnswer'/></p>
+                                </div>
+                                <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">
+                                    <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
+                                    <p><%=score%></p>
+                                </div>
                             </s:iterator>
                         </div>
                     </div>
