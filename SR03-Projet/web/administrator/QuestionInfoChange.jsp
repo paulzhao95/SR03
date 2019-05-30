@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -52,11 +53,7 @@
 <body>
 
 <%  int number = 3;
-    String s = "checked";
-    String question = "在生产管理信息系统中，下列操作步骤能正确将工单推进流程的是()";
-    String answer1 = "在工具栏中点击“workflow”标签";
-    String answer2 = "在缺陷单界面中点击“推进流程”按钮";
-    String answer3 = "在缺陷单界面中点击“提交”按钮";%>
+    String s = "checked";%>
 
 
 <div>
@@ -76,34 +73,27 @@
                             <li id="qu_0_0">
                                 <div class="test_content_nr_tt">
                                     <i>*</i><font>
-                                    <input id="question" class = "input_control" name = "question" type="text" onchange="changeValue()" value = <%=question%>>
+                                    <input id="question" class = "input_control" name = "question.Description" type="text" onchange="changeValue()" value = <s:property value="question.Description"/>>
                                     <label for="question"></label></font>
                                 </div>
+
+
                                 <div class="test_content_nr_main">
                                     <ul>
-
+                                        <s:iterator value="question.choices" status="id">
                                         <li class="option">
-                                            <input id="answer1" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer1" type="text" onchange="changeValue()" value = <%=answer1%>>
-                                            <div align="right">A</div>
+                                            <input id="answer" style = "font-size:1.2em;height:1.5em;width:80%;" name = "question.choices[%{#id.index}].description" type="text" onchange="changeValue()" value = <s:property value="description"/>>
+                                            <div align="right">*</div>
                                         </li>
+                                        </s:iterator>
 
-                                        <li class="option">
-                                            <input id="answer2" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer2" type="text" onchange="changeValue()" value = <%=answer2%>>
-                                            <div align="right">B</div>
-                                        </li>
-
-                                        <li class="option">
-                                            <input id="answer3" style = "font-size:1.2em;height:1.5em;width:80%;" name = "answer3" type="text" onchange="changeValue()" value = <%=answer3%>>
-                                            <div align="right">C</div>
-                                        </li>
                                     </ul>
                                 </div>
                             </li>
-                            <div><div align="right">
-                                <input id = "right_answer" style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "right_answer" type = "text" placeholder="Answer">
-                            </div>
+                                    <s:iterator value="question.choices" status="id">
+                                        <s:property value='#id.index'/><input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[%{#id.index}].isRight" type = "checkbox" value="true">
+                                    </s:iterator>
                                 <input type="submit" value = "Validation">
-                            </div>
                         </ul>
                     </form>
                 </div>

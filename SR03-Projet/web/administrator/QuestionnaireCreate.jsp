@@ -101,28 +101,28 @@
                             <li>
                                 <div class="test_content_nr_tt">
                                     <i>*</i><font>
-                                    <input class = "input_control" type="text" name="questionnaire.questions[0].Description" placeholder="Question1"/></font>
+                                    <input class = "input_control" type="text" name="questionnaire.questions[0].Description" placeholder="Question0"/></font>
                                 </div>
                                 <div class="test_content_nr_main">
                                     <ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[0].description" placeholder="Question1.Choice1"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[0].description" placeholder="Choice1"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[1].description" placeholder="Question1.Choice2"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[1].description" placeholder="Choice2"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[2].description" placeholder="Question1.Choice3"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[2].description" placeholder="Choice3"/>
                                             </li>
                                         </ul>
                                         <ul>
                                             <li class="option">
-                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[3].description" placeholder="Question1.Choice4"/>
+                                                <input type="text" style="width:800px;" name="questionnaire.questions[0].choices[3].description" placeholder="Choice4"/>
                                             </li>
                                         </ul>
                                     </ul>

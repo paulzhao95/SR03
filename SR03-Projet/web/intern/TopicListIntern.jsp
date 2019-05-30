@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="model.User" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="model.User" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,9 @@
     <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
 </head>
 <body>
-<%String checked = "checked";%>
+<%String topic = request.getParameter("topic");
+    System.out.println(topic);
+%>
 <div>
     <div class="content">
         <div class="tab-block information-tab">
@@ -36,16 +38,14 @@
                 </div>
                 <div style="float: right;margin: 150px;">
                     <br>
-                    <a href="AddQuestion.jsp?questionnaireID=<s:property value="questionnaireID"/>" class="link_class">Add new Question</a>
-                    <br>
-                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireID=<s:property value="questionnaireID"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>
+                    <a href="QuestionnaireCreate.jsp/>" class="link_class">Do Questionnaire</a>
                 </div>
             </div>
 
 
 
             <div class="tab-buttons ">
-                <h3 class="tab-button cur" data-tab="one">Management Questions</h3>
+                <h3 class="tab-button cur" data-tab="one">History Topic List</h3>
             </div>
 
             <div class="tabs">
@@ -54,29 +54,18 @@
                         <div class="information-top">
 
                             <div class="information-top-head-left">
-                                <p class="information-top-head-p">Questions</p>
-                            </div>
-                            <div class="information-top-head-right">
-                                <p class="information-top-head-p">Delete</p>
+                                <p class="information-top-head-p">Topics</p>
                             </div>
 
 
-                            <s:iterator value="questions">
-                            <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
-                                <form>
-                                <a href="actionxxxxxx.action?question.questionID=<s:property value='questionID'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
-                                    <br>
-                                <s:iterator value="choices" var="id">
-                                    <input type="radio" name="answer1" disabled <s:if test="%{#id.isRight}"> <%=checked%> </s:if>/><s:property value='description'/>
-                                    <br>
-                                </s:iterator>
-                                </form>
-                            </div>
-                            <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">
-                                <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                                <a href="" class="information-top-content-p">Delete</a>
-                            </div>
+
+                            <s:iterator value="topics">
+                                <div class="information-top-content-left">
+                                    <a href="http://localhost:8080/SR03_Projet_war_exploded/getQuestionnaires.action?topic=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
+                                </div>
                             </s:iterator>
+
+
                         </div>
                     </div>
                 </div>
