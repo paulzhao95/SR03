@@ -82,7 +82,7 @@
                                     <ul>
                                         <s:iterator value="question.choices" status="id">
                                         <li class="option">
-                                            <input id="answer" style = "font-size:1.2em;height:1.5em;width:80%;" name = "question.choices[%{#id.index}].description" type="text" onchange="changeValue()" value = <s:property value="description"/>>
+                                            <input id="answer" style = "font-size:1.2em;height:1.5em;width:80%;" name = "question.choices[<s:property value="#id.index"/>].description" type="text" onchange="changeValue()" value = <s:property value="description"/>>
                                             <div align="right">*</div>
                                         </li>
                                         </s:iterator>
@@ -91,7 +91,7 @@
                                 </div>
                             </li>
                                     <s:iterator value="question.choices" status="id">
-                                        <s:property value='#id.index'/><input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[%{#id.index}].isRight" type = "checkbox" value="true">
+                                        <s:property value='#id.index'/><input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[<s:property value="#id.index"/>].isRight" type = "checkbox" value="true">
                                     </s:iterator>
                                 <input type="submit" value = "Validation">
                         </ul>
