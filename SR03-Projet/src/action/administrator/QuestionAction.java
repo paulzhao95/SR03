@@ -4,33 +4,44 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
 import model.Question;
+import org.apache.struts2.interceptor.SessionAware;
 import postgresqlImpl.administrator.QuestionImpl;
 
 import java.util.ArrayList;
+import java.util.Map;
 
-public class QuestionAction extends ActionSupport {
+public class QuestionAction extends ActionSupport implements SessionAware {
     private ArrayList<Question> questions = new ArrayList<Question>();
     private Question question = new Question();
     private QuestionImpl questionImpl = DaoFactory.getDaoFactoryInstance().getdAdministratorQuestionImpl();
     private String topic = "";
-    private int questionnaireID = -1;
+    private int questionnaireId = -1;
     private Boolean status = true;
     private String name = "";
 
-
+    private Map<String, Object> session;
 
     public QuestionAction() throws DaoException {
     }
 
     public String get() {
+
+        if (questionnaireId == -1) {
+            topic = (String) session.get("topic");
+            questionnaireId = (int)session.get("questionnaireId");
+        }
+
         try {
-            questions = questionImpl.getQuestions(topic, questionnaireID);
+            questions = questionImpl.getQuestions(topic, questionnaireId);
         } catch (DaoException e) {
             return ERROR;
         }
+        topic = (String) session.get("topic");
+        session.put("questionnaireId", questionnaireId);
         return SUCCESS;
     }
 
+    // TODO: 5/31/19  test
     public String add() {
         try {
             questionImpl.addQuestion(question);
@@ -39,6 +50,7 @@ public class QuestionAction extends ActionSupport {
         }
         return SUCCESS;
     }
+
 
     public String delete() {
         try {
@@ -50,6 +62,7 @@ public class QuestionAction extends ActionSupport {
         return SUCCESS;
     }
 
+    //todo set status failed
     public String update() {
         try {
             questionImpl.updateQuestion(question);
@@ -60,6 +73,9 @@ public class QuestionAction extends ActionSupport {
     }
 
     public String getTopic() {
+        if (topic.equals("")) {
+            topic = (String) session.get("topic");
+        }
         return topic;
     }
 
@@ -67,12 +83,15 @@ public class QuestionAction extends ActionSupport {
         this.topic = topic;
     }
 
-    public int getQuestionnaireID() {
-        return questionnaireID;
+    public int getQuestionnaireId() {
+        if (questionnaireId == -1) {
+            questionnaireId = (int) session.get("questionnaireId");
+        }
+        return questionnaireId;
     }
 
-    public void setQuestionnaireID(int questionnaireID) {
-        this.questionnaireID = questionnaireID;
+    public void setQuestionnaireId(int questionnaireId) {
+        this.questionnaireId = questionnaireId;
     }
 
     public ArrayList<Question> getQuestions() {
@@ -105,5 +124,10 @@ public class QuestionAction extends ActionSupport {
 
     public Boolean getStatus() {
         return status;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> map) {
+        session = map;
     }
 }

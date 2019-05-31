@@ -94,7 +94,7 @@ AS $$
 DECLARE
   current_num   integer;
 BEGIN
-  set current_num = question_number;
+  select question_number into current_num ;
 
   delete from Questions where topic = topic_name and questionnaire_id = questionnaire_number and number = question_number;
 

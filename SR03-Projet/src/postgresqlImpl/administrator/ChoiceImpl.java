@@ -48,7 +48,7 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
             if (resultSet.next()) {
                 choice.setDescription(resultSet.getString("description"));
                 choice.setStatus(resultSet.getString("status").equals("Active"));
-                choice.setRight(resultSet.getString("type").equals("Right_choice"));
+                choice.setIsRight(resultSet.getString("type").equals("Right_choice"));
             }
 
         } catch (SQLException e) {
@@ -142,12 +142,12 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
             throw new DaoException("Database connection failed");
         }
     }
-
+    // todo correct
     @Override
     public void addChoice(Choice choice) throws DaoException {
         Connection connection;
         CallableStatement callableStatement;
-        String type = choice.getRight() ? "Right_choice" : "Wrong_choice";
+        String type = choice.getIsRight() ? "Right_choice" : "Wrong_choice";
 
         try {
             connection = daoFactory.getConnection();
@@ -189,7 +189,7 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
                     "and question_id = ? " +
                     "and number = ?" );
             preparedStatement.setString(1,choice.getDescription());
-            preparedStatement.setString(2,choice.getRight()? "Right_choice":"Wrong_Choice");
+            preparedStatement.setString(2,choice.getIsRight()? "Right_choice":"Wrong_Choice");
             preparedStatement.setString(2,choice.getStatus()? "Active":"Inactive");
             preparedStatement.setString(2,choice.getTopic());
             preparedStatement.setInt(3,choice.getQuestionnaireId());

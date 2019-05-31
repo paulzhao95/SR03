@@ -69,7 +69,7 @@ public class QuestionImpl implements QuestionDao {
                 choices.add(new Choice(topic, questionnaireId, questionNumber, choiceId, choiceDescriptin, choiceStatus, choiceRight));
             }
 
-            question = new Question(questionNumber, questionDescription, questionStatus, choices);
+            question = new Question(topic, questionNumber, questionDescription, questionStatus, choices);
         } catch (SQLException e) {
             throw new DaoException("get  question in database failed :) " + e.getMessage());
         }
@@ -132,7 +132,7 @@ public class QuestionImpl implements QuestionDao {
 
                 if (question_id != preQuestionId){
                     if (0 <= preQuestionId){
-                        questions.add(new Question(preQuestionId,questionDescription, questionStatus, choices));
+                        questions.add(new Question(topic, preQuestionId,questionDescription, questionStatus, choices));
                         choices.clear();
                     }
                     index++;
@@ -140,7 +140,7 @@ public class QuestionImpl implements QuestionDao {
                 }
                 choices.add(new Choice(topic,questionnaireId,question_id, choice_id,choice_description,choice_status,isRight));
             }
-            questions.add(new Question(preQuestionId, questionDescription,questionStatus,choices));
+            questions.add(new Question(topic, preQuestionId, questionDescription,questionStatus,choices));
 
         } catch (SQLException e) {
             throw new DaoException("Get questions  tfrom database failed : "+e.getMessage());

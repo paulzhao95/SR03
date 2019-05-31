@@ -65,11 +65,11 @@
                             <s:iterator value="questionnaires">
                             <div class="information-top-content-left">
                                 <!-- 这里写action，还没填，要改-->
-                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/getQuestions?questionnaireID=<s:property value='questionnaireID'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>&name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
+                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/getQuestions?questionnaireId=<s:property value='questionnaireId'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>&name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
                             </div>
                             <div class="information-top-content-right">
                                 <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/deleteQuestionnaire?questionnaire.questionnaireID=<s:property value='questionnaireID'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p">Delete</a>
+                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/deleteQuestionnaire?questionnaire.questionnaireId=<s:property value='questionnaireId'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p">Delete</a>
                             </div>
                             </s:iterator>
 

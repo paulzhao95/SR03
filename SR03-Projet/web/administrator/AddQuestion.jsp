@@ -57,7 +57,10 @@
 </head>
 <body>
 
-<%String questionnaireID = request.getParameter("questionnaireID");%>
+<%String questionnaireId = request.getParameter("questionnaireId");
+    String topic = request.getParameter("topic");
+
+%>
 
 <div>
     <div class="content">
@@ -71,7 +74,7 @@
 
 
                 <div class="test_content_nr">
-                    <form action="">
+                    <form action="addQuestion.action">
                         <ul>
                             <li id="qu_0_0">
                                 <div class="test_content_nr_tt">
@@ -96,11 +99,12 @@
                                     </ul>
                                 </div>
                             </li>
-                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questions.choices[0].isRight" type = "checkbox" value="true">
-                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questions.choices[1].isRight" type = "checkbox" value="true">
-                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questions.choices[2].isRight" type = "checkbox" value="true">
-                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "questions.choices[3].isRight" type = "checkbox" value="true">
-                                <input name = "question.questionnaireId" type="hidden" value = "<%=questionnaireID%>" >
+                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[0].isRight" type = "checkbox" value="true">
+                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[1].isRight" type = "checkbox" value="true">
+                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[2].isRight" type = "checkbox" value="true">
+                                    <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[3].isRight" type = "checkbox" value="true">
+                                <input name = "question.questionnaireId" type="hidden" value = "<%=questionnaireId%>" >
+                                <input name = "question.topic" type="hidden" value = "<%=topic%>" >
                                 <input type="submit" value="Validation">
                         </ul>
                     </form>

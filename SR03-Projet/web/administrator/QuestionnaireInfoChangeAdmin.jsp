@@ -13,7 +13,7 @@
     Boolean status = request.getParameter("status").equals("true");
     String check = "checked";
     String topic = request.getParameter("topic");
-    int questionnaireID = Integer.parseInt(request.getParameter("questionnaireID"));%>
+    int questionnaireId = Integer.parseInt(request.getParameter("questionnaireId"));%>
 
 <img class="bgone" src="../picture/1.jpg" />
 <img class="pic" src="../picture/a.png" />
@@ -25,7 +25,7 @@
             <div id="yonghu"><img src="../picture/yhm.png" /></div>
             <input type="text" name="questionnaire.name" value="<%=name%>" onchange="changeValue()"/>
             <input type="hidden" name="questionnaire.topic" value="<%=topic%>" />
-            <input type="hidden" name="questionnaire.questionnaireID" value="<%=questionnaireID%>" />
+            <input type="hidden" name="questionnaire.questionnaireId" value="<%=questionnaireId%>" />
         </div>
         <div class = "password">
             Active

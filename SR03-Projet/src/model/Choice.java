@@ -18,7 +18,7 @@ public class Choice implements Serializable {
         this.setChoiceID(choiceId);
         this.setDescription(description);
         this.setStatus(status);
-        this.setRight(isRight);
+        this.setIsRight(isRight);
     }
 
     public Choice() {
@@ -27,8 +27,8 @@ public class Choice implements Serializable {
         this.setQuestionnaireId(0);
         this.setChoiceID(0);
         this.setDescription("");
-        this.setRight(true);
-        this.setStatus(false);
+        this.setStatus(true);
+        this.setIsRight(false);
     }
 
     public int getQuestionId() {
@@ -67,9 +67,6 @@ public class Choice implements Serializable {
         return status;
     }
 
-    public Boolean getRight() {
-        return isRight;
-    }
 
     public int getChoiceID() {
         return choiceID;
@@ -87,8 +84,12 @@ public class Choice implements Serializable {
         this.choiceID = choiceID;
     }
 
-    public void setRight(Boolean right) {
+
+    public void setIsRight(Boolean right) {
         isRight = right;
     }
 
+    public Boolean getIsRight() {
+        return isRight;
+    }
 }

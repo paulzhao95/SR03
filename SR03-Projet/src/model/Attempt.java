@@ -150,7 +150,7 @@ public class Attempt implements Serializable {
 
     private void calculateScore() {
         for (Choice choice: this.userChoices  ) {
-            if (choice.getRight()) {
+            if (choice.getIsRight()) {
                 this.score += 1;
             }
         }

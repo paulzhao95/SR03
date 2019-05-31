@@ -51,7 +51,7 @@ public class ChoiceImpl implements ChoiceDao {
             if (resultSet.next()) {
                 choice.setDescription(resultSet.getString("description"));
                 choice.setStatus(resultSet.getString("status").equals("Active"));
-                choice.setRight(resultSet.getString("type").equals("Right_choice"));
+                choice.setIsRight(resultSet.getString("type").equals("Right_choice"));
             }
 
         } catch (SQLException e) {

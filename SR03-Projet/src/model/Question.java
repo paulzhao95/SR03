@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Question implements Serializable {
     private String topic;
     private int questionnaireId;
-    private int questionID;
+    private int questionId;
     private Boolean status;
     private String description;
     private ArrayList<Choice> choices;
@@ -14,15 +14,15 @@ public class Question implements Serializable {
     public Question(String topic, int questionnaireId, Integer id, String description, Boolean status) {
         this.setTopic(topic);
         this.setQuestionnaireId(questionnaireId);
-        this.setQuestionID(id);
+        this.setQuestionId(id);
         this.setDescription(description);
         this.setStatus(status);
     }
 
-    public Question(Integer id, String description, Boolean status, ArrayList<Choice> choices) {
+    public Question(String topic, Integer id, String description, Boolean status, ArrayList<Choice> choices) {
         this.setTopic(topic);
         this.setQuestionnaireId(questionnaireId);
-        this.setQuestionID(id);
+        this.setQuestionId(id);
         this.setDescription(description);
         this.setStatus(status);
         this.setChoices(choices);
@@ -31,7 +31,7 @@ public class Question implements Serializable {
     public Question() {
         this.setTopic("");
         this.setQuestionnaireId(0);
-        this.setQuestionID(0);
+        this.setQuestionId(0);
         this.setDescription("");
         this.setStatus(false);
         this.setChoices(new ArrayList<Choice>());
@@ -49,8 +49,8 @@ public class Question implements Serializable {
         return status;
     }
 
-    public Integer getQuestionID() {
-        return questionID;
+    public Integer getQuestionId() {
+        return questionId;
     }
 
     public String getDescription() {
@@ -73,8 +73,8 @@ public class Question implements Serializable {
         this.questionnaireId = questionnaireId;
     }
 
-    public void setQuestionID(int questionID) {
-        this.questionID = questionID;
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
     public ArrayList<Choice> getWrongChoices() {

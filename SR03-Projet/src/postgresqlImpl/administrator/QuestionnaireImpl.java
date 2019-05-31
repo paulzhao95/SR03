@@ -198,7 +198,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
                     callableStatement.setInt(2, choice.getQuestionnaireId());
                     callableStatement.setInt(3, questionId);
                     callableStatement.setString(4, choice.getDescription());
-                    callableStatement.setBoolean(5, choice.getRight());
+                    callableStatement.setBoolean(5, choice.getIsRight());
                     callableStatement.setBoolean(6,choice.getStatus());
 
                     callableStatement.executeUpdate();
@@ -233,7 +233,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
             connection = daoFactory.getConnection();
 //            preparedStatement = connection.prepareStatement("call delete_questionnaire(?,?)");
 //            preparedStatement.setString(2,questionnaire.getTopic());
-//            preparedStatement.setInt(1,questionnaire.getQuestionnaireID());
+//            preparedStatement.setInt(1,questionnaire.getQuestionnaireId());
             callableStatement = connection.prepareCall("call delete_questionnaire(?,?)");
             callableStatement.setString(1, questionnaire.getTopic());
             callableStatement.setInt(2, questionnaire.getQuestionnaireID());

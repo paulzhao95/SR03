@@ -63,7 +63,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
                 choices.add(new Choice(topic, questionnaireId, questionNumber, choiceId, choiceDescriptin, choiceStatus, choiceRight));
             }
 
-            question = new Question(questionNumber, questionDescription, questionStatus, choices);
+            question = new Question(topic, questionNumber, questionDescription, questionStatus, choices);
         } catch (SQLException e) {
             throw new DaoException("get  question in database failed :) " + e.getMessage());
         }
@@ -115,25 +115,28 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
 
             while (resultSet.next()) {
                 int question_id = resultSet.getInt("question_id");
+
+                if (question_id != preQuestionId){
+                    if (0 <= preQuestionId){
+                        questions.add(new Question(topic, preQuestionId,questionDescription, questionStatus, choices));
+                        choices.clear();
+                    }
+                    index++;
+                    preQuestionId = question_id;
+                }
+
                 questionDescription = resultSet.getString("question_description");
                 questionStatus = resultSet.getString("question_status").equals("Active");
 
                 int choice_id = resultSet.getInt("choice_id");
                 String choice_description = resultSet.getString("choice_description");
                 boolean choice_status = resultSet.getString("choice_status").equals("Active");
-                boolean isRight = resultSet.getString("choice_type").equals("Right_choice");
+                boolean isRight = resultSet.getBoolean("choice_type");
 
-                if (question_id != preQuestionId){
-                    if (0 <= preQuestionId){
-                        questions.add(new Question(preQuestionId,questionDescription, questionStatus, choices));
-                        choices.clear();
-                    }
-                    index++;
-                    preQuestionId = question_id;
-                }
+
                 choices.add(new Choice(topic,questionnaireId,question_id, choice_id,choice_description,choice_status,isRight));
             }
-            questions.add(new Question(preQuestionId, questionDescription,questionStatus,choices));
+            questions.add(new Question(topic, preQuestionId, questionDescription,questionStatus,choices));
 
         } catch (SQLException e) {
             throw new DaoException("Get questions  tfrom database failed : "+e.getMessage());
@@ -151,18 +154,38 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
     @Override
     public void addQuestion(Question question) throws DaoException {
         Connection connection;
+        PreparedStatement preparedStatement;
         CallableStatement callableStatement;
-
 
         try {
             connection = daoFactory.getConnection();
-            callableStatement = connection.prepareCall("call insert_question(?,?,?)" );
-            callableStatement.setString(1,question.getTopic());
-            callableStatement.setInt(2,question.getQuestionnaireId());
-            callableStatement.setString(3,question.getDescription());
+            preparedStatement = connection.prepareCall("select insert_question(?,?,?,?) as question_number");
+            preparedStatement.setString(1, question.getTopic());
+            preparedStatement.setInt(2,question.getQuestionnaireId());
+            preparedStatement.setString(3, question.getDescription());
+            preparedStatement.setBoolean(4,question.getStatus());
 
-            callableStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.executeQuery();
+
             connection.commit();
+
+            int questionId = -1;
+            while ( resultSet.next()) {
+                questionId = resultSet.getInt("question_number");
+            }
+
+            for (Choice choice : question.getChoices()) {
+                callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,?,?)");
+                callableStatement.setString(1, question.getTopic());
+                callableStatement.setInt(2, choice.getQuestionnaireId());
+                callableStatement.setInt(3, questionId);
+                callableStatement.setString(4, choice.getDescription());
+                callableStatement.setBoolean(5, choice.getIsRight());
+                callableStatement.setBoolean(6,choice.getStatus());
+
+                callableStatement.executeUpdate();
+                connection.commit();
+            }
 
 
         } catch (SQLException e) {
@@ -170,7 +193,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
         }
 
         try {
-            callableStatement.close();
+            preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
@@ -187,7 +210,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
             callableStatement = connection.prepareCall("call delete_question(?,?,?)" );
             callableStatement.setString(1,question.getTopic());
             callableStatement.setInt(2,question.getQuestionnaireId());
-            callableStatement.setInt(3,question.getQuestionID());
+            callableStatement.setInt(3,question.getQuestionId());
 
             callableStatement.executeUpdate();
             connection.commit();
@@ -219,7 +242,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
             preparedStatement.setString(1,question.getDescription());
             preparedStatement.setString(2,question.getTopic());
             preparedStatement.setInt(3,question.getQuestionnaireId());
-            preparedStatement.setInt(4, question.getQuestionID());
+            preparedStatement.setInt(4, question.getQuestionId());
 
             int i = preparedStatement.executeUpdate();
             connection.commit();
@@ -248,8 +271,8 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
             callableStatement = connection.prepareCall("call exchange_question_order(?,?,?,?) " );
             callableStatement.setString(1,question1.getTopic());
             callableStatement.setInt(2,question1.getQuestionnaireId());
-            callableStatement.setInt(3,question1.getQuestionID());
-            callableStatement.setInt(4, question2.getQuestionID());
+            callableStatement.setInt(3,question1.getQuestionId());
+            callableStatement.setInt(4, question2.getQuestionId());
 
             callableStatement.executeUpdate();
             connection.commit();

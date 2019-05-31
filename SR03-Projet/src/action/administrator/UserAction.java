@@ -19,7 +19,7 @@ public class UserAction extends ActionSupport {
     public UserAction() throws DaoException {
     }
 
-    // TODO: 5/27/19 change
+    // TODO: 5/27/19 change status failed
     public String update() {
         try {
             administratorUserImpl.updateUser(user);

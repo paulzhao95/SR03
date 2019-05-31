@@ -56,7 +56,7 @@
 
                             <s:iterator value="questionnaires">
                                 <div class="information-top-content-left">
-                                    <a href="http://localhost:8080/SR03_Projet_war_exploded/intern/StartDoQuestion.jsp?questionnaireID=<s:property value='questionnaireID'/>&topic=<s:property value='topic'/>" class="information-top-content-p"><s:property value='name'/></a>
+                                    <a href="http://localhost:8080/SR03_Projet_war_exploded/intern/StartDoQuestion.jsp?questionnaireId=<s:property value='questionnaireId'/>&topic=<s:property value='topic'/>" class="information-top-content-p"><s:property value='name'/></a>
                                 </div>
                             </s:iterator>
 

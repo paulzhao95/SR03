@@ -64,7 +64,7 @@
                             <s:iterator value="questionnaires">
                                 <div class="information-top-content-left">
                                     <!-- 这里写action，还没填，要改-->
-                                    <a href="http://localhost:8080/SR03_Projet_war_exploded/default/getQuestions?questionnaireID=<s:property value='questionnaireID'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>&name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
+                                    <a href="http://localhost:8080/SR03_Projet_war_exploded/default/getQuestions?questionnaireId=<s:property value='questionnaireId'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>&name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
                                 </div>
                                 <div class="information-top-content-right">
                                     <!-- 这里填分数-->

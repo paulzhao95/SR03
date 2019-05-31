@@ -99,6 +99,17 @@
 <!--        administrator question action -->
         <action name="getQuestions" class="action.administrator.QuestionAction" method="get">
             <result name="success">/administrator/QuestionList.jsp</result>
+
+            <result name="error">test.jsp</result>
+        </action>
+
+        <action name="addQuestion" class="action.administrator.QuestionAction" method="add">
+            <result type="chain" name="success">getQuestions</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+        <action name="deleteQuestion" class="action.administrator.QuestionAction" method="delete">
+            <result type="chain" name="success">getQuestions</result>
             <result name="error">test.jsp</result>
         </action>
     </package>

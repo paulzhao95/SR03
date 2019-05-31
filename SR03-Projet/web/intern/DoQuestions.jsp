@@ -28,7 +28,7 @@
                     <ul>
                         <li id="qu_0_0">
                             <div class="test_content_nr_tt">
-                                <i><s:property value="question.questionID"/></i><font><s:property value="description"/></font>
+                                <i><s:property value="question.questionId"/></i><font><s:property value="description"/></font>
                             </div>
                             <div class="test_content_nr_main">
                                 <ul>
@@ -50,16 +50,16 @@
                 </div>
             </div>
             <div>
-            <input type="hidden" name="question.questionID" value="questionID">
+            <input type="hidden" name="question.questionId" value="questionId">
 
                 <!-- 这里有三个不同的submit提交标签,分别有不同的名字和值，对应不同的页面跳转-->
-                <s:if test="question.questionID!=0">
+                <s:if test="question.questionId!=0">
             <div align="left">
                 <input type="submit" name="changePagePrevious" value = "Previous">
             </div>
                 </s:if>
                 <!--这里要用到session里面存到的当前问卷里面有几个问题的变量nbQuestions -->
-                <s:if test="question.questionID.toString()!=#session.nbQuestions">
+                <s:if test="question.questionId.toString()!=#session.nbQuestions">
             <div align="right">
                 <input type="submit" name="changePageNext" value = "Next">
             </div>
