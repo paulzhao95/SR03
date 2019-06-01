@@ -95,6 +95,10 @@
             <result name="error">test.jsp</result>
         </action>
 
+        <action name="getQuestionnaire" class="action.administrator.QuestionnaireAction" method="getQuestionnaireInfo">
+            <result name="success">/administrator/QuestionList.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
 
 <!--        administrator question action -->
         <action name="getQuestions" class="action.administrator.QuestionAction" method="get">
@@ -112,6 +116,12 @@
             <result type="chain" name="success">getQuestions</result>
             <result name="error">test.jsp</result>
         </action>
+
+        <action name="getQuestion" class="action.administrator.QuestionAction" method="get">
+            <result type="chain" name="success">getQuestions</result>
+            <result name="error">test.jsp</result>
+        </action>
+
     </package>
 
 </struts>

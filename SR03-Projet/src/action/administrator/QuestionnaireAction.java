@@ -20,6 +20,8 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     private ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
     private Questionnaire questionnaire = new Questionnaire();
     private String topic = "";
+    private int questionnaireId;
+
 
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
 
@@ -35,8 +37,8 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     public String get() {
 
 //        String topic = ServletActionContext.getRequest().getParameter("Topic");
-        if (topic.equals( "")) {
-            topic = (String)session.get("topic");
+        if (topic.equals("")) {
+            topic = (String) session.get("topic");
         }
         try {
             questionnaires = questionnaireImpl.getQuestionnaires(topic);
@@ -47,7 +49,7 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
         return SUCCESS;
     }
 
-    public String  add() {
+    public String add() {
         // complete questionnaire content
         for (Question question : questionnaire.getQuestions()) {
             question.setTopic(questionnaire.getTopic());
@@ -83,6 +85,15 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
 
     }
 
+    public String getQuestionnaireInfo() {
+        try {
+            questionnaire = questionnaireImpl.getQuestionnaire(topic, questionnaireId);
+        } catch (DaoException e) {
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
 
     public ArrayList<Questionnaire> getQuestionnaires() {
         return questionnaires;
@@ -107,6 +118,19 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     public void setTopic(String topic) {
         this.topic = topic;
     }
+
+    public int getQuestionnaireId() {
+        return questionnaireId;
+    }
+
+    public void setQuestionnaireId(int questionnaireId) {
+        this.questionnaireId = questionnaireId;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
+
 
     @Override
     public void setSession(Map<String, Object> map) {

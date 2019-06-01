@@ -118,7 +118,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
 
                 if (question_id != preQuestionId){
                     if (0 <= preQuestionId){
-                        questions.add(new Question(topic, preQuestionId,questionDescription, questionStatus, choices));
+                        questions.add(new Question(topic, preQuestionId,questionDescription, questionStatus, new ArrayList<Choice>(choices)));
                         choices.clear();
                     }
                     index++;
@@ -177,7 +177,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
             for (Choice choice : question.getChoices()) {
                 callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,?,?)");
                 callableStatement.setString(1, question.getTopic());
-                callableStatement.setInt(2, choice.getQuestionnaireId());
+                callableStatement.setInt(2, question.getQuestionnaireId());
                 callableStatement.setInt(3, questionId);
                 callableStatement.setString(4, choice.getDescription());
                 callableStatement.setBoolean(5, choice.getIsRight());

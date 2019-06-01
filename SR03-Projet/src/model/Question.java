@@ -28,12 +28,22 @@ public class Question implements Serializable {
         this.setChoices(choices);
     }
 
+    public Question(String topic, Integer questionnaireId, String description) {
+        this.setTopic(topic);
+        this.setQuestionnaireId(questionnaireId);
+        this.setQuestionId(0);
+        this.setDescription(description);
+        this.setStatus(true);
+        this.setChoices(new ArrayList<Choice>());
+    }
+
+
     public Question() {
         this.setTopic("");
         this.setQuestionnaireId(0);
         this.setQuestionId(0);
         this.setDescription("");
-        this.setStatus(false);
+        this.setStatus(true);
         this.setChoices(new ArrayList<Choice>());
     }
 

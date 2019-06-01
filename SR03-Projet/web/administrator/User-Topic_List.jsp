@@ -30,7 +30,8 @@
                         <img src="../picture/default_avatar.png"/>
                     </div>
                     <div class="personalnformation-content-right">
-                        <p class="personalnformation-content-right-p">Nom：<%=user.getName()%> </p>
+<%--                        <p class="personalnformation-content-right-p">Nom：<%=user.getName()%> </p>--%>
+                        <p class="personalnformation-content-right-p">Nom：<s:property value="user.name"/> </p>
                         <p class="personalnformation-content-right-p">Email：<%=user.getEmail()%> </p>
                         <p class="personalnformation-content-right-p">Create Time：2019</p>
                     </div>
@@ -92,7 +93,7 @@
                     </div>
                     <div class="information-top-content-right">
                         <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                        <a href="deleteUser.action?user.email=<s:property value="email"/>" class="information-top-content-p">Delete</a>
+                        <a href="<s:url value="deleteUser.action" ><s:param name="user.email" value="email"></s:param></s:url>" class="information-top-content-p">Delete</a>
                     </div>
                 </s:iterator>
                         </div>

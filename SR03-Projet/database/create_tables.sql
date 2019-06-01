@@ -67,8 +67,9 @@ CREATE TABLE public.Choices
   PRIMARY KEY (Topic, Questionnaire_Id, Question_Id,Number)
 );
 
-ALTER TABLE Choices add constraint FK_Choice foreign key(Topic, Questionnaire_Id,Question_Id)
-  references Questions(Topic, Questionnaire_Id,Number) ON DELETE CASCADE;
+
+ALTER TABLE Choices add  constraint FK_Choice foreign key(Topic, Questionnaire_Id,Question_Id)
+  references Questions(Topic, Questionnaire_Id,Number) ON DELETE CASCADE on update cascade ;
 
 
 drop table if exists public.Attempts CASCADE;

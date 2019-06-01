@@ -36,9 +36,12 @@
                 </div>
                 <div style="float: right;margin: 150px;">
                     <br>
-                    <a href="AddQuestion.jsp?topic=<s:property value="topic"/>&questionnaireId=<s:property value="questionnaireId"/>" class="link_class">Add new Question</a>
+<%--                    <a href="<AddQuestion.jsp?topic=<s:property value="questionnaire.topic"/>&questionnaireId=<s:property value="questionnaire.questionnaireId"/>" class="link_class">Add new Question</a>--%>
+                    <a href="<s:url value="AddQuestion.jsp"><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param> </s:url> " class="link_class">Add new Question</a>
+<%--                    <a href="<s:url value="AddQuestion.jsp"><s:param name="questionnaire" value="${questionnaire}"></s:param></s:url> " class="link_class">Add new Question</a>--%>
                     <br>
-                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireId=<s:property value="questionnaireId"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>
+<%--                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireId=<s:property value="questionnaireId"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>--%>
+                    <a href="<s:url value=" QuestionnaireInfoChangeAdmin.jsp"><s:param name="questionnaireId" value="questionnaire.questionnaireId"></s:param><s:param name="status" value="questionnaire.status"></s:param><s:param name="name" value="questionnaire.name"></s:param><s:param name="topic" value="questionnaire.topic"></s:param></s:url>" class="link_class">Update Questionnaire</a>
                 </div>
             </div>
 
@@ -61,10 +64,10 @@
                             </div>
 
 
-                            <s:iterator value="questions" >
+                            <s:iterator value="questionnaire.questions" >
                             <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
                                 <form>
-                                <a href="actionxxxxxx.action?question.questionId=<s:property value='questionId'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
+                                <a href="QuestionDetail.jsp?question.questionId=<s:property value='questionId'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
                                     <br>
                                 <s:iterator value="choices" var="id" status="status">
                                     <input type="radio" name="answer<s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight.equals(true)}"> <%=checked%> </s:if>/><s:property value='description'/>

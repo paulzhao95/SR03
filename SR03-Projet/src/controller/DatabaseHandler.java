@@ -74,7 +74,7 @@ public class DatabaseHandler {
         // insert questionnqire info
         Connection databaseConnection = getDatabaseConnection();
         Statement statement = databaseConnection.createStatement();
-        statement.executeUpdate("insert into Questionnaires VALUE (" + "'" + questionnaire.getQuestionnaireID() + "'," + "'" + questionnaire.getTopic()+"',"+ "'" + questionnaire.getStatus()+"')" );
+        statement.executeUpdate("insert into Questionnaires VALUE (" + "'" + questionnaire.getQuestionnaireId() + "'," + "'" + questionnaire.getTopic()+"',"+ "'" + questionnaire.getStatus()+"')" );
         // TODO: 3/20/19 insert componants of questionnaire
     }
 

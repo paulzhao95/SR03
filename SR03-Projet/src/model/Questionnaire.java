@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Questionnaire implements Serializable {
-    private Integer questionnaireID;
+    private Integer questionnaireId;
     private String name;
     private String topic;
     private Boolean status;
     private ArrayList<Question> questions;
 
 
-    public Questionnaire(Integer questionnaireID, String topic, String  name, Boolean status, ArrayList<Question> questions){
-        this.setQuestionnaireID(questionnaireID);
+    public Questionnaire(Integer questionnaireId, String topic, String  name, Boolean status, ArrayList<Question> questions){
+        this.setQuestionnaireId(questionnaireId);
         this.setName(name);
         this.setQuestions(questions);
         this.setTopic(topic);
@@ -21,25 +21,25 @@ public class Questionnaire implements Serializable {
 
     public Questionnaire(String topic, String name){
         this.setName(name);
-        this.setQuestionnaireID(0);
+        this.setQuestionnaireId(0);
         this.setTopic(topic);
         this.setStatus(true);
         this.setQuestions(new ArrayList<Question>());
 
     }
 
-    public Questionnaire(String topic, int questionnaireID){
+    public Questionnaire(String topic, int questionnaireId){
         this.setName("");
-        this.setQuestionnaireID(questionnaireID);
+        this.setQuestionnaireId(questionnaireId);
         this.setTopic(topic);
         this.setStatus(true);
         this.setQuestions(new ArrayList<Question>());
 
     }
 
-    public Questionnaire(int questionnaireID, String topic, String name, Boolean status) {
+    public Questionnaire(int questionnaireId, String topic, String name, Boolean status) {
         this.setName(name);
-        this.setQuestionnaireID(questionnaireID);
+        this.setQuestionnaireId(questionnaireId);
         this.setTopic(topic);
         this.setStatus(status);
         this.setQuestions(new ArrayList<Question>());
@@ -47,14 +47,14 @@ public class Questionnaire implements Serializable {
 
     public Questionnaire(){
         this.setName("NoName");
-        this.setQuestionnaireID(0);
+        this.setQuestionnaireId(0);
         this.setTopic("NoTopic");
         this.setStatus(false);
         this.setQuestions(new ArrayList<Question>());
     }
 
-    public Integer getQuestionnaireID() {
-        return questionnaireID;
+    public Integer getQuestionnaireId() {
+        return questionnaireId;
     }
 
     public Boolean getStatus() {
@@ -69,8 +69,8 @@ public class Questionnaire implements Serializable {
         return name;
     }
 
-    public void setQuestionnaireID(Integer questionnaireID) {
-        this.questionnaireID = questionnaireID;
+    public void setQuestionnaireId(Integer questionnaireId) {
+        this.questionnaireId = questionnaireId;
     }
 
     public void setStatus(Boolean status) {

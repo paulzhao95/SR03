@@ -13,12 +13,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private String email;
     private String password;
     private String type;
+    private User user;
     private Map<String, Object> session;
 
     public String execute() throws DaoException {
         UserImpl userImpl = DaoFactory.getDaoFactoryInstance().getUserImpl();
 
-        User user;
         try{
             user = userImpl.getUser(email, password,type);
             session.put("user", user);
