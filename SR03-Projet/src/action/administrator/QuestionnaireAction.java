@@ -22,7 +22,6 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     private String topic = "";
     private int questionnaireId;
 
-
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
 
     private Map<String, Object> session;
@@ -86,14 +85,21 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     }
 
     public String getQuestionnaireInfo() {
+        if (questionnaireId == -1) {
+            topic = (String) session.get("topic");
+            questionnaireId = (int)session.get("questionnaireId");
+        }
+
         try {
             questionnaire = questionnaireImpl.getQuestionnaire(topic, questionnaireId);
         } catch (DaoException e) {
             return ERROR;
         }
+
+        topic = (String) session.get("topic");
+        session.put("questionnaireId", questionnaireId);
         return SUCCESS;
     }
-
 
     public ArrayList<Questionnaire> getQuestionnaires() {
         return questionnaires;

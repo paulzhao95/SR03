@@ -22,7 +22,7 @@
 
         <action name="login" class="action.LoginAction" method="execute" >
             <result type="chain" name="administratorLoginSucceed">getUsers</result>
-            <result name="internLoginSucceed">test.jsp</result>
+            <result name="internLoginSucceed">/intern/ChooseTopic.jsp</result>
             <result name="loginFailed">SignUp.jsp</result>
         </action>
 
@@ -117,11 +117,14 @@
             <result name="error">test.jsp</result>
         </action>
 
-        <action name="getQuestion" class="action.administrator.QuestionAction" method="get">
-            <result type="chain" name="success">getQuestions</result>
+        <action name="getQuestion" class="action.administrator.QuestionAction" method="getQuestionInfo">
+            <result name="success">/administrator/QuestionInfoChange.jsp</result>
             <result name="error">test.jsp</result>
         </action>
-
+        <action name="updateQuestion" class="action.administrator.QuestionAction" method="update">
+            <result type="chain" name="success">getQuestionnaire</result>
+            <result name="error">test.jsp</result>
+        </action>
     </package>
 
 </struts>

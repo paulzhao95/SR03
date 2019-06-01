@@ -68,13 +68,17 @@
 
 
                 <div class="test_content_nr">
-                    <form action = "">
+                    <form action = "updateQuestion.action">
                         <ul>
                             <li id="qu_0_0">
                                 <div class="test_content_nr_tt">
                                     <i>*</i><font>
                                     <input id="question" class = "input_control" name = "question.Description" type="text" onchange="changeValue()" value = <s:property value="question.Description"/>>
-                                    <label for="question"></label></font>
+                                    <input type="hidden" name="question.topic" value=<s:property value="topic"/>>
+                                    <input type="hidden" name="question.questionnaireId" value=<s:property value="questionnaireId"/> >
+                                    <input type="hidden" name="question.questionId" value=<s:property value="questionId"/> >
+
+                                    </font>
                                 </div>
 
 

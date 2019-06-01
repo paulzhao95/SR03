@@ -64,10 +64,11 @@
                             </div>
 
 
-                            <s:iterator value="questionnaire.questions" >
+                            <s:iterator value="questionnaire.questions" status="question_status">
                             <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
                                 <form>
-                                <a href="QuestionDetail.jsp?question.questionId=<s:property value='questionId'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
+<%--                                <a href="QuestionInfoChange.jsp?question.questionId=<s:property value='questionId'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>--%>
+                                    <a href="<s:url action="getQuestion" > <s:param name="questionId" value="questionId"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="topic" value="topic"></s:param>  </s:url>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
                                     <br>
                                 <s:iterator value="choices" var="id" status="status">
                                     <input type="radio" name="answer<s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight.equals(true)}"> <%=checked%> </s:if>/><s:property value='description'/>

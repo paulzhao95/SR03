@@ -47,18 +47,18 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
                     "and Q.Questionnaire_Id  = ? " +
                     "and Q.Number = ? ");
             preparedStatement.setString(1,topic);
-            preparedStatement.setInt(1,questionnaireId);
-            preparedStatement.setInt(1,questionNumber);
+            preparedStatement.setInt(2,questionnaireId);
+            preparedStatement.setInt(3,questionNumber);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 questionDescription = resultSet.getString("question_description");
-                questionStatus = resultSet.getString("question_status").equals("Active");
+                questionStatus = resultSet.getBoolean("question_status");
 
                 int choiceId = resultSet.getInt("choice_id");
                 String choiceDescriptin = resultSet.getString("choice_description");
-                boolean choiceStatus = resultSet.getString("choice_status").equals("Active");
-                boolean choiceRight = resultSet.getString("choice_type").equals("Right_choice");
+                boolean choiceStatus = resultSet.getBoolean("choice_status");
+                boolean choiceRight = resultSet.getBoolean("choice_type");
 
                 choices.add(new Choice(topic, questionnaireId, questionNumber, choiceId, choiceDescriptin, choiceStatus, choiceRight));
             }

@@ -16,12 +16,22 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     private QuestionImpl questionImpl = DaoFactory.getDaoFactoryInstance().getdAdministratorQuestionImpl();
     private String topic = "";
     private int questionnaireId = -1;
+    private int questionId  =-1;
     private Boolean status = true;
     private String name = "";
 
     private Map<String, Object> session;
 
     public QuestionAction() throws DaoException {
+    }
+
+    public String getQuestionInfo() {
+        try {
+            question = questionImpl.getQuestion(topic, questionnaireId, questionId);
+        } catch (DaoException e) {
+            return ERROR;
+        }
+        return SUCCESS;
     }
 
     public String get() {
@@ -126,8 +136,20 @@ public class QuestionAction extends ActionSupport implements SessionAware {
         return status;
     }
 
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
     @Override
     public void setSession(Map<String, Object> map) {
         session = map;
+    }
+
+    public Map<String, Object> getSession() {
+        return session;
     }
 }
