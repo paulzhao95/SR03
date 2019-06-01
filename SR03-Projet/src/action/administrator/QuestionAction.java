@@ -51,7 +51,6 @@ public class QuestionAction extends ActionSupport implements SessionAware {
         return SUCCESS;
     }
 
-    // TODO: 5/31/19  test
     public String add() {
         try {
             questionImpl.addQuestion(question);
@@ -72,7 +71,6 @@ public class QuestionAction extends ActionSupport implements SessionAware {
         return SUCCESS;
     }
 
-    //todo set status failed
     public String update() {
         try {
             questionImpl.updateQuestion(question);

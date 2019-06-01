@@ -19,9 +19,7 @@
     <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
 </head>
 <body>
-<%String topic = request.getParameter("topic");
-    System.out.println(topic);
-%>
+
 <div>
     <div class="content">
         <div class="tab-block information-tab">
@@ -38,7 +36,7 @@
                 </div>
                 <div style="float: right;margin: 150px;">
                     <br>
-                    <a href="QuestionnaireCreate.jsp/>" class="link_class">Do Questionnaire</a>
+                    <a href="internGetTopics.action" class="link_class">Do Questionnaire</a>
                 </div>
             </div>
 

@@ -34,8 +34,8 @@ public class QuestionnaireImpl implements QuestionnaireDao {
                             "Q.Topic as Topic " +
                             "from " +
                             "Questionnaires Q " +
-                            "where Q.Topic = ?" +
-                            "and Q.status = 'Active'"
+                            "where Q.Topic = ? " +
+                            "and Q.status = TRUE "
             );
             preparedStatement.setString(1,topic);
 

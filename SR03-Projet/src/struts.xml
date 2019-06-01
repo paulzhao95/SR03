@@ -5,7 +5,9 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <package name="default" extends="struts-default">
+    <constant name="struts.devMode" value="true"  />
+
+    <package name="default" extends="struts-default" namespace="/">
 
         <global-results>
             <result name="dataBaseConnectionFailed">test.jsp</result>
@@ -22,11 +24,11 @@
 
         <action name="login" class="action.LoginAction" method="execute" >
             <result type="chain" name="administratorLoginSucceed">getUsers</result>
-            <result name="internLoginSucceed">/intern/ChooseTopic.jsp</result>
+            <result type="chain" name="internLoginSucceed">internGetHistoryTopic</result>
             <result name="loginFailed">SignUp.jsp</result>
         </action>
 
-<!--        administrator user action-->
+        <!--        administrator user action-->
 
         <action name="getUsers" class="action.administrator.UserAction" method="get">
             <result type="chain" name="success">getTopics</result>
@@ -53,7 +55,7 @@
             <result name="error">test.jsp</result>
         </action>
 
-<!--        administrator topic action-->
+        <!--        administrator topic action-->
 
         <action name="getTopics" class="action.administrator.TopicAction" method="get">
             <result name="success">/administrator/User-Topic_List.jsp</result>
@@ -74,7 +76,7 @@
             <result name="error">/test.jsp</result>
         </action>
 
-<!--        administrator questionnaire action -->
+        <!--        administrator questionnaire action -->
         <action name="getQuestionnaires" class="action.administrator.QuestionnaireAction" method="get">
             <result name="success">/administrator/QuestionnaireList.jsp</result>
             <result name="error">test.jsp</result>
@@ -100,7 +102,7 @@
             <result name="error">test.jsp</result>
         </action>
 
-<!--        administrator question action -->
+        <!--        administrator question action -->
         <action name="getQuestions" class="action.administrator.QuestionAction" method="get">
             <result name="success">/administrator/QuestionList.jsp</result>
 
@@ -121,10 +123,46 @@
             <result name="success">/administrator/QuestionInfoChange.jsp</result>
             <result name="error">test.jsp</result>
         </action>
+
+
         <action name="updateQuestion" class="action.administrator.QuestionAction" method="update">
             <result type="chain" name="success">getQuestionnaire</result>
             <result name="error">test.jsp</result>
         </action>
+
+        <!--        intern topic action-->
+        <action name="internGetHistoryTopic" class="action.intern.TopicAction" method="get">
+            <result name="success">/intern/TopicListIntern.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+        <action name="internGetTopics" class="action.intern.TopicAction" method="get">
+            <result name="success">/intern/ChooseTopic.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+        <action name="internGetQuestionnaires" class="action.intern.QuestionnaireAction" method="get">
+            <result name="success">/intern/ChooseQuestionnaire.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+        <!--        intern attempt action -->
+
+        <action name="internStartAttempt" class="action.intern.AttemptAction" method="start">
+            <result name="success">/intern/DoQuestions.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+        <action name="internPrepareAttempt" class="action.intern.AttemptAction" method="prepare">
+            <result name="success">/intern/StartDoQuestion.jsp</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+
+
+
     </package>
+
+
 
 </struts>

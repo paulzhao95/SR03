@@ -58,7 +58,7 @@
 
                             <s:iterator value="topics">
                                 <div class="information-top-content-left">
-                                    <a href="http://localhost:8080/SR03_Projet_war_exploded/getQuestionnaires.action?topic=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
+                                    <a href="http://localhost:8080/SR03_Projet_war_exploded/internGetQuestionnaires.action?topic=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
                                 </div>
                             </s:iterator>
 
