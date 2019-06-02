@@ -164,7 +164,20 @@
             <result name="error">test.jsp</result>
         </action>
 
+        <action name="internGetAttempts" class="action.intern.AttemptAction" method="get">
+            <result name="success">/intern/XXXXXXX</result>
+            <result name="error">test.jsp</result>
+        </action>
 
+        <action name="internGetAttempt" class="action.intern.AttemptAction" method="getAttemptInfo">
+            <result type="chain" name="success"></result>
+            <result name="error">test.jsp</result>
+        </action>
+
+        <action name="internGetQuestionnaire" class="action.intern.QuestionnaireAction" method="getQuestionnaireInfo">
+            <result type="chain" name="success">/intern/XXXXXX</result>
+            <result name="error">test.jsp</result>
+        </action>
 
     </package>
 

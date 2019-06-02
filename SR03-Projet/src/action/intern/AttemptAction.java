@@ -25,7 +25,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private int attemptId;
     private String changePage;
 
-    private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
+    private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getQuestionnaireImpl();
     private AttemptImpl attemptImpl = DaoFactory.getDaoFactoryInstance().getInternAttemptImpl();
 
     public AttemptAction() throws DaoException {
@@ -130,7 +130,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     public String getAttemptInfo() {
         User user = (User)session.get("user");
         try {
-            attempt = attemptImpl.getAttempt(user.getEmail(), attemptId);
+            attempt = attemptImpl.getAttempt( attemptId);
         } catch (DaoException e) {
             return ERROR;
         }
