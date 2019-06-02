@@ -25,7 +25,7 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
         choice.setTopic(topic);
         choice.setQuestionnaireId(questionnaireId);
         choice.setQuestionId(questionId);
-        choice.setChoiceID(choiceId);
+        choice.setChoiceId(choiceId);
 
         try {
             connection = daoFactory.getConnection();
@@ -125,7 +125,7 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
             callableStatement.setString(1,choice.getTopic());
             callableStatement.setInt(2,choice.getQuestionnaireId());
             callableStatement.setInt(3,choice.getQuestionId());
-            callableStatement.setInt(4, choice.getChoiceID());
+            callableStatement.setInt(4, choice.getChoiceId());
 
             callableStatement.executeUpdate();
             connection.commit();
@@ -194,7 +194,7 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
             preparedStatement.setString(2,choice.getTopic());
             preparedStatement.setInt(3,choice.getQuestionnaireId());
             preparedStatement.setInt(4, choice.getQuestionId());
-            preparedStatement.setInt(5, choice.getChoiceID());
+            preparedStatement.setInt(5, choice.getChoiceId());
 
             int i = preparedStatement.executeUpdate();
             connection.commit();
@@ -225,8 +225,8 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
             callableStatement.setString(1,choice1.getTopic());
             callableStatement.setInt(2,choice1.getQuestionnaireId());
             callableStatement.setInt(3,choice1.getQuestionId());
-            callableStatement.setInt(4, choice1.getChoiceID());
-            callableStatement.setInt(4, choice2.getChoiceID());
+            callableStatement.setInt(4, choice1.getChoiceId());
+            callableStatement.setInt(4, choice2.getChoiceId());
 
             callableStatement.executeUpdate();
             connection.commit();

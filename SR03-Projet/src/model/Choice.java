@@ -6,7 +6,7 @@ public class Choice implements Serializable {
     private String topic;
     private int questionnaireId;
     private int questionId;
-    private int choiceID;
+    private int choiceId;
     private Boolean status;
     private String description;
     private Boolean isRight;
@@ -15,7 +15,7 @@ public class Choice implements Serializable {
         this.setTopic(topic);
         this.setQuestionnaireId(questionnaireId);
         this.setQuestionId(questionId);
-        this.setChoiceID(choiceId);
+        this.setChoiceId(choiceId);
         this.setDescription(description);
         this.setStatus(status);
         this.setIsRight(isRight);
@@ -25,7 +25,7 @@ public class Choice implements Serializable {
         this.setTopic(topic);
         this.setQuestionnaireId(questionnaireId);
         this.setQuestionId(questionId);
-        this.setChoiceID(0);
+        this.setChoiceId(0);
         this.setDescription(description);
         this.setStatus(true);
         this.setIsRight(isRight);
@@ -37,7 +37,7 @@ public class Choice implements Serializable {
         this.setTopic("");
         this.setQuestionId(0);
         this.setQuestionnaireId(0);
-        this.setChoiceID(0);
+        this.setChoiceId(0);
         this.setDescription("");
         this.setStatus(true);
         this.setIsRight(false);
@@ -55,8 +55,8 @@ public class Choice implements Serializable {
         return topic;
     }
 
-    public void setChoiceID(int choiceID) {
-        this.choiceID = choiceID;
+    public void setChoiceId(int choiceId) {
+        this.choiceId = choiceId;
     }
 
     public void setQuestionId(int questionId) {
@@ -80,8 +80,8 @@ public class Choice implements Serializable {
     }
 
 
-    public int getChoiceID() {
-        return choiceID;
+    public int getChoiceId() {
+        return choiceId;
     }
 
     public void setDescription(String description) {
@@ -93,7 +93,7 @@ public class Choice implements Serializable {
     }
 
     public void setChoiceID(Integer choiceID) {
-        this.choiceID = choiceID;
+        this.choiceId = choiceID;
     }
 
 

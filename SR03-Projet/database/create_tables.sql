@@ -79,7 +79,7 @@ CREATE TABLE public.Attempts
   Topic character varying NOT NULL,
   Questionnaire_Id integer NOT NULL ,
   User_email character varying NOT NULL,
-  Duration time NOT NULL,
+  Duration integer NOT NULL,
   Start_time timestamp NOT NULL,
   Score integer not null ,
   full_marks integer not null ,

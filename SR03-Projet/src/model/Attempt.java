@@ -60,6 +60,14 @@ public class Attempt implements Serializable {
         this.setUserChoices(new ArrayList<Choice>());
     }
 
+    public void setChoice(int index, Choice choice) {
+        this.userChoices.set(index, choice);
+    }
+
+    public void addChoice( Choice choice) {
+        this.userChoices.add(choice);
+    }
+
     public void setScore(int score) {
         this.score = score;
     }
@@ -145,10 +153,11 @@ public class Attempt implements Serializable {
     }
 
     public void setUserChoices(ArrayList<Choice> userChoices) {
-        this.userChoices = userChoices;
+        this.userChoices = new ArrayList<Choice>(userChoices);
     }
 
-    private void calculateScore() {
+    public void calculateScore() {
+        this.score = 0;
         for (Choice choice: this.userChoices  ) {
             if (choice.getIsRight()) {
                 this.score += 1;

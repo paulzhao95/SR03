@@ -15,7 +15,7 @@
     <div class="content">
         <div class="tab-block information-tab">
 
-            <form action="">
+            <form action="internOperateAttempt.action">
             <div class="personalnformation">
                 <div class="personalnformation-content">
                     <div class="personalnformation-content-left">
@@ -35,7 +35,7 @@
                                     <s:iterator value="question.choices" status="id" var="item">
                                     <li class="option">
                                         <!--这里每个选项都要有一个chosen的属性变量，来看他是否已经被选择了，item表示每一个循环变量的对象个体-->
-                                        <input id = "answer<s:property value="#status.index"/>" class = "radioOrCheck" name = "question.choices[<s:property value="#status.index"/>].description" type="checkbox" value = <s:property value="choiceID"/>
+                                        <input id = "answer<s:property value="#status.index"/>" class = "radioOrCheck" name = "choiceId" type="checkbox" value = <s:property value="choiceId"/>
                                                 <s:if test="%{item.chosen.equals(true)}"> <%=checked%> </s:if>>
 
                                         <label for="answer<s:property value="#status.index"/>">
@@ -50,23 +50,22 @@
                 </div>
             </div>
             <div>
-            <input type="hidden" name="question.questionId" value="questionId">
 
                 <!-- 这里有三个不同的submit提交标签,分别有不同的名字和值，对应不同的页面跳转-->
-                <s:if test="question.questionId!=0">
+                <s:if test="#session.currentNumber!=0">
             <div align="left">
-                <input type="submit" name="changePagePrevious" value = "Previous">
+                <input type="submit" name="changePage" value = "Previous">
             </div>
                 </s:if>
                 <!--这里要用到session里面存到的当前问卷里面有几个问题的变量nbQuestions -->
-                <s:if test="question.questionId.toString()!=#session.nbQuestions">
+                <s:if test="#session.currentNumber+1!=#session.attempt.fullMarks">
             <div align="right">
-                <input type="submit" name="changePageNext" value = "Next">
+                <input type="submit" name="changePage" value = "Next">
             </div>
                 </s:if>
                 <s:else>
                     <div align="right">
-                        <input type="submit" name="changePageFinish" value = "Finish">
+                        <input type="submit" name="changePage" value = "Finish">
                     </div>
                 </s:else>
         </div>

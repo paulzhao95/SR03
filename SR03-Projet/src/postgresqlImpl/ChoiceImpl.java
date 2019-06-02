@@ -28,7 +28,7 @@ public class ChoiceImpl implements ChoiceDao {
         choice.setTopic(topic);
         choice.setQuestionnaireId(questionnaireId);
         choice.setQuestionId(questionId);
-        choice.setChoiceID(choiceId);
+        choice.setChoiceId(choiceId);
 
         try {
             connection = daoFactory.getConnection();

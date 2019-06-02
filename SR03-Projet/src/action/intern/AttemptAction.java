@@ -3,13 +3,14 @@ package action.intern;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
-import model.Attempt;
-import model.Question;
-import model.Questionnaire;
-import model.User;
+import model.*;
 import org.apache.struts2.interceptor.SessionAware;
+import postgresqlImpl.intern.AttemptImpl;
 import postgresqlImpl.QuestionnaireImpl;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 public class AttemptAction extends ActionSupport implements SessionAware {
@@ -17,10 +18,15 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private Questionnaire questionnaire;
     private Question question;
     private String topic;
+    private int choiceId;
     private int questionnaireId;
-    private Attempt attempt;
+    private Attempt attempt = new Attempt();
+    private ArrayList<Attempt> attempts = new ArrayList<Attempt>();
+    private int attemptId;
+    private String changePage;
 
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
+    private AttemptImpl attemptImpl = DaoFactory.getDaoFactoryInstance().getInternAttemptImpl();
 
     public AttemptAction() throws DaoException {
     }
@@ -28,22 +34,28 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
     public String start() {
         try {
-            questionnaireImpl.getQuestionnaire(topic, questionnaireId);
+            questionnaire = questionnaireImpl.getQuestionnaire(topic, questionnaireId);
         } catch (DaoException e) {
             return ERROR;
         }
         User user = (User) session.get("user");
 
-
+        attempt.setTopicName(topic);
         attempt.setFullMarks(questionnaire.getQuestions().size());
         attempt.setUserEmail(user.getEmail());
         attempt.setQuestionnaireId(questionnaireId);
         attempt.setQuestionnaireName(questionnaire.getName());
+        attempt.setUserChoices(new ArrayList<Choice>(questionnaire.getQuestions().size()));
+        for (int i = 0; i < questionnaire.getQuestions().size(); i++) {
+            attempt.addChoice(new Choice());
 
+        }
 
         session.put("questionnaire", this.questionnaire);
-        session.put("currentNumber", -1);
+        session.put("currentNumber", 0);
         session.put("attempt", this.attempt);
+
+        question = questionnaire.getQuestions().get(0);
 
         return SUCCESS;
     }
@@ -53,21 +65,78 @@ public class AttemptAction extends ActionSupport implements SessionAware {
         return SUCCESS;
     }
 
-//    public String previous() {
-//        // save current question
-//
-//        questionnaire = (Questionnaire) session.get("questionnaire");
-//    }
-//
-//    public String next() {
-//        // save current question
-//
-//        // get next question
-//    }
-//
-//    public String finish() {
-//
-//    }
+    public String previous() {
+        // save current question
+        int currentQuestionNumber = (int) session.get("currentNumber");
+        questionnaire = (Questionnaire) session.get("questionnaire");
+        attempt = (Attempt)session.get("attempt");
+        attempt.setChoice(currentQuestionNumber, questionnaire.getQuestions().get(currentQuestionNumber).getChoices().get(choiceId));
+
+
+        question = questionnaire.getQuestions().get(currentQuestionNumber - 1);
+        session.put("currentNumber", currentQuestionNumber-1);
+        session.put("attempt", this.attempt);
+        return SUCCESS;
+    }
+
+    public String next() {
+        // save current question
+
+        int currentQuestionNumber = (int) session.get("currentNumber");
+        questionnaire = (Questionnaire) session.get("questionnaire");
+        attempt = (Attempt)session.get("attempt");
+        attempt.setChoice(currentQuestionNumber, questionnaire.getQuestions().get(currentQuestionNumber).getChoices().get(choiceId));
+
+        switch (changePage) {
+            case "Next":
+                question = questionnaire.getQuestions().get(currentQuestionNumber + 1);
+                session.put("currentNumber", currentQuestionNumber+1);
+                break;
+            case "Previous":
+                question = questionnaire.getQuestions().get(currentQuestionNumber - 1);
+                session.put("currentNumber", currentQuestionNumber-1);
+                break;
+            case "Finish":
+                long time = new Date().getTime();
+                int duration = (int) (time - attempt.getStartTime().getTime())/1000;
+                attempt.setDurationInSeconds(duration);
+                attempt.calculateScore();
+
+                try {
+                    attemptImpl.addAttempt(attempt);
+                } catch (DaoException e) {
+                    return ERROR;
+                }
+
+                return "finish";
+        }
+
+        session.put("attempt", this.attempt);
+        return SUCCESS;
+    }
+
+    public String get() {
+        User user = (User)session.get("user");
+
+
+        try {
+            attempts = attemptImpl.getAttempts(user.getEmail());
+        } catch (DaoException e) {
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String getAttemptInfo() {
+        User user = (User)session.get("user");
+        try {
+            attempt = attemptImpl.getAttempt(user.getEmail(), attemptId);
+        } catch (DaoException e) {
+            return ERROR;
+        }
+        return SUCCESS;
+
+    }
 
     @Override
 
@@ -119,5 +188,35 @@ public class AttemptAction extends ActionSupport implements SessionAware {
         return attempt;
     }
 
+    public int getChoiceId() {
+        return choiceId;
+    }
 
+    public void setChoiceId(int choiceId) {
+        this.choiceId = choiceId;
+    }
+
+    public ArrayList<Attempt> getAttempts() {
+        return attempts;
+    }
+
+    public void setAttempts(ArrayList<Attempt> attempts) {
+        this.attempts = attempts;
+    }
+
+    public void setAttemptId(int attemptId) {
+        this.attemptId = attemptId;
+    }
+
+    public int getAttemptId() {
+        return attemptId;
+    }
+
+    public String getChangePage() {
+        return changePage;
+    }
+
+    public void setChangePage(String changePage) {
+        this.changePage = changePage;
+    }
 }
