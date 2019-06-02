@@ -160,7 +160,7 @@
 
         <action name="internOperateAttempt" class="action.intern.AttemptAction" method="next">
             <result name="success">/intern/DoQuestions.jsp</result>
-            <result name="finish">
+            <result name="finish">/intern/ResultInterface.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 

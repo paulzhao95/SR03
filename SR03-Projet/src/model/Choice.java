@@ -31,7 +31,15 @@ public class Choice implements Serializable {
         this.setIsRight(isRight);
     }
 
-
+    public Choice(String topic, int questionnaireId, int questionId,int choiceId,  Boolean isRight) {
+        this.setTopic(topic);
+        this.setQuestionnaireId(questionnaireId);
+        this.setQuestionId(questionId);
+        this.setChoiceId(choiceId);
+        this.setDescription("");
+        this.setStatus(true);
+        this.setIsRight(isRight);
+    }
 
     public Choice() {
         this.setTopic("");

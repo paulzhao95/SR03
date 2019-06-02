@@ -73,7 +73,7 @@ public class AttemptImpl implements AttemptDao {
     }
 
     @Override
-    public Attempt getAttempt(String email, int evaluationId) throws DaoException {
+    public Attempt getAttempt(int attemptId) throws DaoException {
         Connection connection ;
         PreparedStatement preparedStatement ;
         Attempt attempt = new Attempt();
@@ -89,42 +89,34 @@ public class AttemptImpl implements AttemptDao {
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("select  q.name as questionnaire_name," +
-                    "q.topic as questionnaire_topic ," +
-                    "q.number as questionnaire_id," +
-                    "e.duration as duration ," +
-                    "e.start_time as start_time, " +
-                    "e.full_marks as full_marks, " +
-                    "e.score as score, " +
-                    "uc.question_id as question_id, " +
-                    "uc.choice_id as choice_id, " +
-                    "uc.type as choice_type ," +
-                    "c.description as description," +
-                    "c.status  as status " +
-                    "from attempts e join questionnaires q  " +
-                    "on e.topic = q.topic " +
-                    "and e.questionnaire_id = q.number " +
-                    "join user_choices uc " +
-                    "on uc.attempt_id = e.attempt_id " +
-                    "join choices c on uc.topic = c.topic and uc.questionnaire_id = c.questionnaire_id and uc.question_id = c.question_id and uc.choice_id = c.number " +
-                    "where e.attempt_id= ? "
+            preparedStatement = connection.prepareStatement("select " +
+                    "a.start_time as start_time, " +
+                    "a.user_email as user_email, " +
+                    "a.topic as topic, " +
+                    "a.questionnaire_id as questionnaire_id, " +
+                    "a.duration as duration, " +
+                    "a.score as score, " +
+                    "a.full_marks as full_marks," +
+                    "uc.question_id as question_id , " +
+                    "uc.choice_id as choice_id , " +
+                    "uc.type as choice_type "+
+                    "from user_choices uc join attempts a " +
+                    "on uc.attempt_id = a.attempt_id " +
+                    "where a.attempt_id = ?"
             );
-            preparedStatement.setInt(1, evaluationId);
+            preparedStatement.setInt(1, attemptId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                questionnaireName = resultSet.getString("questionnaire_name");
                 topic = resultSet.getString("topic");
                 questionnaireID = resultSet.getInt("questionnaire_id");
                 startTime = resultSet.getTimestamp("start_time");
                 duration = resultSet.getInt("duration");
                 int question_id = resultSet.getInt("question_id");
                 int choice_id = resultSet.getInt("choice_id");
-                String choice_type = resultSet.getString("choice_type");
-                String description = resultSet.getString("description");
-                boolean isActive = resultSet.getString("status").equals("Active");
+                boolean choice_type= resultSet.getBoolean("choice_type");
 
-                choices.add(new Choice(topic, questionnaireID, question_id, choice_id, description, isActive, choice_type.equals("Right_answer")));
+                choices.add(new Choice(topic, questionnaireID, question_id, choice_id, choice_type));
 
             }
 
@@ -133,7 +125,7 @@ public class AttemptImpl implements AttemptDao {
             attempt.setQuestionnaireName(questionnaireName);
             attempt.setStartTime(startTime);
             attempt.setDurationInSeconds(duration);
-            attempt.setId(evaluationId);
+            attempt.setId(attemptId);
             attempt.setUserChoices(choices);
             attempt.setScore(score);
             attempt.setFullMarks(fullMarks);
