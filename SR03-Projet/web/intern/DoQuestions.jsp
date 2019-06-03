@@ -3,6 +3,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <%
+        String path = request.getRequestURI();
+        String basePath = request.getScheme() + "://"
+                +request.getServerName() + ":" + request.getServerPort()
+                + path;
+
+    %>
+    <base href="<%=basePath%>">
     <title>Administrator Panel</title>
     <link rel="stylesheet" type="text/css" href="../css/myStyle3.css" />
     <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
@@ -28,14 +36,14 @@
                     <ul>
                         <li id="qu_0_0">
                             <div class="test_content_nr_tt">
-                                <i><s:property value="question.questionId"/></i><font><s:property value="description"/></font>
+                                <i><s:property value="question.questionId"/></i><font><s:property value="question.description"/></font>
                             </div>
                             <div class="test_content_nr_main">
                                 <ul>
                                     <s:iterator value="question.choices" status="id" var="item">
                                     <li class="option">
                                         <!--这里每个选项都要有一个chosen的属性变量，来看他是否已经被选择了，item表示每一个循环变量的对象个体-->
-                                        <input id = "answer<s:property value="#status.index"/>" class = "radioOrCheck" name = "choiceId" type="checkbox" value = <s:property value="choiceId"/>
+                                        <input id = "answer<s:property value="#status.index"/>" class = "radioOrCheck" name = "choiceId" type="radio" value = <s:property value="choiceId"/>
                                                 <s:if test="%{item.chosen.equals(true)}"> <%=checked%> </s:if>>
 
                                         <label for="answer<s:property value="#status.index"/>">
