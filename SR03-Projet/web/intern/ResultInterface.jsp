@@ -8,6 +8,11 @@
         String basePath = request.getScheme() + "://"
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
+        String fullMarks = request.getSession().getAttribute("attempt.fullMarks").toString();
+        String duration = request.getSession().getAttribute("attempt.durationInSeconds").toString();
+        String useremail = request.getSession().getAttribute("attempt.userEmail").toString();
+        String topicID = request.getSession().getAttribute("attempt.topicName").toString();
+        String questionnaireId = request.getSession().getAttribute("attempt.questionnaireId").toString();
     %>
     <base href="<%=basePath%>">
     <title>Administrator Panel</title>
@@ -25,14 +30,14 @@
                         <img src="../picture/default_avatar.png"/>
                     </div>
                     <div class="personalnformation-content-right">
-                        <p class="personalnformation-content-right-p">Your score：<s:property value="fullMarks"/> </p>
-                        <p class="personalnformation-content-right-p">Duration：<s:property value="durationInSeconds"/> </p>
+                        <p class="personalnformation-content-right-p">Your score：<%=fullMarks%> </p>
+                        <p class="personalnformation-content-right-p">Duration：<%=duration%> Seconds</p>
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
                     <br>
                     <!-- 这里我的想法是做一个连接，可以查看这次答题的每一道题的对错情况。可以直接调用QuestionListInter.jsp这个jsp作为显示 -->
-                    <a href="actionxxxxxxxxx?user.email=<s:property value="email"/>&questionnaire.questionnaireId=<s:property value="questionnaireId"/>&questionnaire.topic=<s:property value="topic"/>" class="link_class">Details</a>
+                    <a href="actionxxxxxxxxx?user.email=<%=useremail%>&questionnaire.questionnaireId=<%=questionnaireId%>&questionnaire.topic=<%=topicID%>" class="link_class">Details</a>
                 </div>
             </div>
 
