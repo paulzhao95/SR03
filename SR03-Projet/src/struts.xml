@@ -170,7 +170,7 @@
         </action>
 
         <action name="internGetAttempt" class="action.intern.AttemptAction" method="getAttemptInfo">
-            <result type="chain" name="success"></result>
+            <result type="chain" name="success">/intern/</result>
             <result name="error">test.jsp</result>
         </action>
 

@@ -17,10 +17,10 @@ public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDa
 
 
     @Override
-    public void addAttempt(Attempt attempt) throws DaoException {
+    public int addAttempt(Attempt attempt) throws DaoException {
         Connection connection;
         PreparedStatement preparedStatement;
-
+        int attemptId = 0;
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("INSERT into attempts (topic, questionnaire_id, user_email, duration, start_time, score, full_marks) " +
@@ -47,6 +47,7 @@ public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDa
             ResultSet resultSet = preparedStatement.executeQuery();
             connection.commit();
             while (resultSet.next()) {
+                attemptId = resultSet.getInt("attempt_id");
                 attempt.setId(resultSet.getInt("attempt_id"));
             }
 
@@ -74,6 +75,6 @@ public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDa
         } catch (SQLException e) {
             throw new DaoException("Add question in database failed :) " + e.getMessage());
         }
-
+        return attemptId;
     }
 }
