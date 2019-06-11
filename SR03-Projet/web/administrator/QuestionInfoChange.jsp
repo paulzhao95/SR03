@@ -2,6 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%
+        String path = request.getRequestURI();
+        String basePath = request.getScheme() + "://"
+                +request.getServerName() + ":" + request.getServerPort()
+                + path;
+    %>
+    <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>Administrator Panel</title>
     <link rel="stylesheet" type="text/css" href="../css/myStyle3.css" />
@@ -91,6 +98,14 @@
                                         </li>
                                         </s:iterator>
 
+                                    </ul>
+                                </div>
+                                <div class="test_content_nr_main">
+                                    <ul>
+                                        Change the Order of choicces:
+                                        <input type="text" style="height:1.5em;width:5em;display:inline-block;" name="change1" />
+                                        ~~~
+                                        <input type="text" style = "height:1.5em;width:5em;display:inline-block;" name="change2" />
                                     </ul>
                                 </div>
                             </li>

@@ -17,6 +17,21 @@
     <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
     <script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
+    <style>
+        .bar6 button {
+        background: #c5464a;
+        border-radius: 0 5px 5px 0;
+        width: 80px;
+        height: 30px;
+        top: 0;
+        right: 0;
+            display: inline-block;
+    }
+    .bar6 button:before {
+        content: "Search";
+        font-size: 13px;
+        color: #F9F0DA;
+    }</style>
 </head>
 <body>
 <%String checked = "checked";%>
@@ -42,6 +57,21 @@
                     <br>
 <%--                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireId=<s:property value="questionnaireId"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>--%>
                     <a href="<s:url value=" QuestionnaireInfoChangeAdmin.jsp"><s:param name="questionnaireId" value="questionnaire.questionnaireId"></s:param><s:param name="status" value="questionnaire.status"></s:param><s:param name="name" value="questionnaire.name"></s:param><s:param name="topic" value="questionnaire.topic"></s:param></s:url>" class="link_class">Update Questionnaire</a>
+                    <br>
+                    <div class="test_content_nr_main">
+                        <ul>
+                            <form action="actionxxxx.action?">
+                            Change the Order of questions:
+                            <input type="text" style="height:1.5em;width:3em;display:inline-block;" name="change1" />
+                            ~~~
+                            <input type="text" style = "height:1.5em;width:3em;display:inline-block;" name="change2" />
+                                <!-- 这里两个hidden标好了topic和questionnaireID-->
+                            <input type="hidden" name="questionnaire.topic" value="<s:property value="questionnaire.topic"/>">
+                            <input type="hidden" name="questionnaire.questionnaireId" value="<s:property value="questionnaire.questionnaireId"/>">
+                            <input type="submit" style="display:inline-block;" value="validation">
+                            </form>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -49,6 +79,17 @@
 
             <div class="tab-buttons ">
                 <h3 class="tab-button cur" data-tab="one">Management Questions</h3>
+            </div>
+            <br>
+            <div>
+                <div style="text-align:center;">
+                    <div class="search bar6">
+                    <form action="actionxxxx.action">
+                        <input type="text" style="height: 40px;width: 400px;display: inline-block;" placeholder="Search...">
+                        <button type="submit" value="Validation"></button>
+                    </form>
+                    </div>
+                </div>
             </div>
 
             <div class="tabs">
@@ -68,7 +109,7 @@
                             <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
                                 <form>
 <%--                                <a href="QuestionInfoChange.jsp?question.questionId=<s:property value='questionId'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>--%>
-                                    <a href="<s:url action="getQuestion" > <s:param name="questionId" value="questionId"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="topic" value="topic"></s:param>  </s:url>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
+                                    <s:property value="#question_status.index"/>.<a href="<s:url action="getQuestion" > <s:param name="questionId" value="questionId"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="topic" value="topic"></s:param></s:url>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
                                     <br>
                                 <s:iterator value="choices" var="id" status="status">
                                     <input type="radio" name="answer<s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight.equals(true)}"> <%=checked%> </s:if>/><s:property value='description'/>
@@ -84,8 +125,14 @@
                         </div>
                     </div>
                 </div>
-
-
+            </div>
+            <div style="text-align:center">
+                <br>
+                <a href="actionxxxx.action?curPageNumber=0">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="actionxxxx.action?PreviousPage=<s:property value="PageID"/>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="actionxxxx.action?NextPage=<s:property value="PageID"/>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="actionxxxx.action?curPageNumber=<s:property value="PageTotal"/>">Last Page</a>
+                </form>
             </div>
         </div>
     </div>

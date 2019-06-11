@@ -2,6 +2,13 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
+    <%
+        String path = request.getRequestURI();
+        String basePath = request.getScheme() + "://"
+                +request.getServerName() + ":" + request.getServerPort()
+                + path;
+    %>
+    <base href="<%=basePath%>">
     <title>Start doing questions</title>
 </head>
 <body>
