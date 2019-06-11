@@ -135,11 +135,12 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     public String getAttemptInfo() {
         User user = (User)session.get("user");
         try {
+            System.out.println(attemptId);
             attempt = attemptImpl.getAttempt(attemptId);
             String topicName = attempt.getTopicName();
             int questionnaireId = attempt.getQuestionnaireId();
 
-            questionnaire = questionnaireImpl.getQuestionnaire(topic, questionnaireId);
+            questionnaire = questionnaireImpl.getQuestionnaire(topicName, questionnaireId);
 
         } catch (DaoException e) {
             return ERROR;

@@ -35,9 +35,8 @@
                         <p class="personalnformation-content-right-p">Create Time：2019</p>
                     </div>
                 </div>
-                <div style="float: right;margin: 150px;">
-                    <!-- 这里需要一个问卷的总的通过时间,我不知道最后传过来的变量叫啥，记得要改 -->
-                    <p>Durée du passage: <s:property value='durationInSeconds'/></p>
+                <div style="float: right;margin: 100px;">
+                    <p>Durée du passage: <s:property value='attempt.durationInSeconds'/> s</p>
                 </div>
             </div>
 
@@ -56,30 +55,26 @@
                                 <p class="information-top-head-p">Questions</p>
                             </div>
                             <div class="information-top-head-right">
-                                <p class="information-top-head-p">Scores</p>
+                                <p class="information-top-head-p">Your Answer</p>
                             </div>
 
 
-                            <s:iterator value="questions">
+                            <s:iterator value="questionnaire.questions" status="question_status">
                                 <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
-                                        <p><s:property value='Description'/></p>
+                                        <p><s:property value='description'/></p>
                                         <br>
-                                        <s:iterator value="choices" var="id">
-                                            <input type="radio" name="answer1" disabled <s:if test="%{#id.isRight}"> <%=checked%> </s:if>/><s:property value='description'/>
+                                        <s:iterator value="choices" var="id" status="status">
+                                            <input type="radio" name="answer<s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight.equals(true)}"> <%=checked%> </s:if>/><s:property value='description'/>
                                             <br>
                                         </s:iterator>
-                                    <!-- 这里也需要将value的名字改为对应代表的intern选择的那个选项的变量 -->
-                                    <p>Your Answer: <s:property value='choiceAnswer'/></p>
                                 </div>
                                 <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">
-                                    <p><%=score%></p>
+                                    <p>Number&nbsp;&nbsp; <s:property value='attempt.userChoices[#question_status.index].choiceId'/></p>
                                 </div>
                             </s:iterator>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
