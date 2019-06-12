@@ -50,8 +50,8 @@ public class QuestionImpl implements QuestionDao {
                     "Q.Topic = ? " +
                     "and Q.Questionnaire_Id  = ? " +
                     "and Q.Number = ? " +
-                    "and Q.status = 'Active'" +
-                    "and C.status = 'Active'" );
+                    "and Q.status = TRUE " +
+                    "and C.status = TRUE " );
             preparedStatement.setString(1,topic);
             preparedStatement.setInt(1,questionnaireId);
             preparedStatement.setInt(1,questionNumber);
@@ -112,7 +112,7 @@ public class QuestionImpl implements QuestionDao {
                             "and Q.Number = C.Question_Id  " +
                             "where Q.Topic = ? " +
                             "and Q.Questionnaire_Id  = ? " +
-                            "and Q.status = 'Active'"
+                            "and Q.status = TRUE"
             );
 
             preparedStatement.setString(1,topic);

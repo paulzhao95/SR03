@@ -13,7 +13,7 @@ public class TopicAction extends ActionSupport {
     private ArrayList<Topic> topics = new ArrayList<>();
     private  TopicImpl internTopicImpl = DaoFactory.getDaoFactoryInstance().getTopicImpl();
 
-    private int topicCount = 0;
+    private int topicNumber = 0;
     private int limit = 10;
     private int pageNumber = 0;
     public TopicAction() throws DaoException {
@@ -22,7 +22,7 @@ public class TopicAction extends ActionSupport {
 
 
     public String get() throws DaoException {
-        topicCount = internTopicImpl.getTopicCount();
+        topicNumber = internTopicImpl.getTopicCount();
         topics = internTopicImpl.getTopics((pageNumber-1)*limit, limit);
         return SUCCESS;
     }
@@ -45,12 +45,12 @@ public class TopicAction extends ActionSupport {
     }
 
 
-    public int getTopicCount() {
-        return topicCount;
+    public int getTopicNumber() {
+        return topicNumber;
     }
 
-    public void setTopicCount(int topicCount) {
-        this.topicCount = topicCount;
+    public void setTopicNumber(int topicNumber) {
+        this.topicNumber = topicNumber;
     }
 
     public int getPageNumber() {

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface QuestionnaireDao {
 
-    public ArrayList<Questionnaire> getQuestionnaires(String topic) throws DaoException;
+    public ArrayList<Questionnaire> getQuestionnaires(String topic , int offset, int limit) throws DaoException;
 
     public Questionnaire getQuestionnaire(String topic, int questionnaireId) throws DaoException;
 

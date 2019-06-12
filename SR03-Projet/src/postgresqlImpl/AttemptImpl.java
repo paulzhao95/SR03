@@ -18,7 +18,7 @@ public class AttemptImpl implements AttemptDao {
     }
 
     @Override
-    public ArrayList<Attempt> getAttempts(String email) throws DaoException {
+    public ArrayList<Attempt> getAttempts(String email, int offset, int limit ) throws DaoException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -39,9 +39,13 @@ public class AttemptImpl implements AttemptDao {
                     "attempts e join questionnaires q " +
                     "on e.topic = q.topic " +
                     "and e.questionnaire_id = q.number " +
-                    "where e.user_email = ? ");
+                    "where e.user_email = ? " +
+                    "offset ? " +
+                    "limit ?");
 
             preparedStatement.setString(1, email);
+            preparedStatement.setInt(2, offset);
+            preparedStatement.setInt(3, limit);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -201,5 +205,35 @@ public class AttemptImpl implements AttemptDao {
         } catch (SQLException e) {
             throw new DaoException("Connection to database failed");
         }
+    }
+
+
+    public int getAttemptNumber(String email) throws DaoException {
+        Connection connection ;
+        PreparedStatement preparedStatement;
+        int attemptNumber = 0;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("select count(*) as attempt_number from attempts " +
+                    "where user_email = ? "
+            );
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                attemptNumber = resultSet.getInt("attempt_number");
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("delete attempts in database failed");
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Connection to database failed");
+        }
+        return attemptNumber;
     }
 }

@@ -21,6 +21,11 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     private String topic = "";
     private int questionnaireId;
 
+
+    private int limit = 10;
+    private int pageNumber = 0;
+    private int questionnaireNumber = 0;
+
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
 
     private Map<String, Object> session;
@@ -38,7 +43,8 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
             topic = (String) session.get("topic");
         }
         try {
-            questionnaires = questionnaireImpl.getQuestionnaires(topic);
+            questionnaireNumber = questionnaireImpl.getQuestionnaireCount(topic);
+            questionnaires = questionnaireImpl.getQuestionnaires(topic, (pageNumber-1)*limit, limit);
         } catch (DaoException e) {
             return ERROR;
         }
@@ -109,6 +115,31 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     public void setServletRequest(HttpServletRequest httpServletRequest) {
         this.httpServletRequest = httpServletRequest;
     }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getQuestionnaireNumber() {
+        return questionnaireNumber;
+    }
+
+    public void setQuestionnaireNumber(int questionnaireNumber) {
+        this.questionnaireNumber = questionnaireNumber;
+    }
+
 
     public HttpServletRequest getHttpServletRequest() {
         return httpServletRequest;
