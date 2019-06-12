@@ -10,7 +10,7 @@ public interface UserDao {
 
     User getUser(String email) throws DaoException;
 
-    ArrayList<User> getUsers() throws DaoException;
+    ArrayList<User> getUsers(int offset, int limit) throws DaoException;
 
     void addUser(User user) throws DaoException;
 

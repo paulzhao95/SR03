@@ -7,6 +7,7 @@ import model.Topic;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TopicImpl extends postgresqlImpl.TopicImpl implements TopicDao {
@@ -97,5 +98,6 @@ public class TopicImpl extends postgresqlImpl.TopicImpl implements TopicDao {
         }
 
     }
-    
+
+
 }
