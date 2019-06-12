@@ -5,6 +5,7 @@ drop table if exists public.Topics CASCADE;
 
 CREATE TABLE public.Topics
 (
+  topic_id serial not null ,
   Topic character varying not null,
   primary key (Topic)
 );
@@ -14,6 +15,7 @@ CREATE TABLE public.Topics
 drop table if exists public.Users CASCADE;
 CREATE TABLE public.Users
 (
+    user_id serial,
   Password character varying NOT NULL,
   Status BOOLEAN NOT NULL,
   Name character varying NOT NULL,

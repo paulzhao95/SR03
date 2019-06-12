@@ -22,7 +22,7 @@ public class TopicImpl extends postgresqlImpl.TopicImpl implements TopicDao {
         PreparedStatement preparedStatement;
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("insert into Topics values (?)");
+            preparedStatement = connection.prepareStatement("insert into Topics (topic) values (?)");
             preparedStatement.setString(1,topicName);
             int i = preparedStatement.executeUpdate();
             connection.commit();
