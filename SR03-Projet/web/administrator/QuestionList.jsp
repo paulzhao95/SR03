@@ -9,7 +9,8 @@
         String basePath = request.getScheme() + "://"
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
-
+        //这里从session里面接收总页数
+        //int pageTotal = (int)request.getSession().getAttribute("pageTotal");
         User user = (User)session.getAttribute("user");
     %>
     <base href="<%=basePath%>">
@@ -112,8 +113,10 @@
                                     <s:property value="#question_status.index"/>.<a href="<s:url action="getQuestion" > <s:param name="questionId" value="questionId"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="topic" value="topic"></s:param></s:url>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
                                     <br>
                                 <s:iterator value="choices" var="id" status="status">
+                                    <s:if test="%{#id.description.length != 0}">
                                     <input type="radio" name="answer<s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight.equals(true)}"> <%=checked%> </s:if>/><s:property value='description'/>
                                     <br>
+                                    </s:if>
                                 </s:iterator>
                                 </form>
                             </div>
@@ -128,10 +131,18 @@
             </div>
             <div style="text-align:center">
                 <br>
-                <a href="actionxxxx.action?curPageNumber=0">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="actionxxxx.action?PreviousPage=<s:property value="PageID"/>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="actionxxxx.action?NextPage=<s:property value="PageID"/>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="actionxxxx.action?curPageNumber=<s:property value="PageTotal"/>">Last Page</a>
+                <a href="actionxxxx.action?PageNumber=1">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="actionxxxx.action?PageNumber=<s:property value="%{PageID-1}"/>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                <s:bean name= "org.apache.struts2.util.Counter"  var= "counter">
+                    <s:param name="first"  value= "1"  />
+                    <s:param name="last"  value= "#session.pageTotal"  />
+                    <s:iterator status="status">
+                <a href="actionxxxx.action?PageNumber=<s:property value="%{#status.index+1}"/>"><s:property value="%{#status.index+1}"/></a>&nbsp;
+                    </s:iterator>
+                </s:bean>
+                    &nbsp;&nbsp;&nbsp;&nbsp;|
+                <a href="actionxxxx.action?PageNumber=<s:property value="%{PageID+1}"/>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="actionxxxx.action?PageNumber=<s:property value="#session.pageTotal"/>">Last Page</a>
                 </form>
             </div>
         </div>

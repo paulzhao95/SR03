@@ -64,8 +64,10 @@
                                         <p><s:property value='description'/></p>
                                         <br>
                                         <s:iterator value="choices" var="id" status="status">
+                                            <s:if test="%{#id.description.length != 0}">
                                             <input type="radio" name="answer<s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight.equals(true)}"> <%=checked%> </s:if>/><s:property value='description'/>
                                             <br>
+                                            </s:if>
                                         </s:iterator>
                                 </div>
                                 <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">

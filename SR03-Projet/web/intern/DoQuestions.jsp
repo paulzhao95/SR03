@@ -41,7 +41,9 @@
                             <div class="test_content_nr_main">
                                 <ul>
                                     <s:iterator value="question.choices" status="id" var="item">
+                                        <s:if test="%{#item.description.length != 0}">
                                     <li class="option">
+
                                         <!--这里每个选项都要有一个chosen的属性变量，来看他是否已经被选择了，item表示每一个循环变量的对象个体-->
                                         <input id = "answer<s:property value="#status.index"/>" class = "radioOrCheck" name = "choiceId" type="radio" value = <s:property value="choiceId"/>
                                                 <s:if test="%{item.chosen.equals(true)}"> <%=checked%> </s:if>>
@@ -49,7 +51,9 @@
                                         <label for="answer<s:property value="#status.index"/>">
                                             <p class="ue" style="display: inline;"><s:property value="description"/></p>
                                         </label>
+
                                     </li>
+                                        </s:if>
                                     </s:iterator>
                                 </ul>
                             </div>

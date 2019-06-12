@@ -55,20 +55,6 @@
 	            <label for="email" class="center-align"></label>
 	          </div>
 	        </div>
-	        <div class="row margin">
-	          <div class="input-field col s12">
-	            <i class="mdi-action-lock-outline prefix"></i>
-	            <input id="password" name = "user.password" type="password" class="validate" placeholder="Password">
-	            <label for="password"></label>
-	          </div>
-	        </div>
-	        <div class="row margin">
-	          <div class="input-field col s12">
-	            <i class="mdi-action-lock-outline prefix"></i>
-	            <input id="password-again" type="password" placeholder="Re-type password">
-	            <label for="password-again"></label>
-	          </div>
-	        </div>
 			  <div class="row margin">
 				  <div class="input-field col s12">
 					  <i class="mdi-social-person-outline prefix"></i>
