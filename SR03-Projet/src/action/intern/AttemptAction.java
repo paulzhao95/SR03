@@ -1,5 +1,6 @@
 package action.intern;
 
+import action.GlobalVariable;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
@@ -32,7 +33,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private AttemptImpl attemptImpl = DaoFactory.getDaoFactoryInstance().getInternAttemptImpl();
 
     private int pageNumber = 1;
-    private int limit = 5;
+    private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int attemptNumber = 0;
 
     public AttemptAction() throws DaoException {
@@ -140,9 +141,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     }
 
     public String getAttemptInfo() {
-        User user = (User)session.get("user");
         try {
-            System.out.println(attemptId);
             attempt = attemptImpl.getAttempt(attemptId);
             String topicName = attempt.getTopicName();
             int questionnaireId = attempt.getQuestionnaireId();

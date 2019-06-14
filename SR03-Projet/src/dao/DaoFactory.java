@@ -195,12 +195,16 @@ public class DaoFactory {
         return new postgresqlImpl.ChoiceImpl(this);
     }
 
-    public ChoiceImpl getAdministratorImpl() {
+    public ChoiceImpl getAdministratorChoiceImpl() {
         return new ChoiceImpl(this);
     }
 
     public AttemptImpl getAttemptImpl() {
         return new AttemptImpl(this);
+    }
+
+    public postgresqlImpl.administrator.AttemptImpl getAdministratorAttemptImpl() {
+        return new postgresqlImpl.administrator.AttemptImpl(this);
     }
 
 

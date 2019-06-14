@@ -135,6 +135,22 @@
             <result name="error">test.jsp</result>
         </action>
 
+<!--        administrator attempt action -->
+        <action name="getAttemptsByUser" class="action.administrator.AttemptAction" method="getAttemptsByUser">
+            <result type="chain" name="success">XXX</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+        <action name="getAttemptsByQuestionnaire" class="action.administrator.AttemptAction" method="getAttemptsByQuestionnaire">
+            <result type="chain" name="success">XXX</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+
+        <action name="getAttempt" class="action.administrator.AttemptAction" method="getAttemptInfo">
+            <result type="chain" name="success">XXX</result>
+            <result name="error">test.jsp</result>
+        </action>
 
         <!--        intern topic action-->
         <action name="internGetHistoryAttempt" class="action.intern.AttemptAction" method="get">

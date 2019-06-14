@@ -27,7 +27,7 @@ public class AttemptImpl implements AttemptDao {
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("select e.attempt_id as attempt_id, " +
-                    "e.user_email as email, "+
+                    "e.user_email as email, " +
                     "q.name as questionnaire_name," +
                     "q.topic as questionnaire_topic ," +
                     "q.number as questionnaire_id," +
@@ -36,12 +36,9 @@ public class AttemptImpl implements AttemptDao {
                     "e.score as score ," +
                     "e.full_marks as full_marks " +
                     "from " +
-                    "attempts e join questionnaires q " +
+                    "(select * from attempts where user_email = ? offset ? limit ? ) as e join questionnaires q " +
                     "on e.topic = q.topic " +
-                    "and e.questionnaire_id = q.number " +
-                    "where e.user_email = ? " +
-                    "offset ? " +
-                    "limit ?");
+                    "and e.questionnaire_id = q.number ");
 
             preparedStatement.setString(1, email);
             preparedStatement.setInt(2, offset);

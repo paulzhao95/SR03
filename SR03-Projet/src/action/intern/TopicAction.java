@@ -1,5 +1,6 @@
 package action.intern;
 
+import action.GlobalVariable;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
@@ -14,7 +15,7 @@ public class TopicAction extends ActionSupport {
     private  TopicImpl internTopicImpl = DaoFactory.getDaoFactoryInstance().getTopicImpl();
 
     private int topicNumber = 0;
-    private int limit = 5;
+    private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int pageNumber = 1;
     public TopicAction() throws DaoException {
     }

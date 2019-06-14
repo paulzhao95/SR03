@@ -1,5 +1,6 @@
 package action.administrator;
 
+import action.GlobalVariable;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
@@ -13,7 +14,7 @@ public class UserAction extends ActionSupport {
     private ArrayList<User> users = new ArrayList<User>();
     private String email;
 
-    private int limit = 5;
+    private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int pageNumber = 1;
     private int userNumber = 0;
 

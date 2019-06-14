@@ -1,5 +1,6 @@
 package action.administrator;
 
+import action.GlobalVariable;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
@@ -22,7 +23,7 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     private String topic = "";
     private int questionnaireId;
 
-    private int limit = 5;
+    private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int pageNumber = 1;
     private int questionnaireNumber = 0;
 
