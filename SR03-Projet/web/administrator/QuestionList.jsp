@@ -56,9 +56,7 @@
                     <a href="<s:url value="AddQuestion.jsp"><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param> </s:url> " class="link_class">Add new Question</a>
 <%--                    <a href="<s:url value="AddQuestion.jsp"><s:param name="questionnaire" value="${questionnaire}"></s:param></s:url> " class="link_class">Add new Question</a>--%>
                     <br>
-<%--                    <a href="QuestionnaireInfoChangeAdmin.jsp?questionnaireId=<s:property value="questionnaireId"/>&name=<s:property value='name'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>" class="link_class">Update Questionnaire</a>--%>
-                    <a href="<s:url value=" QuestionnaireInfoChangeAdmin.jsp"><s:param name="questionnaireId" value="questionnaire.questionnaireId"></s:param><s:param name="status" value="questionnaire.status"></s:param><s:param name="name" value="questionnaire.name"></s:param><s:param name="topic" value="questionnaire.topic"></s:param></s:url>" class="link_class">Update Questionnaire</a>
-                    <br>
+
                     <div class="test_content_nr_main">
                         <ul>
                             <form action="actionxxxx.action?">

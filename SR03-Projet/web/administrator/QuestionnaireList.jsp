@@ -70,7 +70,8 @@
                             </div>
                             <div class="information-top-content-right">
                                 <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
-                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/deleteQuestionnaire?questionnaire.questionnaireId=<s:property value='questionnaireId'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p">Delete</a>
+                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/deleteQuestionnaire?questionnaire.questionnaireId=<s:property value='questionnaireId'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p">Delete</a> |
+                                <a href="<s:url value=" QuestionnaireInfoChangeAdmin.jsp"><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="status" value="status"></s:param><s:param name="name" value="name"></s:param><s:param name="topic" value="topic"></s:param></s:url>">Update</a>
                             </div>
                             </s:iterator>
 
