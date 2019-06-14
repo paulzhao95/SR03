@@ -26,6 +26,9 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     private int pageNumber = 1;
     private int questionnaireNumber = 0;
 
+    private int questionNumber = 0;
+
+
 
 
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();
@@ -94,11 +97,13 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     public String getQuestionnaireInfo() {
         if (questionnaireId == -1) {
             topic = (String) session.get("topic");
+
             questionnaireId = (int)session.get("questionnaireId");
         }
 
         try {
             questionnaire = questionnaireImpl.getQuestionnaire(topic, questionnaireId);
+            questionNumber = questionnaire.getQuestions().size();
         } catch (DaoException e) {
             return ERROR;
         }
@@ -180,7 +185,16 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
         return questionnaireNumber;
     }
 
+
     public void setQuestionnaireNumber(int questionnaireNumber) {
         this.questionnaireNumber = questionnaireNumber;
+    }
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
     }
 }
