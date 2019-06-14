@@ -68,7 +68,7 @@
                                         <br>
                                         <s:iterator value="choices" var="id" status="status">
                                             <s:if test="%{#id.description.length != 0}">
-                                            <input type="radio" name="answer<s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight.equals(true)}"> <%=checked%> </s:if>/><s:property value='description'/>
+                                            <input type="radio" name="answer<s:property value="#question_status.index"/><s:property value="#status.index"/>" disabled <s:if test="%{#id.isRight == true}"> checked = "<%=checked%>" </s:if>/><s:property value='description'/>
                                             <br>
                                             </s:if>
                                         </s:iterator>
