@@ -39,7 +39,7 @@ CREATE TABLE public.Questionnaires
 );
 
 alter table Questionnaires add constraint FK_Theme foreign key (Topic)
-  references Topics(Topic) ON DELETE CASCADE;
+  references Topics(Topic) ON DELETE CASCADE on update cascade ;
 
 drop table if exists public.Questions CASCADE;
 CREATE TABLE public.Questions
@@ -53,7 +53,7 @@ CREATE TABLE public.Questions
 );
 
 ALTER TABLE Questions add constraint FK foreign key(Topic,Questionnaire_Id)
-  references Questionnaires(Topic,Number) ON DELETE CASCADE;
+  references Questionnaires(Topic,Number) ON DELETE CASCADE on update cascade ;
 
 
 drop table if exists  public.Choices CASCADE;
@@ -89,7 +89,7 @@ CREATE TABLE public.Attempts
 );
 
 
-ALTER TABLE Attempts add constraint FK_Evaluation_User foreign key(User_email) references Users(Email) ON DELETE CASCADE;
+ALTER TABLE Attempts add constraint FK_Evaluation_User foreign key(User_email) references Users(Email) ON DELETE CASCADE on update cascade ;
 ALTER TABLE Attempts add constraint FK_Evaluation_Questionnaire foreign key(Topic, Questionnaire_Id) references Questionnaires (Topic, Number) ON DELETE CASCADE;
 
 drop table if exists public.User_choices CASCADE;
@@ -104,7 +104,7 @@ CREATE TABLE public.User_choices
   PRIMARY KEY (Attempt_Id, Topic,Questionnaire_Id,Question_Id ,Choice_Id)
 );
 
-ALTER TABLE User_choices add constraint FK_UC_Evaluation foreign key(Attempt_Id) references Attempts(Attempt_Id) ON DELETE CASCADE;
-ALTER TABLE User_choices add constraint FK_UC_Choice foreign key(Topic,Questionnaire_Id,Question_Id,Choice_Id) references Choices(Topic,Questionnaire_Id, Question_Id,Number) ON DELETE CASCADE;
+ALTER TABLE User_choices add constraint FK_UC_Evaluation foreign key(Attempt_Id) references Attempts(Attempt_Id) ON DELETE CASCADE on update cascade ;
+ALTER TABLE User_choices add constraint FK_UC_Choice foreign key(Topic,Questionnaire_Id,Question_Id,Choice_Id) references Choices(Topic,Questionnaire_Id, Question_Id,Number) ON DELETE CASCADE on update cascade ;
 
 

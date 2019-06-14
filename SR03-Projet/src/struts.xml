@@ -130,6 +130,12 @@
             <result name="error">test.jsp</result>
         </action>
 
+        <action name="changeQuestionOrder" class="action.administrator.QuestionAction" method="update">
+            <result type="chain" name="success">getQuestionnaire</result>
+            <result name="error">test.jsp</result>
+        </action>
+
+
         <!--        intern topic action-->
         <action name="internGetHistoryTopic" class="action.intern.TopicAction" method="get">
             <result name="success">/intern/TopicListIntern.jsp</result>

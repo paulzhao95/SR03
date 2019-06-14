@@ -24,6 +24,9 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     private int limit = 10;
     private int pageNumber = 0;
 
+    private Question question1 = new Question();
+    private Question question2 = new Question();
+
     private Map<String, Object> session;
 
     public QuestionAction() throws DaoException {
@@ -79,6 +82,15 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     public String update() {
         try {
             questionImpl.updateQuestion(question);
+        } catch (DaoException e) {
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String exchangeQuestionOrder() {
+        try {
+            questionImpl.exchangeQuestions(question1, question2);
         } catch (DaoException e) {
             return ERROR;
         }
