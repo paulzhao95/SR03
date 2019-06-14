@@ -38,6 +38,9 @@
                 <div style="float: right;margin: 100px;">
                     <p>Durée du passage: <s:property value='attempt.durationInSeconds'/> s</p>
                 </div>
+                <div style="float: right;margin: 100px;">
+                    <p>Socre: <s:property value='attempt.fullMarks'/> </p>
+                </div>
             </div>
 
 
