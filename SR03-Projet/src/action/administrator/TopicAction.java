@@ -8,11 +8,17 @@ import postgresqlImpl.administrator.TopicImpl;
 
 import java.util.ArrayList;
 
+
+
+
 public class TopicAction extends ActionSupport {
     private Topic topic = new Topic();
     private ArrayList<Topic> topics = new ArrayList<>();
-    private  TopicImpl administratorTopicImpl = DaoFactory.getDaoFactoryInstance().getAdministratorTopicImpl();
+    private TopicImpl administratorTopicImpl = DaoFactory.getDaoFactoryInstance().getAdministratorTopicImpl();
     private String newTopicName = "";
+    private int topicNumber = 0;
+    private int limit = 10;
+    private int pageNumber = 0;
 
     public TopicAction() throws DaoException {
     }
@@ -46,7 +52,8 @@ public class TopicAction extends ActionSupport {
     }
 
     public String get() throws DaoException {
-        topics = administratorTopicImpl.getTopics();
+        topicNumber = administratorTopicImpl.getTopicCount();
+        topics = administratorTopicImpl.getTopics((pageNumber-1)*limit, limit);
         return SUCCESS;
     }
 
@@ -74,4 +81,29 @@ public class TopicAction extends ActionSupport {
     public void setNewTopicName(String newTopicName) {
         this.newTopicName = newTopicName;
     }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getTopicNumber() {
+        return topicNumber;
+    }
+
+    public void setTopicNumber(int topicNumber) {
+        this.topicNumber = topicNumber;
+    }
+
 }

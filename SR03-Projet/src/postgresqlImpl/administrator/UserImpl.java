@@ -17,7 +17,7 @@ public class UserImpl implements UserDao {
     }
 
     @Override
-    public ArrayList<User> getUsers() throws DaoException {
+    public ArrayList<User> getUsers(int offset, int limit) throws DaoException {
         Connection connection ;
         PreparedStatement preparedStatement;
         ArrayList<User> users = new ArrayList<>();
@@ -26,8 +26,11 @@ public class UserImpl implements UserDao {
         try {
             connection = daoFactory.getConnection();
 
-            preparedStatement = connection.prepareStatement("SELECT * from users "
+            preparedStatement = connection.prepareStatement("SELECT * from users order by user_id limit ? offset ?  "
             );
+            preparedStatement.setInt(1, limit);
+            preparedStatement.setInt(2, offset);
+
             ;
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
@@ -227,4 +230,35 @@ public class UserImpl implements UserDao {
         }
     }
 
+
+    public int getUserCount() throws DaoException {
+        Connection connection ;
+        PreparedStatement preparedStatement ;
+        int userCount = 0;
+
+        try {
+            connection = daoFactory.getConnection();
+
+            preparedStatement = connection.prepareStatement("select count(*) as user_number from users "
+            );
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while( resultSet.next()){
+                userCount = resultSet.getInt("user_number");
+            }
+
+
+        } catch (SQLException e) {
+            throw new DaoException("delete intern from database failed");
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Connection to database failed");
+        }
+        return userCount;
+
+    }
 }

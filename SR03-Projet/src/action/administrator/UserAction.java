@@ -13,6 +13,10 @@ public class UserAction extends ActionSupport {
     private ArrayList<User> users = new ArrayList<User>();
     private String email;
 
+    private int limit = 10;
+    private int pageNumber = 0;
+    private int userNumber = 0;
+
     private UserImpl administratorUserImpl = DaoFactory.getDaoFactoryInstance().getAdministratorUserImpl();
 
 
@@ -39,7 +43,6 @@ public class UserAction extends ActionSupport {
 
     }
 
-
     public String add() {
         try {
             administratorUserImpl.addUser(user);
@@ -52,7 +55,8 @@ public class UserAction extends ActionSupport {
 
     public String get() {
         try {
-            users = administratorUserImpl.getUsers();
+            userNumber = administratorUserImpl.getUserCount();
+            users = administratorUserImpl.getUsers((pageNumber-1)*limit, limit);
 
         } catch (DaoException e) {
             return ERROR;
@@ -69,6 +73,7 @@ public class UserAction extends ActionSupport {
 
         return SUCCESS;
     }
+
 
     public ArrayList<User> getUsers() {
         return users;
@@ -92,5 +97,29 @@ public class UserAction extends ActionSupport {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int offset) {
+        this.pageNumber = offset;
+    }
+
+    public int getUserNumber() {
+        return userNumber;
+    }
+
+    public void setUserNumber(int userNumber) {
+        this.userNumber = userNumber;
     }
 }

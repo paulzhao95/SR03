@@ -22,7 +22,7 @@ public class TopicImpl implements TopicDao {
 
 
     @Override
-    public ArrayList<Topic> getTopics() throws DaoException {
+    public ArrayList<Topic> getTopics(int offset, int limit ) throws DaoException {
 
 
         Connection connection ;
@@ -31,8 +31,11 @@ public class TopicImpl implements TopicDao {
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("select  * from topics");
 
+            preparedStatement = connection.prepareStatement("select  * from topics order by  topic_id limit ? offset ? ");
+
+            preparedStatement.setInt(1, limit);
+            preparedStatement.setInt(2, offset);
             ResultSet resultSet = preparedStatement.executeQuery();
 
 
@@ -51,5 +54,35 @@ public class TopicImpl implements TopicDao {
         }
         return topics;
     }
+
+    public int getTopicCount() throws DaoException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+        int topicCount = 0;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("select count(*) as topic_number from topics" );
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                topicCount = resultSet.getInt("topic_number");
+            }
+
+
+        } catch (SQLException e) {
+            throw new DaoException("Update topics in database failed :) " + e.getMessage());
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Database connection failed");
+        }
+        return topicCount;
+
+    }
+
 
 }

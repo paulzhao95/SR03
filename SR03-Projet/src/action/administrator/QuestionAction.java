@@ -20,6 +20,13 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     private Boolean status = true;
     private String name = "";
 
+    private int questionNumber = 0;
+    private int limit = 10;
+    private int pageNumber = 0;
+
+    private Question question1 = new Question();
+    private Question question2 = new Question();
+
     private Map<String, Object> session;
 
     public QuestionAction() throws DaoException {
@@ -42,6 +49,7 @@ public class QuestionAction extends ActionSupport implements SessionAware {
         }
 
         try {
+            questionNumber = questionImpl.getQuestionNumber(topic, questionnaireId);
             questions = questionImpl.getQuestions(topic, questionnaireId);
         } catch (DaoException e) {
             return ERROR;
@@ -74,6 +82,15 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     public String update() {
         try {
             questionImpl.updateQuestion(question);
+        } catch (DaoException e) {
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String exchangeQuestionOrder() {
+        try {
+            questionImpl.exchangeQuestions(question1, question2);
         } catch (DaoException e) {
             return ERROR;
         }
@@ -149,5 +166,29 @@ public class QuestionAction extends ActionSupport implements SessionAware {
 
     public Map<String, Object> getSession() {
         return session;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
     }
 }

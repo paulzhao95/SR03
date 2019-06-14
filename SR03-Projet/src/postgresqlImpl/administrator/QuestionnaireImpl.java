@@ -18,7 +18,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
 
 
     @Override
-    public ArrayList<Questionnaire> getQuestionnaires(String topic) throws DaoException {
+    public ArrayList<Questionnaire> getQuestionnaires(String topic, int offset, int limit ) throws DaoException {
         Connection connection ;
         PreparedStatement preparedStatement ;
         ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
@@ -32,10 +32,14 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
                             "Q.Topic as Topic " +
                             "from " +
                             "Questionnaires Q " +
-                            "where Q.Topic = ?"
+                            "where Q.Topic = ? " +
+                            "offset ? " +
+                            "limit ? "
             );
             preparedStatement.setString(1,topic);
 
+            preparedStatement.setInt(2, offset);
+            preparedStatement.setInt(3,limit);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
@@ -271,6 +275,36 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
         }
+    }
+
+    public int getQuestionnaireCount(String topic) throws DaoException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+        int questionnaireCount = 0;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("select count(*) as questionnaire_number from questionnaires where topic = ?");
+            preparedStatement.setString(1, topic);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                questionnaireCount = resultSet.getInt("questionnaire_number");
+            }
+
+
+
+
+        } catch (SQLException e) {
+            throw new DaoException("Delete questionnaire in database failed :) " + e.getMessage());
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Database connection failed");
+        }
+        return questionnaireCount;
     }
 
 

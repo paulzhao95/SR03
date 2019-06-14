@@ -290,6 +290,37 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
         }
     }
 
+    public int getQuestionNumber(String topic, int questionnaireId) throws DaoException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+        int questionNumber = 0;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("select count(*) as question_number from questions where topic = ? and number = ?");
+            preparedStatement.setString(1, topic);
+            preparedStatement.setInt(2, questionnaireId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                questionNumber = resultSet.getInt("question_number");
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("change question order in database failed :) " + e.getMessage());
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Database connection failed");
+        }
+
+        return questionNumber;
+
+    }
+
 
 
 

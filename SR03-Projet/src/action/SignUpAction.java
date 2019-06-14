@@ -5,23 +5,38 @@ import dao.DaoException;
 import dao.DaoFactory;
 import model.User;
 import postgresqlImpl.administrator.UserImpl;
-import sun.misc.SignalHandler;
 
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
-
+import java.util.Random;
 
 public class SignUpAction extends ActionSupport {
     private User user = new User();
+
+    protected String generateRandomPassword(int n) {
+        String SALTCHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < n) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
 
     public String execute() throws DaoException {
 
         DaoFactory daoFactoryInstance = DaoFactory.getDaoFactoryInstance();
 
-
         UserImpl administratorUserImpl = daoFactoryInstance.getAdministratorUserImpl();
+
+        String randomPassword = generateRandomPassword(6);
+
+        user.setPassword(randomPassword);
+
 
         try {
             administratorUserImpl.addUser(user);
@@ -29,6 +44,8 @@ public class SignUpAction extends ActionSupport {
         } catch (DaoException e) {
             return ERROR;
         }
+
+        sendPassword(user);
 
         return SUCCESS;
     }
@@ -41,53 +58,65 @@ public class SignUpAction extends ActionSupport {
         this.user = user;
     }
 
-    public void sendEmail(User user) {
-//        // Recipient's email ID needs to be mentioned.
-//        String to = user.getEmail();
-//
-//        // Sender's email ID needs to be mentioned
-//        String from = "web@gmail.com";
-//
-//        // Assuming you are sending email from localhost
-//        String host = "localhost";
-//
-//        // Get system properties
-//        Properties properties = System.getProperties();
-//
-//        // Setup mail server
-//        properties.setProperty("mail.smtp.host", host);
-//
-//        // Get the default Session object.
-//        Session session = Session.getDefaultInstance(properties);
-//
-//        try {
-//            // Create a default MimeMessage object.
-//            MimeMessage message = new MimeMessage(session);
-//
-//            // Set From: header field of the header.
-//            message.setFrom(new InternetAddress(from));
-//
-//            // Set To: header field of the header.
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-//
-//            // Set Subject: header field
-//            message.setSubject("This is the Subject Line!");
-//
-//            // Now set the actual message
-//            message.setText("This is actual message");
-//
-//            // Send message
-//            Transport.send(message);
-//            System.out.println("Sent message successfully....");
-//        } catch (MessagingException mex) {
-//            mex.printStackTrace();
-//        }
+    private void sendPassword(User user) {
+        // Recipient's email ID needs to be mentioned.
+        String to = user.getEmail();
+
+        // Sender's email ID needs to be mentioned
+        String from = "longen.zhao95@gmail.com";
+
+        // Assuming you are sending email from localhost
+        String host = "smtp.gmail.com";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.setProperty("mail.smtp.host", host);
+
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.user", from);
+        properties.put("mail.smtp.password", "");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+
+
+        // Get the default Session object.
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(
+                        "longen.zhao95@gmail.com", "");// Specify the Username and the PassWord
+            }});
+
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Inscription Conformation");
+
+            // Now set the actual message
+            message.setText("Your email address: "+ user.getEmail() + "\n Your password : " + user.getPassword());
+
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
 
-        SignUpAction signUpAction = new SignUpAction();
-        signUpAction.sendEmail(new User("longen.zhao@outlook.com"));
+        SignUpAction loginAction = new SignUpAction();
+        System.out.println(loginAction.generateRandomPassword());
     }
 
 }
