@@ -61,9 +61,9 @@
 
 
 
-                            <s:iterator value="questionnaires">
+                            <s:iterator value="attempts">
                                 <div class="information-top-content-left">
-                                    <!-- 这里写action，还没填，要改-->
+                                    <!-- 这里写action，还没填，要改-->z
                                     <a href="http://localhost:8080/SR03_Projet_war_exploded/default/getQuestions?questionnaireId=<s:property value='questionnaireId'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>&name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>
                                 </div>
                                 <div class="information-top-content-right">

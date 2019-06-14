@@ -129,8 +129,9 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
 
         try {
-            attemptNumber = attemptImpl.getAttemptNumber(user.getEmail());
+//            attemptNumber = attemptImpl.getAttemptNumber(user.getEmail());
             attempts = attemptImpl.getAttempts(user.getEmail(), (pageNumber-1)*limit, limit);
+            attemptNumber = attempts.size();
         } catch (DaoException e) {
             return ERROR;
         }

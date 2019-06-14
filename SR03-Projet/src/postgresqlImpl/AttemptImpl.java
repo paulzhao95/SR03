@@ -52,9 +52,9 @@ public class AttemptImpl implements AttemptDao {
                 int attempt_id = resultSet.getInt("attempt_id");
                 int questionnaire_id = resultSet.getInt("questionnaire_id");
                 String questionnaire_name = resultSet.getString("questionnaire_name");
-                String topic = resultSet.getString("questionnqire_topic");
+                String topic = resultSet.getString("questionnaire_topic");
                 int duration = resultSet.getInt("duration");
-                Timestamp date = resultSet.getTimestamp("date");
+                Timestamp date = resultSet.getTimestamp("start_time");
                 int score = resultSet.getInt("score");
                 int full_marks = resultSet.getInt("full_marks");
                 attempts.add(new Attempt(attempt_id , email, topic, questionnaire_id, questionnaire_name, date, duration,score,full_marks));
