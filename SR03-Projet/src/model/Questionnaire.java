@@ -49,7 +49,7 @@ public class Questionnaire implements Serializable {
         this.setName("NoName");
         this.setQuestionnaireId(0);
         this.setTopic("NoTopic");
-        this.setStatus(false);
+        this.setStatus(true);
         this.setQuestions(new ArrayList<Question>());
     }
 
