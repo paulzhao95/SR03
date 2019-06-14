@@ -31,7 +31,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getQuestionnaireImpl();
     private AttemptImpl attemptImpl = DaoFactory.getDaoFactoryInstance().getInternAttemptImpl();
 
-    private int pageNumber = 0;
+    private int pageNumber = 1;
     private int limit = 10;
     private int attemptNumber = 0;
 

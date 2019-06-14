@@ -14,7 +14,7 @@ public class UserAction extends ActionSupport {
     private String email;
 
     private int limit = 10;
-    private int pageNumber = 0;
+    private int pageNumber = 1;
     private int userNumber = 0;
 
     private UserImpl administratorUserImpl = DaoFactory.getDaoFactoryInstance().getAdministratorUserImpl();

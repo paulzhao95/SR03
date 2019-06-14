@@ -23,7 +23,7 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
 
 
     private int limit = 10;
-    private int pageNumber = 0;
+    private int pageNumber = 1;
     private int questionnaireNumber = 0;
 
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getAdministratorQuestionnaireImpl();

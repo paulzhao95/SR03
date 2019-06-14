@@ -18,7 +18,7 @@ public class TopicAction extends ActionSupport {
     private String newTopicName = "";
     private int topicNumber = 0;
     private int limit = 10;
-    private int pageNumber = 0;
+    private int pageNumber = 1;
 
     public TopicAction() throws DaoException {
     }

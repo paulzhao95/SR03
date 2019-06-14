@@ -22,7 +22,7 @@ public class QuestionAction extends ActionSupport implements SessionAware {
 
     private int questionNumber = 0;
     private int limit = 10;
-    private int pageNumber = 0;
+    private int pageNumber = 1;
 
     private Question question1 = new Question();
     private Question question2 = new Question();

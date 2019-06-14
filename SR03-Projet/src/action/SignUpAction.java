@@ -63,7 +63,7 @@ public class SignUpAction extends ActionSupport {
         String to = user.getEmail();
 
         // Sender's email ID needs to be mentioned
-        String from = "longen.zhao95@gmail.com";
+        String from = "sr03project@gmail.com";
 
         // Assuming you are sending email from localhost
         String host = "smtp.gmail.com";
@@ -76,7 +76,7 @@ public class SignUpAction extends ActionSupport {
 
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.user", from);
-        properties.put("mail.smtp.password", "");
+        properties.put("mail.smtp.password", "SR03Project1!");
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth", "true");
 
@@ -86,7 +86,7 @@ public class SignUpAction extends ActionSupport {
 
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
-                        "longen.zhao95@gmail.com", "");// Specify the Username and the PassWord
+                        "sr03project@gmail.com", "SR03Project1!");// Specify the Username and the PassWord
             }});
 
         try {
@@ -116,7 +116,7 @@ public class SignUpAction extends ActionSupport {
     public static void main(String[] args) {
 
         SignUpAction loginAction = new SignUpAction();
-        System.out.println(loginAction.generateRandomPassword());
+        System.out.println(loginAction.generateRandomPassword(6));
     }
 
 }
