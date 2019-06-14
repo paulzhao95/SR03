@@ -78,7 +78,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
     }
 
     @Override
-    public ArrayList<Question> getQuestions(String topic, int questionnaireId) throws DaoException {
+    public ArrayList<Question> getQuestions(String topic, int questionnaireId , int offset, int limit ) throws DaoException {
         Connection connection ;
         PreparedStatement preparedStatement ;
         int preQuestionId = -1;
@@ -105,11 +105,15 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
                             "and Q.Questionnaire_Id = C.Questionnaire_Id " +
                             "and Q.Number = C.Question_Id  " +
                             "where Q.Topic = ? " +
-                            "and Q.Questionnaire_Id  = ? "
+                            "and Q.Questionnaire_Id  = ? " +
+                            "offset ? " +
+                            "limit  ?"
             );
 
             preparedStatement.setString(1,topic);
             preparedStatement.setInt(2,questionnaireId);
+            preparedStatement.setInt(3, offset);
+            preparedStatement.setInt(4, limit);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

@@ -104,7 +104,7 @@
                             </div>
 
 
-                            <s:iterator value="questionnaire.questions" status="question_status">
+                            <s:iterator value="questions" status="question_status">
                             <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
                                 <form>
 <%--                                <a href="QuestionInfoChange.jsp?question.questionId=<s:property value='questionId'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>--%>
@@ -139,8 +139,8 @@
                     </s:iterator>
                 </s:bean>
                     &nbsp;&nbsp;&nbsp;&nbsp;|
-                <a href="getQuestionnaire.action?PageNumber=<s:property value="%{pageNumber+1}"/>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="getQuestionnaire.action?PageNumber=<s:property value="%{questionNumber/10+1}"/>">Last Page</a>
+                <a href="getQuestion.action?pageNumber=<s:property value="%{pageNumber+1}"/>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="getQuestion.action?pageNumber=<s:property value="%{questionNumber/10+1}"/>">Last Page</a>
                 </form>
             </div>
         </div>

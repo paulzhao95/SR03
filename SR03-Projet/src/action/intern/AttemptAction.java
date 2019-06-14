@@ -32,7 +32,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private AttemptImpl attemptImpl = DaoFactory.getDaoFactoryInstance().getInternAttemptImpl();
 
     private int pageNumber = 1;
-    private int limit = 10;
+    private int limit = 5;
     private int attemptNumber = 0;
 
     public AttemptAction() throws DaoException {
@@ -130,6 +130,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
         try {
 //            attemptNumber = attemptImpl.getAttemptNumber(user.getEmail());
+
             attempts = attemptImpl.getAttempts(user.getEmail(), (pageNumber-1)*limit, limit);
             attemptNumber = attempts.size();
         } catch (DaoException e) {

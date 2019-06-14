@@ -8,6 +8,6 @@ public interface QuestionDao {
 
     Question getQuestion(String topic, int questionnaireId, int questionNumber) throws DaoException;
 
-    ArrayList<Question> getQuestions(String topic, int questionnaireId) throws DaoException;
+    ArrayList<Question> getQuestions(String topic, int questionnaireId, int offset, int limit ) throws DaoException;
 
 }

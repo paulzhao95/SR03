@@ -14,7 +14,7 @@ public class TopicAction extends ActionSupport {
     private  TopicImpl internTopicImpl = DaoFactory.getDaoFactoryInstance().getTopicImpl();
 
     private int topicNumber = 0;
-    private int limit = 10;
+    private int limit = 5;
     private int pageNumber = 1;
     public TopicAction() throws DaoException {
     }

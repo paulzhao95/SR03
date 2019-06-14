@@ -84,7 +84,7 @@ public class QuestionImpl implements QuestionDao {
     }
 
     @Override
-    public ArrayList<Question> getQuestions(String topic, int questionnaireId) throws DaoException {
+    public ArrayList<Question> getQuestions(String topic, int questionnaireId, int offset, int limit ) throws DaoException {
         Connection connection ;
         PreparedStatement preparedStatement ;
         int preQuestionId = -1;

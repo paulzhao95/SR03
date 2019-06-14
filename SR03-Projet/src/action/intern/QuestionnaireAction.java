@@ -22,7 +22,7 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
     private int questionnaireId;
 
 
-    private int limit = 10;
+    private int limit = 5;
     private int pageNumber = 1;
     private int questionnaireNumber = 0;
 
