@@ -133,14 +133,14 @@
                 <a href="getQuestionnaire.action?PageNumber=<s:property value="%{pageNumber-1}"/>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
                 <s:bean name= "org.apache.struts2.util.Counter"  var= "counter">
                     <s:param name="first"  value= "1"  />
-                    <s:param name="last"  value= "%{questionNumber/10+1}"/>
+                    <s:param name="last"  value= "%{questionNumber/5+1}"/>
                     <s:iterator status="status">
                 <a href="getQuestionnaire.action?PageNumber=<s:property value="%{#status.index+1}"/>"><s:property value="%{#status.index+1}"/></a>&nbsp;
                     </s:iterator>
                 </s:bean>
                     &nbsp;&nbsp;&nbsp;&nbsp;|
                 <a href="getQuestion.action?pageNumber=<s:property value="%{pageNumber+1}"/>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="getQuestion.action?pageNumber=<s:property value="%{questionNumber/10+1}"/>">Last Page</a>
+                <a href="getQuestion.action?pageNumber=<s:property value="%{questionNumber/5+1}"/>">Last Page</a>
                 </form>
             </div>
         </div>
