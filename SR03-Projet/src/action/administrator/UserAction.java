@@ -13,7 +13,7 @@ public class UserAction extends ActionSupport {
     private ArrayList<User> users = new ArrayList<User>();
     private String email;
 
-    private int limit = 10;
+    private int limit = 5;
     private int pageNumber = 1;
     private int userNumber = 0;
 
@@ -23,7 +23,6 @@ public class UserAction extends ActionSupport {
     public UserAction() throws DaoException {
     }
 
-    // TODO: 5/27/19 change status failed
     public String update() {
         try {
             administratorUserImpl.updateUser(user);

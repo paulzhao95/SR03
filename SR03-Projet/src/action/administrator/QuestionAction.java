@@ -21,7 +21,7 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     private String name = "";
 
     private int questionNumber = 0;
-    private int limit = 10;
+    private int limit = 5;
     private int pageNumber = 1;
 
     private Question question1 = new Question();
@@ -50,7 +50,7 @@ public class QuestionAction extends ActionSupport implements SessionAware {
 
         try {
             questionNumber = questionImpl.getQuestionNumber(topic, questionnaireId);
-            questions = questionImpl.getQuestions(topic, questionnaireId);
+            questions = questionImpl.getQuestions(topic, questionnaireId, (pageNumber-1)*limit, limit);
         } catch (DaoException e) {
             return ERROR;
         }

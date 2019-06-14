@@ -142,7 +142,6 @@ public class ChoiceImpl extends postgresqlImpl.ChoiceImpl implements ChoiceDao {
             throw new DaoException("Database connection failed");
         }
     }
-    // todo correct
     @Override
     public void addChoice(Choice choice) throws DaoException {
         Connection connection;

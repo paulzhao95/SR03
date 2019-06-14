@@ -9,6 +9,15 @@ import postgresqlImpl.UserImpl;
 
 import java.util.Map;
 
+// TODO: 6/14/19 in admin questionnaire list jsp : change action name from get questionnaire to get questions when click questionnaire name. Parameters to pass : questionnaireId, topic and pageNumber
+// TODO: 6/14/19 in admin questionnaire list jsp : change delete button to delete / edit button and admin have access to edit questionnaire from url of edit
+
+// TODO: 6/14/19 visualisation intern result for admin with all attempts and best score for each questionnaire
+
+// TODO: 6/14/19 timer
+
+
+
 public class LoginAction extends ActionSupport implements SessionAware {
     private String email;
     private String password;
