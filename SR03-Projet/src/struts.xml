@@ -24,7 +24,7 @@
 
         <action name="login" class="action.LoginAction" method="execute" >
             <result type="chain" name="administratorLoginSucceed">getUsers</result>
-            <result type="chain" name="internLoginSucceed">internGetHistoryTopic</result>
+            <result type="chain" name="internLoginSucceed">internGetHistoryAttempt</result>
             <result name="loginFailed">SignUp.jsp</result>
         </action>
 
@@ -137,8 +137,8 @@
 
 
         <!--        intern topic action-->
-        <action name="internGetHistoryTopic" class="action.intern.TopicAction" method="get">
-            <result name="success">/intern/TopicListIntern.jsp</result>
+        <action name="internGetHistoryAttempt" class="action.intern.AttemptAction" method="get">
+            <result name="success">/intern/QuestionnaireListIntern.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 
@@ -171,7 +171,7 @@
         </action>
 
         <action name="internGetAttempts" class="action.intern.AttemptAction" method="get">
-            <result name="success">/intern/XXXXXXX</result>
+            <result name="success">/intern/QuestionListIntern.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 
