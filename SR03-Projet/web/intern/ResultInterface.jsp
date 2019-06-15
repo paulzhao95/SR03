@@ -1,6 +1,7 @@
 <%@ page import="model.Attempt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="model.User" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,24 @@
         String basePath = request.getScheme() + "://"
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
-
+        User user = new User();
+        if (session.getAttribute("user") != null){
+            user = (User)session.getAttribute("user");
+            if(!user.getType().toString().equals("Intern")) {
+    %>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !!!!!!!");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%
+        }}else{%>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%}
+    %>
+    <%
         Attempt attempt = (Attempt)request.getSession().getAttribute("attempt");
         int attemptId = attempt.getId();
         int fullMarks = attempt.getFullMarks();

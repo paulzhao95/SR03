@@ -3,6 +3,28 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html lang="zh">
 <head>
+    <%
+        String path = request.getRequestURI();
+        String basePath = request.getScheme() + "://"
+                +request.getServerName() + ":" + request.getServerPort()
+                + path;
+        User user = new User();
+        if (session.getAttribute("user") != null){
+            user = (User)session.getAttribute("user");
+            if(!user.getType().toString().equals("Administrator")) {
+    %>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !!!!!!!");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%
+        }}else{%>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%}
+    %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link type="text/css" rel="stylesheet" href="../css/myStyle.css">
