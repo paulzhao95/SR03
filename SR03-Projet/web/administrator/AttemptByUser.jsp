@@ -89,7 +89,7 @@
                 <div style="text-align:center;">
                     <div class="search bar6">
                         <form action="actionxxxx.action">
-                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "attempt.userName" placeholder="Search...">
+                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "attempt.questionnaireName" placeholder="Search...">
 
                             <input type="hidden" name="attempt.userEmail" value="<s:property value="email"/>">
 
