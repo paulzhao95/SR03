@@ -39,7 +39,9 @@
                 </div>
 
             </div>
-
+            <div style="float: right;margin: 150px;">
+                <a href="login.action?email=<%=user.getEmail()%>&password=<%=user.getPassword()%>&type=<%=user.getType()%>" class="link_class">Main interface</a>
+            </div>
 
 
             <div class="tab-buttons ">

@@ -37,6 +37,11 @@
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
+
+
+                    <a href="login.action?email=<%=user.getEmail()%>&password=<%=user.getPassword()%>&type=<%=user.getType()%>" class="link_class">Main interface</a>
+
+
                     <br>
                     <a href="http://localhost:8080/SR03_Projet_war_exploded/administrator/QuestionnaireCreate.jsp?topic=<s:property value="topic"/>" class="link_class">New Questionnaire</a>
                 </div>

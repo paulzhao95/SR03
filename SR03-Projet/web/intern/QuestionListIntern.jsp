@@ -29,17 +29,16 @@
                     <div class="personalnformation-content-left">
                         <img src="../picture/default_avatar.png"/>
                     </div>
-                    <div class="personalnformation-content-right">
-                        <p class="personalnformation-content-right-p">Nom：<%=user.getName()%> </p>
-                        <p class="personalnformation-content-right-p">Email：<%=user.getEmail()%> </p>
-                        <p class="personalnformation-content-right-p">Create Time：2019</p>
-                    </div>
                 </div>
-                <div style="float: right;margin: 100px;">
+                <div style="float: right;margin: 100px;width: 700px">
+                    <p>Socre: <s:property value='attempt.fullMarks'/> </p>
+                    <br>
+
                     <p>Durée du passage: <s:property value='attempt.durationInSeconds'/> s</p>
                 </div>
                 <div style="float: right;margin: 100px;">
-                    <p>Socre: <s:property value='attempt.fullMarks'/> </p>
+                    <a href="login.action?email=<%=user.getEmail()%>&password=<%=user.getPassword()%>&type=<%=user.getType()%>" class="link_class">Main interface</a>
+                    <br>
                 </div>
             </div>
 
