@@ -51,6 +51,8 @@
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
+                    <a href="login.action?email=<%=user.getEmail()%>&password=<%=user.getPassword()%>&type=<%=user.getType()%>" class="link_class">Main interface</a>
+
                     <br>
 <%--                    <a href="<AddQuestion.jsp?topic=<s:property value="questionnaire.topic"/>&questionnaireId=<s:property value="questionnaire.questionnaireId"/>" class="link_class">Add new Question</a>--%>
                     <a href="<s:url value="AddQuestion.jsp"><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param> </s:url> " class="link_class">Add new Question</a>

@@ -37,11 +37,14 @@
                         <p class="personalnformation-content-right-p">Create Time：2019</p>
                     </div>
                 </div>
+                <div style="float: right;margin: 150px;">
+                    <a href="login.action?email=<%=user.getEmail()%>&password=<%=user.getPassword()%>&type=<%=user.getType()%>" class="link_class">Main interface</a>
+                </div>
             </div>
 
 
 
-            <div class="tab-buttons ">
+                <div class="tab-buttons ">
                 <h3 class="tab-button cur" data-tab="one">History Questionnaires List</h3>
             </div>
 

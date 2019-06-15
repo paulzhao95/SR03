@@ -310,3 +310,16 @@ p.subtitle {
     text-decoration: none;
     line-height: 30px;
 }
+.link_class2 {
+    width: 150px;
+    height: 30px;
+    color: #fff;
+    text-align: center;
+    display: block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #000;
+    text-decoration: none;
+    line-height: 30px;
+}
