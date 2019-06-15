@@ -65,7 +65,7 @@
 <%--    String type = request.getParameter("type");--%>
 <% String check = "checked";%>
 <%
-    User user = (User) request.getAttribute("user");
+//    User user = (User) request.getAttribute("user");
 %>
 
 <div id="login-page" class="row">

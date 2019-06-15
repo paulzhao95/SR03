@@ -74,7 +74,7 @@ public class AttemptImpl implements AttemptDao {
     }
 
     @Override
-    public Attempt getAttempt(int attemptId) throws DaoException {
+    public Attempt getAttempt(int attemptId , int offset, int limit  ) throws DaoException {
         Connection connection ;
         PreparedStatement preparedStatement ;
         Attempt attempt = new Attempt();
@@ -103,9 +103,14 @@ public class AttemptImpl implements AttemptDao {
                     "uc.type as choice_type "+
                     "from user_choices uc join attempts a " +
                     "on uc.attempt_id = a.attempt_id " +
-                    "where a.attempt_id = ?"
+                    "where a.attempt_id = ? " +
+                    "order by question_id " +
+                    "offset ? " +
+                    "limit  ? "
             );
             preparedStatement.setInt(1, attemptId);
+            preparedStatement.setInt(2, offset);
+            preparedStatement.setInt(3, limit);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -113,9 +118,11 @@ public class AttemptImpl implements AttemptDao {
                 questionnaireID = resultSet.getInt("questionnaire_id");
                 startTime = resultSet.getTimestamp("start_time");
                 duration = resultSet.getInt("duration");
+                score = resultSet.getInt("score");
                 int question_id = resultSet.getInt("question_id");
                 int choice_id = resultSet.getInt("choice_id");
                 boolean choice_type= resultSet.getBoolean("choice_type");
+
 
                 choices.add(new Choice(topic, questionnaireID, question_id, choice_id, choice_type));
 

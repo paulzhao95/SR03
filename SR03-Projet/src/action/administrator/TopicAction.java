@@ -21,6 +21,9 @@ public class TopicAction extends ActionSupport {
     private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int pageNumber = 1;
 
+    private int pageNumberTopic = 1;
+    private int pageNumberUser = 1;
+
     public TopicAction() throws DaoException {
     }
 
@@ -54,7 +57,7 @@ public class TopicAction extends ActionSupport {
 
     public String get() throws DaoException {
         topicNumber = administratorTopicImpl.getTopicCount();
-        topics = administratorTopicImpl.getTopics((pageNumber-1)*limit, limit);
+        topics = administratorTopicImpl.getTopics((pageNumberTopic-1)*limit, limit);
         return SUCCESS;
     }
 
@@ -107,4 +110,20 @@ public class TopicAction extends ActionSupport {
         this.topicNumber = topicNumber;
     }
 
+
+    public int getPageNumberUser() {
+        return pageNumberUser;
+    }
+
+    public void setPageNumberUser(int pageNumberUser) {
+        this.pageNumberUser = pageNumberUser;
+    }
+
+    public int getPageNumberTopic() {
+        return pageNumberTopic;
+    }
+
+    public void setPageNumberTopic(int pageNumberTopic) {
+        this.pageNumberTopic = pageNumberTopic;
+    }
 }

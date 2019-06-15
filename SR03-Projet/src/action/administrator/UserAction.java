@@ -18,6 +18,9 @@ public class UserAction extends ActionSupport {
     private int pageNumber = 1;
     private int userNumber = 0;
 
+    private int pageNumberTopic = 1;
+    private int pageNumberUser = 1;
+
     private UserImpl administratorUserImpl = DaoFactory.getDaoFactoryInstance().getAdministratorUserImpl();
 
 
@@ -56,7 +59,7 @@ public class UserAction extends ActionSupport {
     public String get() {
         try {
             userNumber = administratorUserImpl.getUserCount();
-            users = administratorUserImpl.getUsers((pageNumber-1)*limit, limit);
+            users = administratorUserImpl.getUsers((pageNumberUser-1)*limit, limit);
 
         } catch (DaoException e) {
             return ERROR;
@@ -121,5 +124,21 @@ public class UserAction extends ActionSupport {
 
     public void setUserNumber(int userNumber) {
         this.userNumber = userNumber;
+    }
+
+    public int getPageNumberUser() {
+        return pageNumberUser;
+    }
+
+    public void setPageNumberUser(int pageNumberUser) {
+        this.pageNumberUser = pageNumberUser;
+    }
+
+    public int getPageNumberTopic() {
+        return pageNumberTopic;
+    }
+
+    public void setPageNumberTopic(int pageNumberTopic) {
+        this.pageNumberTopic = pageNumberTopic;
     }
 }

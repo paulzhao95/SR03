@@ -100,7 +100,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
                             "C.Status as choice_status, " +
                             "C.Type as choice_type   " +
                             "from " +
-                            "(select * from questions where topic = ? and questionnaire_id = ? offset ? limit ?) as Q join Choices C  " +
+                            "(select * from questions where topic = ? and questionnaire_id = ? order by number  offset ? limit ?) as Q join Choices C  " +
                             "on Q.Topic = C.Topic " +
                             "and Q.Questionnaire_Id = C.Questionnaire_Id " +
                             "and Q.Number = C.Question_Id  " +

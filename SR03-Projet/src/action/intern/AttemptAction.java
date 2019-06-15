@@ -6,6 +6,7 @@ import dao.DaoException;
 import dao.DaoFactory;
 import model.*;
 import org.apache.struts2.interceptor.SessionAware;
+import postgresqlImpl.QuestionImpl;
 import postgresqlImpl.intern.AttemptImpl;
 import postgresqlImpl.QuestionnaireImpl;
 
@@ -32,13 +33,18 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getQuestionnaireImpl();
     private AttemptImpl attemptImpl = DaoFactory.getDaoFactoryInstance().getInternAttemptImpl();
 
+    private QuestionImpl questionImpl = DaoFactory.getDaoFactoryInstance().getQuestionImpl();
     private int pageNumber = 1;
     private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int attemptNumber = 0;
 
+    private ArrayList<Question> questions = new ArrayList<Question>();
+
+
     private int min;
     private int sec;
 
+    private int questionNumber = 0;
 
     public AttemptAction() throws DaoException {
     }
@@ -81,12 +87,12 @@ public class AttemptAction extends ActionSupport implements SessionAware {
         // save current question
         int currentQuestionNumber = (int) session.get("currentNumber");
         questionnaire = (Questionnaire) session.get("questionnaire");
-        attempt = (Attempt)session.get("attempt");
+        attempt = (Attempt) session.get("attempt");
         attempt.setChoice(currentQuestionNumber, questionnaire.getQuestions().get(currentQuestionNumber).getChoices().get(choiceId));
 
 
         question = questionnaire.getQuestions().get(currentQuestionNumber - 1);
-        session.put("currentNumber", currentQuestionNumber-1);
+        session.put("currentNumber", currentQuestionNumber - 1);
         session.put("attempt", this.attempt);
         return SUCCESS;
     }
@@ -96,17 +102,17 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
         int currentQuestionNumber = (int) session.get("currentNumber");
         questionnaire = (Questionnaire) session.get("questionnaire");
-        attempt = (Attempt)session.get("attempt");
+        attempt = (Attempt) session.get("attempt");
         attempt.setChoice(currentQuestionNumber, questionnaire.getQuestions().get(currentQuestionNumber).getChoices().get(choiceId));
 
         switch (changePage) {
             case "Next":
                 question = questionnaire.getQuestions().get(currentQuestionNumber + 1);
-                session.put("currentNumber", currentQuestionNumber+1);
+                session.put("currentNumber", currentQuestionNumber + 1);
                 break;
             case "Previous":
                 question = questionnaire.getQuestions().get(currentQuestionNumber - 1);
-                session.put("currentNumber", currentQuestionNumber-1);
+                session.put("currentNumber", currentQuestionNumber - 1);
                 break;
             case "Finish":
                 long time = new Date().getTime();
@@ -130,14 +136,14 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     }
 
     public String get() {
-        User user = (User)session.get("user");
+        User user = (User) session.get("user");
 
 
         try {
-//            attemptNumber = attemptImpl.getAttemptNumber(user.getEmail());
+            attemptNumber = attemptImpl.getAttemptNumber(user.getEmail());
 
-            attempts = attemptImpl.getAttempts(user.getEmail(), (pageNumber-1)*limit, limit);
-            attemptNumber = attempts.size();
+            attempts = attemptImpl.getAttempts(user.getEmail(), (pageNumber - 1) * limit, limit);
+
         } catch (DaoException e) {
             return ERROR;
         }
@@ -146,11 +152,14 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
     public String getAttemptInfo() {
         try {
-            attempt = attemptImpl.getAttempt(attemptId);
+            attempt = attemptImpl.getAttempt(attemptId, (pageNumber - 1) * limit, limit);
             String topicName = attempt.getTopicName();
             int questionnaireId = attempt.getQuestionnaireId();
 
-            questionnaire = questionnaireImpl.getQuestionnaire(topicName, questionnaireId);
+            questionNumber = questionImpl.getQuestionNumber(topicName, questionnaireId);
+            questions = questionImpl.getQuestions(topicName, questionnaireId, (pageNumber - 1) * limit, limit);
+
+//            questionnaire = questionnaireImpl.getQuestionnaire(topicName, questionnaireId);
 
         } catch (DaoException e) {
             return ERROR;
@@ -266,5 +275,27 @@ public class AttemptAction extends ActionSupport implements SessionAware {
         this.sec = sec;
     }
 
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
 
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
 }

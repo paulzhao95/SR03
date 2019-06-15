@@ -98,22 +98,22 @@
 
                     <div style="text-align:center">
                         <br>
-                        <a href="<s:url action="getUsers"><s:param name="pageNumberTopice" value="1"></s:param></s:url>">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a href="<s:url action="getUsers"><s:param name="pageNumberTopic" value="1"></s:param></s:url>">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                         <s:if test="%{pageNumberTopice != 1}">
-                            <a href="<s:url action="getUsers"><s:param name="pageNumberTopice" value="pageNumberTopice-1"></s:param></s:url>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="<s:url action="getUsers"><s:param name="pageNumberTopic" value="pageNumberTopic-1"></s:param></s:url>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
                         </s:if>
                         <s:bean name= "org.apache.struts2.util.Counter"  var= "counter">
                             <s:param name="first"  value= "1"  />
                             <s:param name="last"  value= "%{topicNumber/5+1}"/>
                             <s:iterator status="status">
-                                <a href="<s:url action="getUsers"><s:param name="pageNumberTopice" value="%{#status.index+1}"></s:param></s:url>"><s:property value="%{#status.index+1}"/></a>&nbsp;
+                                <a href="<s:url action="getUsers"><s:param name="pageNumberTopic" value="%{#status.index+1}"></s:param></s:url>"><s:property value="%{#status.index+1}"/></a>&nbsp;
                             </s:iterator>
                         </s:bean>
                         &nbsp;&nbsp;&nbsp;&nbsp;|
                         <s:if test="%{pageNumberTopice != topicNumber/5+1}">
-                            <a href="<s:url action="getUsers"><s:param name="pageNumberTopice" value="pageNumberTopice+1"></s:param></s:url>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="<s:url action="getUsers"><s:param name="pageNumberTopic" value="pageNumberTopic+1"></s:param></s:url>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                         </s:if>
-                        <a href="<s:url action="getUsers"><s:param name="pageNumberTopice" value="%{topicNumber/5+1}"></s:param></s:url>">Last Page</a>
+                        <a href="<s:url action="getUsers"><s:param name="pageNumberTopic" value="%{topicNumber/5+1}"></s:param></s:url>">Last Page</a>
                     </div>
 
 

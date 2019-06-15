@@ -10,6 +10,7 @@ import model.Question;
 import model.Questionnaire;
 import postgresqlImpl.QuestionnaireImpl;
 import postgresqlImpl.administrator.AttemptImpl;
+import postgresqlImpl.QuestionImpl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -28,9 +29,16 @@ public class AttemptAction extends ActionSupport {
 
     private QuestionnaireImpl questionnaireImpl = DaoFactory.getDaoFactoryInstance().getQuestionnaireImpl();
     private AttemptImpl attemptImpl = DaoFactory.getDaoFactoryInstance().getAdministratorAttemptImpl();
+    private QuestionImpl questionImpl = DaoFactory.getDaoFactoryInstance().getQuestionImpl();
+
 
     private int pageNumber = 1;
     private int limit = GlobalVariable.NUMBER_PER_PAGE;
+
+    private int attemptNumber = 0;
+
+    private ArrayList<Question> questions = new ArrayList<Question>();
+
 
 
     public AttemptAction() throws DaoException {
@@ -58,13 +66,15 @@ public class AttemptAction extends ActionSupport {
 
     }
 
+    // TODO: 6/15/19 check whether work or not
     public String getAttemptInfo() {
         try {
-            attempt = attemptImpl.getAttempt(attemptId);
+            attempt = attemptImpl.getAttempt(attemptId,(pageNumber - 1) * limit, limit);
             String topicName = attempt.getTopicName();
             int questionnaireId = attempt.getQuestionnaireId();
 
-            questionnaire = questionnaireImpl.getQuestionnaire(topicName, questionnaireId);
+            questions = questionImpl.getQuestions(topicName, questionnaireId, (pageNumber - 1) * limit, limit);
+//            questionnaire = questionnaireImpl.getQuestionnaire(topicName, questionnaireId);
 
         } catch (DaoException e) {
             return ERROR;
@@ -142,4 +152,19 @@ public class AttemptAction extends ActionSupport {
         this.questionnaireId = questionnaireId;
     }
 
+    public int getAttemptNumber() {
+        return attemptNumber;
+    }
+
+    public void setAttemptNumber(int attemptNumber) {
+        this.attemptNumber = attemptNumber;
+    }
+
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
 }

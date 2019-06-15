@@ -90,7 +90,7 @@ CREATE TABLE public.Attempts
 
 
 ALTER TABLE Attempts add constraint FK_Evaluation_User foreign key(User_email) references Users(Email) ON DELETE CASCADE on update cascade ;
-ALTER TABLE Attempts add constraint FK_Evaluation_Questionnaire foreign key(Topic, Questionnaire_Id) references Questionnaires (Topic, Number) ON DELETE CASCADE;
+ALTER TABLE Attempts add constraint FK_Evaluation_Questionnaire foreign key(Topic, Questionnaire_Id) references Questionnaires (Topic, Number) ON DELETE CASCADE on update cascade ;
 
 drop table if exists public.User_choices CASCADE;
 CREATE TABLE public.User_choices

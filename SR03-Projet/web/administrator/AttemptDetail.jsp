@@ -75,7 +75,7 @@
                             </div>
 
 
-                            <s:iterator value="questionnaire.questions" status="question_status">
+                            <s:iterator value="questions" status="question_status">
                                 <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
                                     <p><s:property value='description'/></p>
                                     <br>

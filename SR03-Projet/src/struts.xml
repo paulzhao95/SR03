@@ -28,10 +28,17 @@
             <result name="loginFailed">SignUp.jsp</result>
         </action>
 
+        <action name="logout" class="action.LogoutAction" method="execute" >
+            <result name="success">/index.jsp</result>
+        </action>
+
         <!--        administrator user action-->
 
         <action name="getUsers" class="action.administrator.UserAction" method="get">
-            <result type="chain" name="success">getTopics</result>
+            <result type="chain" name="success">
+                <param name="actionName">getTopics</param>
+                <param name="pageNumberTopic">${pageNumberTopic}</param>
+            </result>
             <result name="error">/test.jsp</result>
         </action>
 

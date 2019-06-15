@@ -6,7 +6,7 @@ import model.Attempt;
 import java.util.ArrayList;
 
 public interface AttemptDao {
-    Attempt getAttempt( int evaluationID) throws DaoException;
+    Attempt getAttempt( int attemptId, int offset, int limit ) throws DaoException;
 
     ArrayList<Attempt> getAttempts(String userEmail,int offset, int limit) throws DaoException;
 
