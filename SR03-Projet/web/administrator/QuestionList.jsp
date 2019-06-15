@@ -139,7 +139,7 @@
                     </s:iterator>
                 </s:bean>
                     &nbsp;&nbsp;&nbsp;&nbsp;|
-                <a href="getQuestion.action?pageNumber=<s:property value="%{pageNumber+1}"/>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="pageNumber+1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <a href="getQuestion.action?pageNumber=<s:property value="%{questionNumber/10+1}"/>">Last Page</a>
                 </form>
             </div>
