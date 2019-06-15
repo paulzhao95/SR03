@@ -60,6 +60,48 @@ public class UserImpl implements UserDao {
         return users;
     }
 
+    public ArrayList<User> getUsersByName(String email) throws DaoException {
+        Connection connection ;
+        PreparedStatement preparedStatement;
+        ArrayList<User> users = new ArrayList<>();
+
+
+        try {
+            connection = daoFactory.getConnection();
+
+            preparedStatement = connection.prepareStatement("SELECT * from users where name = ? order by user_id  "
+            );
+
+            preparedStatement.setString(1, email);
+
+            ;
+            ResultSet result = preparedStatement.executeQuery();
+            while (result.next()) {
+
+                String password = result.getString("password");
+                Boolean status = (result.getString("status").equals("Active"));
+                String name = result.getString("name");
+                String tel = result.getString("tel");
+                String company = result.getString("company");
+                Timestamp creatingTime = result.getTimestamp("creating_time");
+                User.UserType type_user = result.getString("type_user").equals("Administrator") ? User.UserType.Administrator : User.UserType.Intern;
+
+                users.add(new User(email, password, name, status, company, tel, creatingTime, type_user));
+
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Get users from database failed");
+        }
+
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException("Connection to database failed");
+        }
+        return users;
+    }
+
     @Override
     public User getUser(String login) throws DaoException {
         Connection connection = null;

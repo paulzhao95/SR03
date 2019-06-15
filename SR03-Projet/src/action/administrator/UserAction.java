@@ -23,6 +23,7 @@ public class UserAction extends ActionSupport {
 
     private UserImpl administratorUserImpl = DaoFactory.getDaoFactoryInstance().getAdministratorUserImpl();
 
+    private String userName = "";
 
     public UserAction() throws DaoException {
     }
@@ -57,12 +58,21 @@ public class UserAction extends ActionSupport {
 
 
     public String get() {
-        try {
-            userNumber = administratorUserImpl.getUserCount();
-            users = administratorUserImpl.getUsers((pageNumberUser-1)*limit, limit);
+        if (userName.equals("")) {
+            try {
+                userNumber = administratorUserImpl.getUserCount();
+                users = administratorUserImpl.getUsers((pageNumberUser - 1) * limit, limit);
 
-        } catch (DaoException e) {
-            return ERROR;
+            } catch (DaoException e) {
+                return ERROR;
+            }
+
+        } else {
+            try {
+                users = administratorUserImpl.getUsersByName(userName);
+            } catch (Exception e) {
+                return ERROR;
+            }
         }
         return SUCCESS;
     }
@@ -140,5 +150,13 @@ public class UserAction extends ActionSupport {
 
     public void setPageNumberTopic(int pageNumberTopic) {
         this.pageNumberTopic = pageNumberTopic;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
