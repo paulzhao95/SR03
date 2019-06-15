@@ -60,7 +60,7 @@
 <body>
 
 <%  int number = 3;
-    String s = "checked";%>
+    String checked = "checked";%>
 
 
 <div>
@@ -109,8 +109,8 @@
                                     </ul>
                                 </div>
                             </li>
-                                    <s:iterator value="question.choices" status="id">
-                                        <s:property value='#id.index'/><input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[<s:property value="#id.index"/>].isRight" type = "checkbox" value="true">
+                                    <s:iterator value="question.choices" status="id" var="var">
+                                        <s:property value='#id.index'/><input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[<s:property value="#id.index"/>].isRight" type = "checkbox" <s:if test="%{#var.isRight.equals(true)}"> <%=checked%> </s:if> value="true">
                                     </s:iterator>
                                 <input type="submit" value = "Validation">
                         </ul>
