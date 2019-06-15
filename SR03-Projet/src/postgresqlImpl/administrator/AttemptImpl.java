@@ -40,8 +40,8 @@ public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDa
                     "(select * from attempts where user_email = ? offset ? limit ? ) as e join questionnaires q " +
                     "on e.topic = q.topic " +
                     "and e.questionnaire_id = q.number " +
-                    "group by e.questionnaire_id " +
-                    "order by e.questionnaire_id, e.score/e.duration");
+
+                    "order by e.questionnaire_id, e.score/e.duration desc ");
 
             preparedStatement.setString(1, email);
             preparedStatement.setInt(2, offset);
@@ -104,7 +104,7 @@ public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDa
                     "(select * from attempts where topic = ? and questionnaire_id = ? offset ? limit ? ) as e join questionnaires q " +
                     "on e.topic = q.topic " +
                     "and e.questionnaire_id = q.number " +
-                    "order by  e.score/e.duration");
+                    "order by  e.score/e.duration desc");
 
             preparedStatement.setString(1, topic);
             preparedStatement.setInt(2, questionnaireId);
