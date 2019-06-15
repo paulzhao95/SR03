@@ -73,6 +73,43 @@ public class AttemptAction extends ActionSupport {
 
     }
 
+    public void setAttempts(ArrayList<Attempt> attempts) {
+        this.attempts = attempts;
+    }
+
+    public ArrayList<Attempt> getAttempts() {
+        return attempts;
+    }
+
+
+    public void setAttempt(Attempt attempt) {
+        this.attempt = attempt;
+    }
+
+    public Attempt getAttempt() {
+        return attempt;
+    }
+
+    public void setQuestionnaire (Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
+
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+
     public int getAttemptId() {
         return attemptId;
     }

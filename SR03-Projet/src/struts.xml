@@ -142,18 +142,18 @@
 
 <!--        administrator attempt action -->
         <action name="getAttemptsByUser" class="action.administrator.AttemptAction" method="getAttemptsByUser">
-            <result type="chain" name="success">XXX</result>
+            <result name="success">/administrator/AttemptByUser.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 
         <action name="getAttemptsByQuestionnaire" class="action.administrator.AttemptAction" method="getAttemptsByQuestionnaire">
-            <result type="chain" name="success">XXX</result>
+            <result name="success">/administrator/AttemptByQuestionnaire.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 
 
         <action name="getAttempt" class="action.administrator.AttemptAction" method="getAttemptInfo">
-            <result type="chain" name="success">XXX</result>
+            <result name="success">/administrator/AttemptDetail.jsp</result>
             <result name="error">test.jsp</result>
         </action>
 
