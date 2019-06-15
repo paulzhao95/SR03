@@ -32,8 +32,6 @@ public class AttemptAction extends ActionSupport {
     private int pageNumber = 1;
     private int limit = GlobalVariable.NUMBER_PER_PAGE;
 
-    private int min;
-    private int sec;
 
     public AttemptAction() throws DaoException {
     }
@@ -107,19 +105,4 @@ public class AttemptAction extends ActionSupport {
         this.questionnaireId = questionnaireId;
     }
 
-    public int getMin() {
-        return min;
-    }
-
-    public void setMin(int min) {
-        this.min = min;
-    }
-
-    public int getSec() {
-        return sec;
-    }
-
-    public void setSec(int sec) {
-        this.sec = sec;
-    }
 }

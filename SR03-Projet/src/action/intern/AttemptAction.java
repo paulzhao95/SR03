@@ -36,6 +36,10 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int attemptNumber = 0;
 
+    private int min;
+    private int sec;
+
+
     public AttemptAction() throws DaoException {
     }
 
@@ -235,6 +239,23 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
     public void setChangePage(String changePage) {
         this.changePage = changePage;
+    }
+
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getSec() {
+        return sec;
+    }
+
+    public void setSec(int sec) {
+        this.sec = sec;
     }
 
 
