@@ -116,7 +116,7 @@
                             <div style="border: 1px solid #d8d8d8;width:800px; height: 200px;">
                                 <form>
 <%--                                <a href="QuestionInfoChange.jsp?question.questionId=<s:property value='questionId'/>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>--%>
-                                    <s:property value="#question_status.index"/>.<a href="<s:url action="getQuestion" > <s:param name="questionId" value="questionId"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="topic" value="topic"></s:param></s:url>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
+                                    <s:property value="%{(pageNumber-1)*5+#question_status.index}"/>.<a href="<s:url action="getQuestion" > <s:param name="questionId" value="questionId"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="topic" value="topic"></s:param></s:url>" style="font-size:16px;line-height:50px;font-weight: 200;color: #79aef0"><s:property value='Description'/></a>
                                     <br>
                                 <s:iterator value="choices" var="id" status="status">
                                     <s:if test="%{#id.description.length != 0}">
@@ -137,18 +137,22 @@
             </div>
             <div style="text-align:center">
                 <br>
-                <a href="getQuestionnaire.action?PageNumber=1">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="getQuestionnaire.action?PageNumber=<s:property value="%{pageNumber-1}"/>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <s:if test="%{pageNumber != 1}">
+                <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="pageNumber-1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                </s:if>
                 <s:bean name= "org.apache.struts2.util.Counter"  var= "counter">
                     <s:param name="first"  value= "1"  />
                     <s:param name="last"  value= "%{questionNumber/5+1}"/>
                     <s:iterator status="status">
-                <a href="getQuestionnaire.action?PageNumber=<s:property value="%{#status.index+1}"/>"><s:property value="%{#status.index+1}"/></a>&nbsp;
+                        <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="%{#status.index+1}"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>"><s:property value="%{#status.index+1}"/></a>&nbsp;
                     </s:iterator>
                 </s:bean>
                     &nbsp;&nbsp;&nbsp;&nbsp;|
+                <s:if test="%{pageNumber != questionNumber/5+1}">
                 <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="pageNumber+1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="getQuestion.action?pageNumber=<s:property value="%{questionNumber/5+1}"/>">Last Page</a>
+                </s:if>
+                <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="%{questionNumber/5+1}"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Last Page</a>
                 </form>
             </div>
         </div>
