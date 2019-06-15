@@ -89,6 +89,10 @@
                     <div class="search bar6">
                     <form action="actionxxxx.action">
                         <input type="text" style="height: 40px;width: 400px;display: inline-block;" placeholder="Search...">
+
+                        <input type="hidden" name="question2.topic" value="<s:property value="topic"/>">
+                        <input type="hidden" name="question2.questionnaireId" value="<s:property value="questionnaireId"/>">
+
                         <button type="submit" value="Validation"></button>
                     </form>
                     </div>
