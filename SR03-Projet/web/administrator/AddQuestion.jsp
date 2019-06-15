@@ -1,7 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="model.User" %>
 <html>
 <head>
+    <%
+        String path = request.getRequestURI();
+        String basePath = request.getScheme() + "://"
+                +request.getServerName() + ":" + request.getServerPort()
+                + path;
+        User user = new User();
+        if (session.getAttribute("user") != null){
+            user = (User)session.getAttribute("user");
+            if(!user.getType().toString().equals("Administrator")) {
+    %>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !!!!!!!");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%
+        }}else{%>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%}
+    %>
     <meta charset="UTF-8">
     <title>Administrator Panel</title>
     <link rel="stylesheet" type="text/css" href="../css/myStyle3.css"/>

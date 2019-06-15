@@ -9,9 +9,22 @@
         String basePath = request.getScheme() + "://"
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
-        //这里从session里面接收总页数
-        //int pageTotal = (int)request.getSession().getAttribute("pageTotal");
-        User user = (User)session.getAttribute("user");
+        User user = new User();
+        if (session.getAttribute("user") != null){
+            user = (User)session.getAttribute("user");
+            if(!user.getType().toString().equals("Administrator")) {
+    %>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !!!!!!!");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%
+        }}else{%>
+    <script type="text/javascript" language="javascript">
+        alert("Warning: You are not allowed to visit this page !");
+        window.document.location.href="http://localhost:8080/SR03_Projet_war_exploded/index.jsp";
+    </script>
+    <%}
     %>
     <base href="<%=basePath%>">
     <title>Administrator Panel</title>
