@@ -59,14 +59,18 @@
 
                     <div class="test_content_nr_main">
                         <ul>
-                            <form action="actionxxxx.action?">
+                            <form action="changeQuestionOrder.action">
                             Change the Order of questions:
-                            <input type="text" style="height:1.5em;width:3em;display:inline-block;" name="change1" />
+                            <input type="text" style="height:1.5em;width:3em;display:inline-block;" name="question1.questionId" />
                             ~~~
-                            <input type="text" style = "height:1.5em;width:3em;display:inline-block;" name="change2" />
+                            <input type="text" style = "height:1.5em;width:3em;display:inline-block;" name="question2.questionId" />
                                 <!-- 这里两个hidden标好了topic和questionnaireID-->
-                            <input type="hidden" name="questionnaire.topic" value="<s:property value="questionnaire.topic"/>">
-                            <input type="hidden" name="questionnaire.questionnaireId" value="<s:property value="questionnaire.questionnaireId"/>">
+                            <input type="hidden" name="question1.topic" value="<s:property value="topic"/>">
+                            <input type="hidden" name="question1.questionnaireId" value="<s:property value="questionnaireId"/>">
+
+                            <input type="hidden" name="question2.topic" value="<s:property value="topic"/>">
+                            <input type="hidden" name="question2.questionnaireId" value="<s:property value="questionnaireId"/>">
+
                             <input type="submit" style="display:inline-block;" value="validation">
                             </form>
                         </ul>

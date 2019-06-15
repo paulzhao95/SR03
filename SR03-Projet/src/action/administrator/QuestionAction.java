@@ -192,4 +192,20 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     public void setQuestionNumber(int questionNumber) {
         this.questionNumber = questionNumber;
     }
+
+    public Question getQuestion1() {
+        return question1;
+    }
+
+    public void setQuestion1(Question question1) {
+        this.question1 = question1;
+    }
+
+    public Question getQuestion2() {
+        return question2;
+    }
+
+    public void setQuestion2(Question question2) {
+        this.question2 = question2;
+    }
 }

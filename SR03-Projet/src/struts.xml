@@ -130,8 +130,13 @@
             <result name="error">test.jsp</result>
         </action>
 
-        <action name="changeQuestionOrder" class="action.administrator.QuestionAction" method="update">
-            <result type="chain" name="success">getQuestionnaire</result>
+        <action name="changeQuestionOrder" class="action.administrator.QuestionAction" method="exchangeQuestionOrder">
+            <result type="chain" name="success">
+                <param name="actionName">getQuestions</param>
+                <param name="topic">${topic}</param>
+                <param name="questionnaireId">${questionnaireId}</param>
+                <param name="pageNumber">${pageNumber}</param>
+            </result>
             <result name="error">test.jsp</result>
         </action>
 
