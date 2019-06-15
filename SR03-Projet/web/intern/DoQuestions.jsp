@@ -15,7 +15,10 @@
     <link rel="stylesheet" type="text/css" href="../css/myStyle3.css" />
     <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
     <script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-    <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
+    <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}
+    #showtime{margin:50px;margin-bottom: 20px;text-align: center;}
+    span{font-size: 60px;}</style>
+    <script src="../js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 <%String checked = "checked";%>
@@ -23,11 +26,13 @@
     <div class="content">
         <div class="tab-block information-tab">
 
-            <form action="internOperateAttempt.action">
+            <form action="internOperateAttempt.action" mothed = "get">
             <div class="personalnformation">
                 <div class="personalnformation-content">
-                    <div class="personalnformation-content-left">
-                        <img src="../picture/default_avatar.png"/>
+                    <div class="personalnformation-content-left" id="showtime">
+                        <span></span>
+                        <span>:</span>
+                        <span></span>
                     </div>
                 </div>
 
@@ -62,7 +67,8 @@
                 </div>
             </div>
             <div>
-
+                <input id="min" type="hidden" name="min">
+                <input id="sec" type="hidden" name="sec">
                 <!-- 这里有三个不同的submit提交标签,分别有不同的名字和值，对应不同的页面跳转-->
                 <s:if test="#session.currentNumber!=0">
             <div align="left">
@@ -85,6 +91,33 @@
         </div>
     </div>
 </div>
+<script>
+    var min = "<s:property value="min"/>";
+    var sec = "<s:property value="sec"/>";
+    (function(x,y){
+        var min=x;
+        var sec=y;
+        timer=setInterval(show,1000)
+        function show(){
+            sec++;
+            if(sec==60){
+                min++;sec=0;
+            }
+            var secStr=sec;
+            if(sec<10){
+                secStr="0"+sec;
+            }
+            var minStr=min;
+            if(min<10){
+                minStr="0"+min;
+            }
+            $('#showtime span:eq(0)').html(minStr);
+            $('#showtime span:eq(2)').html(secStr);
+            document.getElementById("min").value = minStr;
+            document.getElementById("sec").value = secStr;
+        }
+    })(min,sec);
+</script>
 </body>
 </html>
 
