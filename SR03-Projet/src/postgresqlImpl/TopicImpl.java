@@ -55,6 +55,9 @@ public class TopicImpl implements TopicDao {
         return topics;
     }
 
+
+
+
     public ArrayList<Topic> getTopicsByName(String topic ) throws DaoException {
 
 

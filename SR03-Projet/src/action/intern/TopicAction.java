@@ -17,15 +17,24 @@ public class TopicAction extends ActionSupport {
     private int topicNumber = 0;
     private int limit = GlobalVariable.NUMBER_PER_PAGE;
     private int pageNumber = 1;
+
+    private String topicNameSearched = "";
+
     public TopicAction() throws DaoException {
     }
 
 
 
     public String get() throws DaoException {
-        topicNumber = internTopicImpl.getTopicCount();
-        topics = internTopicImpl.getTopics((pageNumber-1)*limit, limit);
+        if (topicNameSearched.equals("")) {
+
+            topicNumber = internTopicImpl.getTopicCount();
+            topics = internTopicImpl.getTopics((pageNumber - 1) * limit, limit);
+        } else {
+            topics = internTopicImpl.getTopicsByName(topicNameSearched);
+        }
         return SUCCESS;
+
     }
 
 
@@ -68,6 +77,14 @@ public class TopicAction extends ActionSupport {
 
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public String getTopicNameSearched() {
+        return topicNameSearched;
+    }
+
+    public void setTopicNameSearched(String topicNameSearched) {
+        this.topicNameSearched = topicNameSearched;
     }
 }
 
