@@ -31,6 +31,21 @@
     <link rel="stylesheet" type="text/css" href="../css/myStyle.css" />
     <script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <style>body{background:url("../picture/backgroud_login.jpeg"); background-size:100% auto;}</style>
+    <style>
+        .bar6 button {
+            background: #c5464a;
+            border-radius: 0 5px 5px 0;
+            width: 80px;
+            height: 30px;
+            top: 0;
+            right: 0;
+            display: inline-block;
+        }
+        .bar6 button:before {
+            content: "Search";
+            font-size: 13px;
+            color: #F9F0DA;
+        }</style>
 </head>
 <body>
 <%String topic = request.getParameter("topic");
@@ -64,6 +79,28 @@
             <div class="tab-buttons ">
                 <h3 class="tab-button cur" data-tab="one">History Questionnaires List</h3>
             </div>
+
+
+
+
+
+            <br>
+            <div>
+                <div style="text-align:center;">
+                    <div class="search bar6">
+                        <form action="actionxxxx.action">
+                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "attempt.questionnaireName" placeholder="Search...">
+
+                            <button type="submit" value="Validation"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
 
             <div class="tabs">
                 <div class="tab-item active" id="tab-one">
