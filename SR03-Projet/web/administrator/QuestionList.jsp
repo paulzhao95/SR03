@@ -168,8 +168,9 @@
                 <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="pageNumber+1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                 </s:if>
                 <a href="<s:url action="getQuestions"><s:param name="pageNumber" value="%{questionNumber/5+1}"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Last Page</a>
-                </form>
             </div>
+
+
         </div>
     </div>
 </div>

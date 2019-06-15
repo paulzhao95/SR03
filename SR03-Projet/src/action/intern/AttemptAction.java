@@ -185,6 +185,14 @@ public class AttemptAction extends ActionSupport implements SessionAware {
         return topic;
     }
 
+    public void setAttemptNumber(int attemptNumber) {
+        this.attemptNumber = attemptNumber;
+    }
+
+    public int getAttemptNumber() {
+        return attemptNumber;
+    }
+
     public void setQuestion(Question question) {
         this.question = question;
     }
