@@ -63,7 +63,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
                 choices.add(new Choice(topic, questionnaireId, questionNumber, choiceId, choiceDescriptin, choiceStatus, choiceRight));
             }
 
-            question = new Question(topic, questionNumber, questionDescription, questionStatus, choices);
+            question = new Question(topic,questionnaireId, questionNumber, questionDescription, questionStatus, choices);
         } catch (SQLException e) {
             throw new DaoException("get  question in database failed :) " + e.getMessage());
         }
@@ -120,7 +120,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
 
                 if (question_id != preQuestionId){
                     if (0 <= preQuestionId){
-                        questions.add(new Question(topic, preQuestionId,questionDescription, questionStatus, new ArrayList<Choice>(choices)));
+                        questions.add(new Question(topic, questionnaireId, preQuestionId,questionDescription, questionStatus, new ArrayList<Choice>(choices)));
                         choices.clear();
                     }
                     index++;
@@ -138,7 +138,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
 
                 choices.add(new Choice(topic,questionnaireId,question_id, choice_id,choice_description,choice_status,isRight));
             }
-            questions.add(new Question(topic, preQuestionId, questionDescription,questionStatus,choices));
+            questions.add(new Question(topic, questionnaireId, preQuestionId, questionDescription,questionStatus,choices));
 
         } catch (SQLException e) {
             throw new DaoException("Get questions  tfrom database failed : "+e.getMessage());
@@ -229,6 +229,7 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
         }
     }
 
+    // TODO: 6/15/19 right choice does not show
     @Override
     public void updateQuestion(Question question) throws DaoException {
         Connection connection;
@@ -251,6 +252,32 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
             if(i == 0){
                 throw new DaoException("Can not change question description");
             }
+
+
+            preparedStatement = connection.prepareStatement("delete FROM choices where topic = ? and questionnaire_id = ? and question_id = ?");
+            preparedStatement.setString(1, question.getTopic());
+            preparedStatement.setInt(2, question.getQuestionnaireId());
+            preparedStatement.setInt(3, question.getQuestionId());
+
+            i = preparedStatement.executeUpdate();
+            connection.commit();
+            if(i == 0){
+                throw new DaoException("Can not change question description");
+            }
+
+            for (Choice choice : question.getChoices()) {
+                CallableStatement callableStatement = connection.prepareCall("call insert_choice(?,?,?,?,?,?)");
+                callableStatement.setString(1, question.getTopic());
+                callableStatement.setInt(2, question.getQuestionnaireId());
+                callableStatement.setInt(3, question.getQuestionId());
+                callableStatement.setString(4, choice.getDescription());
+                callableStatement.setBoolean(5, choice.getIsRight());
+                callableStatement.setBoolean(6,choice.getStatus());
+
+                callableStatement.executeUpdate();
+                connection.commit();
+            }
+
 
         } catch (SQLException e) {
             throw new DaoException("change question description in database failed :) " + e.getMessage());

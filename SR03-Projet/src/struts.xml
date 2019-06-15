@@ -126,7 +126,7 @@
 
 
         <action name="updateQuestion" class="action.administrator.QuestionAction" method="update">
-            <result type="chain" name="success">getQuestionnaire</result>
+            <result type="chain" name="success">getQuestions</result>
             <result name="error">test.jsp</result>
         </action>
 

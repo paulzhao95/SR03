@@ -4,6 +4,7 @@ import action.GlobalVariable;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DaoException;
 import dao.DaoFactory;
+import model.Choice;
 import model.Question;
 import org.apache.struts2.interceptor.SessionAware;
 import postgresqlImpl.administrator.QuestionImpl;
@@ -27,6 +28,9 @@ public class QuestionAction extends ActionSupport implements SessionAware {
 
     private Question question1 = new Question();
     private Question question2 = new Question();
+
+    private int choice1 = -1;
+    private int choice2 = -1;
 
     private Map<String, Object> session;
 
@@ -80,7 +84,18 @@ public class QuestionAction extends ActionSupport implements SessionAware {
         return SUCCESS;
     }
 
+    // TODO: 6/15/19 add question status change
     public String update() {
+        if (choice1 != -1 && choice2 != -1) {
+            Choice tmpChoice1 = question.getChoices().get(choice1);
+            Choice tmpChoice2 = question.getChoices().get(choice2);
+
+            question.getChoices().set(choice2, tmpChoice1);
+            question.getChoices().set(choice1, tmpChoice2);
+
+        }
+
+
         try {
             questionImpl.updateQuestion(question);
         } catch (DaoException e) {
@@ -208,4 +223,21 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     public void setQuestion2(Question question2) {
         this.question2 = question2;
     }
+
+    public int getChoice1() {
+        return choice1;
+    }
+
+    public void setChoice1(int choice1) {
+        this.choice1 = choice1;
+    }
+
+    public int getChoice2() {
+        return choice2;
+    }
+
+    public void setChoice2(int choice2) {
+        this.choice2 = choice2;
+    }
 }
+

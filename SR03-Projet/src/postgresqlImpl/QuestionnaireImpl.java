@@ -109,7 +109,7 @@ public class QuestionnaireImpl implements QuestionnaireDao {
                 questionnaireStatus = resultSet.getBoolean("questionnaire_status");
                 if (question_id != preQuestionId){
                     if (0 <= preQuestionId){
-                        questions.add(new Question(topic, preQuestionId,questionDescription, questionStatus, new ArrayList<Choice>(choices)));
+                        questions.add(new Question(topic,questionnaireId,  preQuestionId,questionDescription, questionStatus, new ArrayList<Choice>(choices)));
                         choices.clear();
                     }
                     index++;
@@ -127,7 +127,7 @@ public class QuestionnaireImpl implements QuestionnaireDao {
 
                 choices.add(new Choice(topic,questionnaireId,question_id, choice_id,choice_description,choice_status,isRight));
             }
-            questions.add(new Question(topic, preQuestionId, questionDescription,questionStatus,choices));
+            questions.add(new Question(topic, questionnaireId, preQuestionId, questionDescription,questionStatus,choices));
 
         } catch (SQLException e) {
             throw new DaoException("Get questions  tfrom database failed : "+e.getMessage());

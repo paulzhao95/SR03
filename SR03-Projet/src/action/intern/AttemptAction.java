@@ -110,7 +110,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
                 break;
             case "Finish":
                 long time = new Date().getTime();
-                int duration = (int) (time - attempt.getStartTime().getTime())/1000;
+                int duration = min * 60 + sec;
                 attempt.setDurationInSeconds(duration);
                 attempt.calculateScore();
 

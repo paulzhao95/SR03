@@ -103,9 +103,9 @@
                                 <div class="test_content_nr_main">
                                     <ul>
                                         Change the Order of choicces:
-                                        <input type="text" style="height:1.5em;width:5em;display:inline-block;" name="change1" />
+                                        <input type="text" style="height:1.5em;width:5em;display:inline-block;" name="choice1" />
                                         ~~~
-                                        <input type="text" style = "height:1.5em;width:5em;display:inline-block;" name="change2" />
+                                        <input type="text" style = "height:1.5em;width:5em;display:inline-block;" name="choice2" />
                                     </ul>
                                 </div>
                             </li>
