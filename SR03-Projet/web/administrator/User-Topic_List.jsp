@@ -67,7 +67,7 @@
                     </div>
             </div>
                 <div style="float: right;margin: 150px;">
-                    <a href="login.action" class="link_class">Log out</a>
+                    <a href="logout.action" class="link_class">Log out</a>
                     <br>
                     <a href="CreateTopic.jsp" class="link_class">Add new Topics</a>
                     <br>
@@ -95,8 +95,8 @@
                     <div>
                         <div style="text-align:center;">
                             <div class="search bar6">
-                                <form action="actionxxxx.action">
-                                    <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "topic.name" placeholder="Search...">
+                                <form action="getUsers.action">
+                                    <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "topicName" placeholder="Search...">
 
 
                                     <button type="submit" value="Validation"></button>

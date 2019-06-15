@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
-                    <a href="login.action" class="link_class">Log out</a>
+                    <a href="logout.action" class="link_class">Log out</a>
                     <br>
                     <a href="CreateTopic.jsp" class="link_class">Add new Topics</a>
                 </div>

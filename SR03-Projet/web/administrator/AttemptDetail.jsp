@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div style="float: right;margin: 100px;width: 700px">
-                    <p>Socre: <s:property value='attempt.fullMarks'/> </p>
+                    <p>Socre: <s:property value='attempt.score'/> </p>
 <br>
 
                     <p>Durée du passage: <s:property value='attempt.durationInSeconds'/> s</p>

@@ -126,8 +126,8 @@
                                     <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[1].isRight" type = "checkbox" value="true">
                                     <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[2].isRight" type = "checkbox" value="true">
                                     <input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[3].isRight" type = "checkbox" value="true">
-                                <input name = "question.questionnaireId" type="hidden" value = <s:property value="questionnaire.questionnaireId"/> >
-                                <input name = "question.topic" type="hidden" value =<s:property value="questionnaire.topic"/> >
+                                <input name = "question.questionnaireId" type="hidden" value = <s:property value="questionnaireId"/> >
+                                <input name = "question.topic" type="hidden" value =<s:property value="topic"/> >
                                 <input type="submit" value="Validation">
                         </ul>
                     </form>

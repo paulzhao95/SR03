@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div style="float: right;margin: 150px;">
-                    <a href="login.action" class="link_class">Log out</a>
+                    <a href="logout.action" class="link_class">Log out</a>
 
                     <br>
                     <a href="internGetTopics.action" class="link_class">Do Questionnaire</a>
