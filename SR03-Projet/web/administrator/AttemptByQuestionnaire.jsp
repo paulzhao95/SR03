@@ -91,9 +91,37 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
+
+
+
+            <div style="text-align:center">
+                <br>
+                <a href="<s:url action="getAttemptsByQuestionnaire"><s:param name="pageNumber" value="1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">First Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <s:if test="%{pageNumber != 1}">
+                    <a href="<s:url action="getAttemptsByQuestionnaire"><s:param name="pageNumber" value="pageNumber-1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Previous page</a>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                </s:if>
+                <s:bean name= "org.apache.struts2.util.Counter"  var= "counter">
+                    <s:param name="first"  value= "1"  />
+                    <s:param name="last"  value= "%{attemptNumber/5+1}"/>
+                    <s:iterator status="status">
+                        <a href="<s:url action="getAttemptsByQuestionnaire"><s:param name="pageNumber" value="%{#status.index+1}"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>"><s:property value="%{#status.index+1}"/></a>&nbsp;
+                    </s:iterator>
+                </s:bean>
+                &nbsp;&nbsp;&nbsp;&nbsp;|
+                <s:if test="%{pageNumber != attemptNumber/5+1}">
+                    <a href="<s:url action="getAttemptsByQuestionnaire"><s:param name="pageNumber" value="pageNumber+1"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                </s:if>
+                <a href="<s:url action="getAttemptsByQuestionnaire"><s:param name="pageNumber" value="%{attemptNumber/5+1}"></s:param><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param></s:url>">Last Page</a>
+            </div>
+
+
+
+
+
+
+
         </div>
     </div>
 </div>
