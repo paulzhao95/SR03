@@ -147,6 +147,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
         if (questionnaireNameSearched.equals("") | topicNameSearched.equals("")) {
             try {
+                attemptNumber = attemptImpl.getAttemptNumber(user.getEmail());
                 attempts = attemptImpl.getAttempts(user.getEmail(), (pageNumber - 1) * limit, limit);
             } catch (DaoException e) {
                 return ERROR;
@@ -326,4 +327,8 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     public String getQuestionnaireNameSearched() {
         return questionnaireNameSearched;
     }
+
+
+
+
 }
