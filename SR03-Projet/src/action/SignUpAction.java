@@ -37,6 +37,7 @@ public class SignUpAction extends ActionSupport {
 
         user.setPassword(randomPassword);
 
+        sendPassword(user);
 
         try {
             administratorUserImpl.addUser(user);
@@ -45,7 +46,6 @@ public class SignUpAction extends ActionSupport {
             return ERROR;
         }
 
-        sendPassword(user);
 
         return SUCCESS;
     }
