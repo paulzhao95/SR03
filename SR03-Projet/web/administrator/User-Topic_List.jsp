@@ -212,7 +212,7 @@
                     <div class="information-top-content-right">
                         <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
                         <a href="<s:url value="deleteUser.action" ><s:param name="user.email" value="email"></s:param></s:url>" class="information-top-content-p">Delete</a> |
-                        <a href="getAttemptsByUser.action?email=<s:property value='email'/>&pageNumber_Topice=<s:property value="1"/> " class="information-top-content-p">Check attempts</a>
+                        <a href="getAttemptsByUser.action?email=<s:property value="email"/>&pageNumber=<s:property value="1"/> " class="information-top-content-p">Check attempts</a>
 
                     </div>
                 </s:iterator>

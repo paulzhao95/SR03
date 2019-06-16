@@ -60,7 +60,7 @@ public class UserImpl implements UserDao {
         return users;
     }
 
-    public ArrayList<User> getUsersByName(String email) throws DaoException {
+    public ArrayList<User> getUsersByName(String userName) throws DaoException {
         Connection connection ;
         PreparedStatement preparedStatement;
         ArrayList<User> users = new ArrayList<>();
@@ -72,7 +72,7 @@ public class UserImpl implements UserDao {
             preparedStatement = connection.prepareStatement("SELECT * from users where name = ? order by user_id  "
             );
 
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, userName);
 
             ;
             ResultSet result = preparedStatement.executeQuery();
@@ -80,13 +80,13 @@ public class UserImpl implements UserDao {
 
                 String password = result.getString("password");
                 Boolean status = (result.getString("status").equals("Active"));
-                String name = result.getString("name");
+                String email = result.getString("email");
                 String tel = result.getString("tel");
                 String company = result.getString("company");
                 Timestamp creatingTime = result.getTimestamp("creating_time");
                 User.UserType type_user = result.getString("type_user").equals("Administrator") ? User.UserType.Administrator : User.UserType.Intern;
 
-                users.add(new User(email, password, name, status, company, tel, creatingTime, type_user));
+                users.add(new User(email, password, userName, status, company, tel, creatingTime, type_user));
 
             }
         } catch (SQLException e) {

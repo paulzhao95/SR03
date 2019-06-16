@@ -35,21 +35,31 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
 
     private HttpServletRequest httpServletRequest;
 
+    private String questionnaireNameSearched = "";
+
     public QuestionnaireAction() throws DaoException {
     }
 
     public String get() {
+        if (questionnaireNameSearched.equals("")) {
+            if (topic.equals("")) {
+                topic = (String) session.get("topic");
+            }
+            try {
+                questionnaireNumber = questionnaireImpl.getQuestionnaireCount(topic);
+                questionnaires = questionnaireImpl.getQuestionnaires(topic, (pageNumber - 1) * limit, limit);
+            } catch (DaoException e) {
+                return ERROR;
+            }
+            session.put("topic", topic);
+        } else {
+            try {
+                questionnaires = questionnaireImpl.getQuestionnairesByName(topic, questionnaireNameSearched);
+            } catch (DaoException e) {
+                return ERROR;
+            }
+        }
 
-        if (topic.equals("")) {
-            topic = (String) session.get("topic");
-        }
-        try {
-            questionnaireNumber = questionnaireImpl.getQuestionnaireCount(topic);
-            questionnaires = questionnaireImpl.getQuestionnaires(topic, (pageNumber-1)*limit, limit);
-        } catch (DaoException e) {
-            return ERROR;
-        }
-        session.put("topic", topic);
         return SUCCESS;
     }
 

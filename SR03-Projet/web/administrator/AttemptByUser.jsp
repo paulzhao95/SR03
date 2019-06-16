@@ -88,10 +88,10 @@
             <div>
                 <div style="text-align:center;">
                     <div class="search bar6">
-                        <form action="actionxxxx.action">
-                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "attempt.questionnaireName" placeholder="Search...">
+                        <form action="getAttemptsByUser.action">
+                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "questionnaireNameSearched" placeholder="Search...">
 
-                            <input type="hidden" name="attempt.userEmail" value="<s:property value="email"/>">
+                            <input type="hidden" name="email" value="<s:property value="email"/>">
 
                             <button type="submit" value="Validation"></button>
                         </form>

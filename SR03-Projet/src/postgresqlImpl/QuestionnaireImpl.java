@@ -68,6 +68,50 @@ public class QuestionnaireImpl implements QuestionnaireDao {
         return questionnaires;
     }
 
+    public ArrayList<Questionnaire> getQuestionnairesByName(String topic, String questionnaireName) throws DaoException {
+        Connection connection ;
+        PreparedStatement preparedStatement ;
+        ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
+
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement(
+                    "select  Q.Number as Number," +
+                            "Q.Name as Name , " +
+                            "Q.Status as Status ," +
+                            "Q.Topic as Topic " +
+                            "from " +
+                            "Questionnaires Q " +
+                            "where Q.Topic = ? " +
+                            "and Q.status = TRUE " +
+                            "and Q.name = ?"
+            );
+            preparedStatement.setString(1,topic);
+            preparedStatement.setString(2, questionnaireName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                String topicName = resultSet.getString("topic");
+                int questionnaireId = resultSet.getInt("number");
+                Boolean status = resultSet.getString("status").equals("Active");
+
+                questionnaires.add(new Questionnaire(questionnaireId,topicName,questionnaireName,status));
+            }
+
+            resultSet.close();
+        } catch (SQLException e) {
+            throw new DaoException("Get topics from database failed : "+e.getMessage());
+        }
+        try {
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw  new DaoException("Database connection failed");
+        }
+        return questionnaires;
+    }
+
     @Override
     public Questionnaire getQuestionnaire(String topic, int questionnaireId) throws DaoException {
         Connection connection ;

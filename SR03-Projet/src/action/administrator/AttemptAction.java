@@ -2,7 +2,6 @@ package action.administrator;
 
 import action.GlobalVariable;
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.javaws.exceptions.ErrorCodeResponseException;
 import dao.DaoException;
 import dao.DaoFactory;
 import model.Attempt;
@@ -12,9 +11,7 @@ import postgresqlImpl.QuestionnaireImpl;
 import postgresqlImpl.administrator.AttemptImpl;
 import postgresqlImpl.QuestionImpl;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class AttemptAction extends ActionSupport {
 
@@ -39,27 +36,47 @@ public class AttemptAction extends ActionSupport {
 
     private ArrayList<Question> questions = new ArrayList<Question>();
 
+    private String userEmailSearched = "";
+    private String questionnaireNameSearched = "";
+
 
 
     public AttemptAction() throws DaoException {
     }
 
     public String getAttemptsByUser() {
-        try {
-            attempts = attemptImpl.getAttempts(email, (pageNumber - 1) * limit, limit);
-        } catch (DaoException e) {
-            return ERROR;
+        if (questionnaireNameSearched.equals("")) {
+            try {
+                attempts = attemptImpl.getAttempts(email, (pageNumber - 1) * limit, limit);
+            } catch (DaoException e) {
+                return ERROR;
+            }
+        } else {
+            try {
+                attempts = attemptImpl.getAttemptsByUserByQuestionnaire(email, topic, questionnaireNameSearched);
+            } catch (DaoException e) {
+                return ERROR;
+            }
         }
 
         return SUCCESS;
     }
 
     public String getAttemptsByQuestionnaire() {
-        try {
-            attempts = attemptImpl.getAttemptsByQuestionnaire(topic, questionnaireId, (pageNumber - 1) * limit, limit);
-        } catch (DaoException e) {
-            return ERROR;
+        if (userEmailSearched.equals("")) {
+            try {
+                attempts = attemptImpl.getAttemptsByQuestionnaire(topic, questionnaireId, (pageNumber - 1) * limit, limit);
+            } catch (DaoException e) {
+                return ERROR;
+            }
+        } else {
+            try {
+                attempts = attemptImpl.getAttemptsByQuestionnaireByUser(topic, questionnaireId, userEmailSearched);
+            } catch (DaoException e) {
+                return ERROR;
+            }
         }
+
 
         return SUCCESS;
 
@@ -166,5 +183,21 @@ public class AttemptAction extends ActionSupport {
 
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
+    }
+
+    public String getQuestionnaireNameSearched() {
+        return questionnaireNameSearched;
+    }
+
+    public void setQuestionnaireNameSearched(String questionnaireNameSearched) {
+        this.questionnaireNameSearched = questionnaireNameSearched;
+    }
+
+    public String getUserEmailSearched() {
+        return userEmailSearched;
+    }
+
+    public void setUserEmailSearched(String userEmailSearched) {
+        this.userEmailSearched = userEmailSearched;
     }
 }
