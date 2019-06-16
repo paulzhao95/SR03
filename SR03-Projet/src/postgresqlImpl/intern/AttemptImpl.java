@@ -77,4 +77,6 @@ public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDa
         }
         return attemptId;
     }
+
+
 }

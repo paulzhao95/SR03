@@ -46,6 +46,9 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
     private int questionNumber = 0;
 
+    private String questionnaireNameSearched = "";
+    private String topicNameSearched = "";
+
     public AttemptAction() throws DaoException {
     }
 
@@ -142,14 +145,20 @@ public class AttemptAction extends ActionSupport implements SessionAware {
         User user = (User) session.get("user");
 
 
-        try {
-            attemptNumber = attemptImpl.getAttemptNumber(user.getEmail());
-
-            attempts = attemptImpl.getAttempts(user.getEmail(), (pageNumber - 1) * limit, limit);
-
-        } catch (DaoException e) {
-            return ERROR;
+        if (questionnaireNameSearched.equals("") | topicNameSearched.equals("")) {
+            try {
+                attempts = attemptImpl.getAttempts(user.getEmail(), (pageNumber - 1) * limit, limit);
+            } catch (DaoException e) {
+                return ERROR;
+            }
+        } else {
+            try {
+                attempts = attemptImpl.getAttemptsByUserByQuestionnaire(user.getEmail(), topicNameSearched, questionnaireNameSearched);
+            } catch (DaoException e) {
+                return ERROR;
+            }
         }
+
         return SUCCESS;
     }
 
@@ -300,5 +309,21 @@ public class AttemptAction extends ActionSupport implements SessionAware {
 
     public void setQuestionNumber(int questionNumber) {
         this.questionNumber = questionNumber;
+    }
+
+    public void setTopicNameSearched(String topicNameSearched) {
+        this.topicNameSearched = topicNameSearched;
+    }
+
+    public String getTopicNameSearched() {
+        return topicNameSearched;
+    }
+
+    public void setQuestionnaireNameSearched(String questionnaireNameSearched) {
+        this.questionnaireNameSearched = questionnaireNameSearched;
+    }
+
+    public String getQuestionnaireNameSearched() {
+        return questionnaireNameSearched;
     }
 }
