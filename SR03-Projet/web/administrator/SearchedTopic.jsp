@@ -47,7 +47,7 @@
                     <div class="personalnformation-content-right">
                         <%--                        <p class="personalnformation-content-right-p">Nom：<%=user.getName()%> </p>--%>
                         <p class="personalnformation-content-right-p">Nom：<s:property value="user.name"/> </p>
-                        <p class="personalnformation-content-right-p">Email：<%=user.getEmail()%> </p>
+                        <p class="personalnformation-content-right-p"><%=user.getEmail()%> </p>
                         <p class="personalnformation-content-right-p">Create Time：2019</p>
                     </div>
                 </div>
