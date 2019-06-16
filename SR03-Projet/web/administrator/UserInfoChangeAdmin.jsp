@@ -8,10 +8,10 @@
         String basePath = request.getScheme() + "://"
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
-        User user = new User();
+        User currentUser = new User();
         if (session.getAttribute("user") != null){
-            user = (User)session.getAttribute("user");
-            if(!user.getType().toString().equals("Administrator")) {
+            currentUser  = (User)session.getAttribute("user");
+            if(!currentUser.getType().toString().equals("Administrator")) {
     %>
     <script type="text/javascript" language="javascript">
         alert("Warning: You are not allowed to visit this page !!!!!!!");

@@ -36,7 +36,7 @@ public class UserImpl implements UserDao {
             while (result.next()) {
 
                 String password = result.getString("password");
-                Boolean status = (result.getString("status").equals("Active"));
+                Boolean status = (result.getBoolean("status"));
                 String name = result.getString("name");
                 String tel = result.getString("tel");
                 String company = result.getString("company");
@@ -136,6 +136,7 @@ public class UserImpl implements UserDao {
                 user.setEmail(login);
                 user.setCreatingTime(creatingTime);
                 user.setType(User.UserType.valueOf(type_user));
+
             } else {
                 throw new DaoException("Intern not found.");
             }

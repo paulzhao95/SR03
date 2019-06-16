@@ -46,7 +46,7 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
                 String topicName = resultSet.getString("topic");
                 int questionnaireId = resultSet.getInt("number");
                 String questionnaireName = resultSet.getString("name");
-                Boolean status = resultSet.getString("status").equals("Active");
+                Boolean status = resultSet.getBoolean("status");
 
                 questionnaires.add(new Questionnaire(questionnaireId,topicName,questionnaireName,status));
             }
