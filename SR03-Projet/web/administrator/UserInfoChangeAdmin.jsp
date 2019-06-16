@@ -116,10 +116,10 @@
                 <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
                     <input type="radio" id="Amdin" name="user.type" value="Administrator"
-                            <%if (user.getType().toString().equals("Administrator")){%> <%=check%> <%}%>/>
+                            <s:if test="%{user.type.equals(Administrator)}"> <%=check%> </s:if> />
                     <label for="Amdin">Amdin</label>
                     <input type="radio" id="Intern" name="user.type" value="Intern"
-                            <%if (user.getType().toString().equals("Intern")){%> <%=check%> <%}%>/>
+                    <s:if test="%{user.type.equals(Intern)}"> <%=check%> </s:if> />
                     <label for="Intern">Intern</label>
                 </div>
             </div>
@@ -127,10 +127,10 @@
                 <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
                     <input type="radio" id="Status_true" name="user.status" value="true"
-                            <%if (user.getStatus()){%> <%=check%> <%}%>/>
+                            <s:if test="%{user.status.equals(true)}"> <%=check%> </s:if> />
                     <label for="Status_true">Active</label>
                     <input type="radio" id="Status_false" name="user.status" value="false"
-                            <%if (!user.getStatus()){%> <%=check%> <%}%>/>
+                    <s:if test="%{!user.status.equals(true)}"> <%=check%> </s:if> />
                     <label for="Status_false">Inactive</label>
                 </div>
             </div>
