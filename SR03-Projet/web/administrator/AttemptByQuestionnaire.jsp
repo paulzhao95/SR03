@@ -86,11 +86,11 @@
             <div>
                 <div style="text-align:center;">
                     <div class="search bar6">
-                        <form action="actionxxxx.action">
-                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "attempt.userEmail" placeholder="Search...">
+                        <form action="getAttemptsByQuestionnaire.action">
+                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "userEmailSearched" placeholder="Search...">
 
-                            <input type="hidden" name="attempt.topicName" value="<s:property value="topic"/>">
-                            <input type="hidden" name="attempt.questionnaireId" value="<s:property value="questionnaireId"/>">
+                            <input type="hidden" name="topic" value="<s:property value="topic"/>">
+                            <input type="hidden" name="questionnaireId" value="<s:property value="questionnaireId"/>">
 
                             <button type="submit" value="Validation"></button>
                         </form>

@@ -38,6 +38,7 @@ public class AttemptAction extends ActionSupport {
 
     private String userEmailSearched = "";
     private String questionnaireNameSearched = "";
+    private String topicNameSearched = "";
 
 
 
@@ -45,7 +46,7 @@ public class AttemptAction extends ActionSupport {
     }
 
     public String getAttemptsByUser() {
-        if (questionnaireNameSearched.equals("")) {
+        if (questionnaireNameSearched.equals("") | topicNameSearched.equals("")) {
             try {
                 attempts = attemptImpl.getAttempts(email, (pageNumber - 1) * limit, limit);
             } catch (DaoException e) {
@@ -53,7 +54,7 @@ public class AttemptAction extends ActionSupport {
             }
         } else {
             try {
-                attempts = attemptImpl.getAttemptsByUserByQuestionnaire(email, topic, questionnaireNameSearched);
+                attempts = attemptImpl.getAttemptsByUserByQuestionnaire(email, topicNameSearched, questionnaireNameSearched);
             } catch (DaoException e) {
                 return ERROR;
             }
@@ -199,5 +200,13 @@ public class AttemptAction extends ActionSupport {
 
     public void setUserEmailSearched(String userEmailSearched) {
         this.userEmailSearched = userEmailSearched;
+    }
+
+    public String getTopicNameSearched() {
+        return topicNameSearched;
+    }
+
+    public void setTopicNameSearched(String topicNameSearched) {
+        this.topicNameSearched = topicNameSearched;
     }
 }
