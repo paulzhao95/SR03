@@ -2,6 +2,13 @@
 <!doctype html>
 <html lang="zh">
 <head>
+	<%
+	String path = request.getRequestURI();
+	String basePath = request.getScheme() + "://"
+			+request.getServerName() + ":" + request.getServerPort()
+			+ path;
+	%>
+	<base href="<%=basePath%>">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 	
