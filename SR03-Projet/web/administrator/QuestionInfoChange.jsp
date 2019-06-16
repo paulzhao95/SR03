@@ -91,7 +91,7 @@
                 </div>
 
 
-                <div class="test_content_nr">
+                <div style="width:100%; border-top:3px solid #efefef;height:100%">
                     <form action = "updateQuestion.action">
                         <ul>
                             <li id="qu_0_0">
@@ -129,6 +129,18 @@
                                     <s:iterator value="question.choices" status="id" var="var">
                                         <s:property value='#id.index'/><input style = "font-size:1em;height:1.5em;width:12%;margin-right: 10px" name = "question.choices[<s:property value="#id.index"/>].isRight" type = "checkbox" <s:if test="%{#var.isRight.equals(true)}"> <%=checked%> </s:if> value="true">
                                     </s:iterator>
+
+
+                            <div class = "password">
+                                Active
+                                <input type="radio" style="width:140px;height:25px" name="question.status" value="true"
+                                <s:if test="%{question.status.equals(true)}"> <%=checked%> </s:if>/>
+                                Inactive
+                                <input type="radio" style="width:140px;height:25px" name="question.status" value="false"
+                                        <s:if test="%{!question.status.equals(true)}"> <%=checked%> </s:if>/>
+                            </div>
+
+
                                 <input type="submit" value = "Validation">
                         </ul>
                     </form>
