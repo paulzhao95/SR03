@@ -33,7 +33,7 @@
 <body>
 <%
     String name = request.getParameter("name");
-    Boolean status = request.getParameter("status").equals("true");
+    String status = request.getParameter("status");
     String check = "checked";
     String topic = request.getParameter("topic");
     int questionnaireId = Integer.parseInt(request.getParameter("questionnaireId"));%>
@@ -53,10 +53,10 @@
         <div class = "password">
             Active
             <input type="radio" style="width:140px;height:25px" name="questionnaire.status" value="true"
-                    <%if (status){%> <%=check%> <%}%>/>
+                    <%if (status.equals("true")){%> <%=check%> <%}%>/>
             Inactive
             <input type="radio" style="width:140px;height:25px" name="questionnaire.status" value="false"
-                    <%if (!status){%> <%=check%> <%}%>/>
+                    <%if (!status.equals("true")){%> <%=check%> <%}%>/>
         </div>
         <input class="btn" type="submit" name="Validation" value="Validation" />
     </form>

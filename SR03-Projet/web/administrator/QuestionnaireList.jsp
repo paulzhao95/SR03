@@ -119,7 +119,7 @@
                                 <p class="information-top-head-p">Questionnaires</p>
                             </div>
                             <div class="information-top-head-right">
-                                <p class="information-top-head-p">Delete</p>
+                                <p class="information-top-head-p">Delete | Update</p>
                             </div>
 
 
