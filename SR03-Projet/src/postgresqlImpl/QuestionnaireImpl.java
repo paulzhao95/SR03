@@ -139,7 +139,8 @@ public class QuestionnaireImpl implements QuestionnaireDao {
                             "C.Type as choice_type   " +
                             "from questionnaires qs join questions q on qs.topic = q.topic and qs.number = q.questionnaire_id join choices c on q.topic = c.topic and q.questionnaire_id = c.questionnaire_id and q.number = c.question_id " +
                             "where qs.topic = ? and qs.number = ? " +
-                            "and qs.status = true and q.status = true "
+                            "and qs.status = true and q.status = true " +
+                            "order by q.number, c.number "
             );
 
             preparedStatement.setString(1,topic);

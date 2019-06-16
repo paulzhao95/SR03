@@ -20,7 +20,7 @@ public class AttemptAction extends ActionSupport implements SessionAware {
     private Questionnaire questionnaire;
     private Question question;
     private String topic;
-    private int choiceId;
+    private int choiceId = -1;
     private int questionnaireId;
     private Attempt attempt = new Attempt();
     private ArrayList<Attempt> attempts = new ArrayList<Attempt>();
@@ -103,7 +103,10 @@ public class AttemptAction extends ActionSupport implements SessionAware {
         int currentQuestionNumber = (int) session.get("currentNumber");
         questionnaire = (Questionnaire) session.get("questionnaire");
         attempt = (Attempt) session.get("attempt");
-        attempt.setChoice(currentQuestionNumber, questionnaire.getQuestions().get(currentQuestionNumber).getChoices().get(choiceId));
+        if (choiceId != -1) {
+            attempt.setChoice(currentQuestionNumber, questionnaire.getQuestions().get(currentQuestionNumber).getChoices().get(choiceId));
+
+        }
 
         switch (changePage) {
             case "Next":

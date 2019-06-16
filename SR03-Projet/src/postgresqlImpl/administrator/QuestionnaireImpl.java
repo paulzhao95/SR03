@@ -133,7 +133,8 @@ public class QuestionnaireImpl extends postgresqlImpl.QuestionnaireImpl implemen
                             "C.Status as choice_status, " +
                             "C.Type as choice_type   " +
                             "from questionnaires qs join questions q on qs.topic = q.topic and qs.number = q.questionnaire_id join choices c on q.topic = c.topic and q.questionnaire_id = c.questionnaire_id and q.number = c.question_id " +
-                            "where qs.topic = ? and qs.number = ? "
+                            "where qs.topic = ? and qs.number = ? " +
+                            "order by Q.number, c.number"
             );
 
             preparedStatement.setString(1,topic);
