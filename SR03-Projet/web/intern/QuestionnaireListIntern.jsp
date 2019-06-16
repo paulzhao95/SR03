@@ -90,6 +90,7 @@
                     <div class="search bar6">
                         <form action="actionxxxx.action">
                             <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "attempt.questionnaireName" placeholder="Search...">
+                            <input type="hidden" name="attempt.topicName" value="<s:property value="topic"/>">
 
                             <button type="submit" value="Validation"></button>
                         </form>
