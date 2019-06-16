@@ -238,14 +238,16 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("update questions " +
-                    "set description = ? " +
+                    "set description = ? ," +
+                    "status = ? " +
                     "where topic = ? " +
                     "and questionnaire_id = ? " +
                     "and number = ? " );
             preparedStatement.setString(1,question.getDescription());
-            preparedStatement.setString(2,question.getTopic());
-            preparedStatement.setInt(3,question.getQuestionnaireId());
-            preparedStatement.setInt(4, question.getQuestionId());
+            preparedStatement.setBoolean(2,question.getStatus());
+            preparedStatement.setString(3,question.getTopic());
+            preparedStatement.setInt(4,question.getQuestionnaireId());
+            preparedStatement.setInt(5, question.getQuestionId());
 
             int i = preparedStatement.executeUpdate();
             connection.commit();

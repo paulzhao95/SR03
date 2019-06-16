@@ -38,7 +38,8 @@ public class AttemptImpl implements AttemptDao {
                     "from " +
                     "(select * from attempts where user_email = ? offset ? limit ? ) as e join questionnaires q " +
                     "on e.topic = q.topic " +
-                    "and e.questionnaire_id = q.number ");
+                    "and e.questionnaire_id = q.number " +
+                    "where q.status = TRUE");
 
             preparedStatement.setString(1, email);
             preparedStatement.setInt(2, offset);
