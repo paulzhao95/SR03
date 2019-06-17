@@ -85,7 +85,7 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     }
 
     public String update() {
-        if (choice1 != -1 && choice2 != -1) {
+        if (choice1 != -1 && choice2 != -1 && choice1 < question.getChoices().size() && choice2 < question.getChoices().size()) {
             Choice tmpChoice1 = question.getChoices().get(choice1);
             Choice tmpChoice2 = question.getChoices().get(choice2);
 
@@ -104,6 +104,19 @@ public class QuestionAction extends ActionSupport implements SessionAware {
     }
 
     public String exchangeQuestionOrder() {
+        int question1Number = question1.getQuestionId();
+        int question2Number = question2.getQuestionId();
+        try {
+            questionNumber = questionImpl.getQuestionNumber(question1.getTopic(), question1.getQuestionnaireId());
+        } catch (DaoException e) {
+            return ERROR;
+        }
+
+
+        if (question1Number< 0 | question2Number< 0 |
+                question1Number== question2Number | question1Number >= questionNumber | question2Number >= questionNumber) {
+            return SUCCESS;
+        }
         try {
             questionImpl.exchangeQuestions(question1, question2);
         } catch (DaoException e) {
