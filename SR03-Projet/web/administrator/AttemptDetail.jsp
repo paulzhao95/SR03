@@ -107,16 +107,16 @@
                 </s:if>
                 <s:bean name= "org.apache.struts2.util.Counter"  var= "counter">
                     <s:param name="first"  value= "1"  />
-                    <s:param name="last"  value= "%{attemptNumber/5+1}"/>
+                    <s:param name="last"  value= "%{questionNumber/5+1}"/>
                     <s:iterator status="status">
                         <a href="<s:url action="getAttempt"><s:param name="pageNumber" value="%{#status.index+1}"></s:param><s:param name="attemptId" value="attemptId"></s:param></s:url>"><s:property value="%{#status.index+1}"/></a>&nbsp;
                     </s:iterator>
                 </s:bean>
                 &nbsp;&nbsp;&nbsp;&nbsp;|
-                <s:if test="%{pageNumber != attemptNumber/5+1}">
+                <s:if test="%{pageNumber != questionNumber/5+1}">
                     <a href="<s:url action="getAttempt"><s:param name="pageNumber" value="pageNumber+1"></s:param><s:param name="attemptId" value="attemptId"></s:param></s:url>">Next Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                 </s:if>
-                <a href="<s:url action="getAttempt"><s:param name="pageNumber" value="%{attemptNumber/5+1}"></s:param><s:param name="attemptId" value="attemptId"></s:param></s:url>">Last Page</a>
+                <a href="<s:url action="getAttempt"><s:param name="pageNumber" value="%{questionNumber/5+1}"></s:param><s:param name="attemptId" value="attemptId"></s:param></s:url>">Last Page</a>
             </div>
 
 

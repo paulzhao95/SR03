@@ -40,7 +40,7 @@ public class AttemptAction extends ActionSupport {
     private String questionnaireNameSearched = "";
     private String topicNameSearched = "";
 
-    private int questioNumber = 0;
+    private int questionNumber = 0;
 
 
 
@@ -91,7 +91,8 @@ public class AttemptAction extends ActionSupport {
             attempt = attemptImpl.getAttempt(attemptId,(pageNumber - 1) * limit, limit);
             String topicName = attempt.getTopicName();
             int questionnaireId = attempt.getQuestionnaireId();
-//            questionNumber
+
+            questionNumber = questionImpl.getQuestionNumber(topicName, questionnaireId);
             questions = questionImpl.getQuestions(topicName, questionnaireId, (pageNumber - 1) * limit, limit);
 //            questionnaire = questionnaireImpl.getQuestionnaire(topicName, questionnaireId);
 
@@ -209,5 +210,13 @@ public class AttemptAction extends ActionSupport {
 
     public void setTopicNameSearched(String topicNameSearched) {
         this.topicNameSearched = topicNameSearched;
+    }
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
     }
 }
