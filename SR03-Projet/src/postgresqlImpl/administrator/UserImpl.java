@@ -121,11 +121,11 @@ public class UserImpl implements UserDao {
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 String password = result.getString("password");
-                Boolean status = (result.getString("Status").equals("Active"));
-                String name = result.getString("Name");
-                String tel = result.getString("Tel");
-                String company = result.getString("Company");
-                Timestamp creatingTime = result.getTimestamp("Creating_time");
+                Boolean status = (result.getBoolean("status"));
+                String name = result.getString("name");
+                String tel = result.getString("tel");
+                String company = result.getString("company");
+                Timestamp creatingTime = result.getTimestamp("creating_time");
                 String type_user = result.getString("type_user");
 
                 user.setStatus(status);

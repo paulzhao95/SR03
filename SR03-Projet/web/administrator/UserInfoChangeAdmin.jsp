@@ -9,6 +9,9 @@
                 +request.getServerName() + ":" + request.getServerPort()
                 + path;
         User currentUser = new User();
+
+
+
         if (session.getAttribute("user") != null){
             currentUser  = (User)session.getAttribute("user");
             if(!currentUser.getType().toString().equals("Administrator")) {
@@ -63,9 +66,34 @@
 <%--    String creating_time = "2019";--%>
 <%--    Boolean status = request.getParameter("status").equals("true");--%>
 <%--    String type = request.getParameter("type");--%>
-<% String check = "checked";%>
+
+
+
+
 <%
-//    User user = (User) request.getAttribute("user");
+    User user = (User) request.getAttribute("user");
+
+    Boolean type = user.getType().toString().equals("Administrator");
+    Boolean status = user.getStatus();
+
+    String adminChecked = "";
+    String internChecked = "";
+    String activeChecked = "";
+    String inactiveChecked = "";
+
+    if (type) {
+        adminChecked = "checked";
+    } else {
+        internChecked = "checked";
+    }
+
+    if (status) {
+        activeChecked = "checked";
+    } else {
+        inactiveChecked = "checked";
+    }
+
+
 %>
 
 <div id="login-page" class="row">
@@ -116,10 +144,10 @@
                 <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
                     <input type="radio" id="Amdin" name="user.type" value="Administrator"
-                            <s:if test="%{user.type.equals(Administrator)}"> <%=check%> </s:if> />
+                             <%=adminChecked%> />
                     <label for="Amdin">Amdin</label>
                     <input type="radio" id="Intern" name="user.type" value="Intern"
-                    <s:if test="%{user.type.equals(Intern)}"> <%=check%> </s:if> />
+                     <%=internChecked%>  />
                     <label for="Intern">Intern</label>
                 </div>
             </div>
@@ -127,10 +155,10 @@
                 <div class="input-field col s12">
                     <i class="mdi-social-person-outline prefix"></i>
                     <input type="radio" id="Status_true" name="user.status" value="true"
-                            <s:if test="%{user.status.equals(true)}"> <%=check%> </s:if> />
+                            <%=activeChecked%>  />
                     <label for="Status_true">Active</label>
                     <input type="radio" id="Status_false" name="user.status" value="false"
-                    <s:if test="%{!user.status.equals(true)}"> <%=check%> </s:if> />
+                             <%=inactiveChecked%> />
                     <label for="Status_false">Inactive</label>
                 </div>
             </div>
