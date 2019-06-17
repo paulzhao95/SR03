@@ -76,16 +76,18 @@
 					  <label for="company"></label>
 				  </div>
 			  </div>
-			  <div class="row margin">
-				  <div class="input-field col s12">
-					  <i class="mdi-social-person-outline prefix"></i>
-					  <input type="radio" id="admin" name="user.type" value="Administrator"
-							 checked>
-					  <label for="admin">Admin</label>
-					  <input type="radio" id="Intern" name="user.type" value="Intern">
-					  <label for="Intern">Intern</label>
-				  </div>
-			  </div>
+			  <input type="hidden" id="admin" name="user.type" value="Intern">
+			  <%--							 checked>--%>
+<%--			  <div class="row margin">--%>
+<%--				  <div class="input-field col s12">--%>
+<%--					  <i class="mdi-social-person-outline prefix"></i>--%>
+<%--					  <input type="radio" id="admin" name="user.type" value="Administrator"--%>
+<%--							 checked>--%>
+<%--					  <label for="admin">Admin</label>--%>
+<%--					  <input type="radio" id="Intern" name="user.type" value="Intern">--%>
+<%--					  <label for="Intern">Intern</label>--%>
+<%--				  </div>--%>
+<%--			  </div>--%>
 	        <div class="row">
 	          <div class="input-field col s12">
 				<input type="submit" value = "S'inscrire" class = "btn waves-effect waves-light col s12">

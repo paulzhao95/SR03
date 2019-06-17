@@ -92,8 +92,8 @@
             <div>
                 <div style="text-align:center;">
                     <div class="search bar6">
-                        <form action="actionxxxx.action">
-                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "questionnaire.name" placeholder="Search...">
+                        <form action="getQuestionnaires.action">
+                            <input type="text" style="height: 40px;width: 400px;display: inline-block;" name = "questionnaireNameSearched" placeholder="Search...">
 
                             <input type="hidden" name="questionnaire.topic" value="<s:property value="topic"/>">
 

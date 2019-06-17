@@ -40,6 +40,8 @@ public class AttemptAction extends ActionSupport {
     private String questionnaireNameSearched = "";
     private String topicNameSearched = "";
 
+    private int questioNumber = 0;
+
 
 
     public AttemptAction() throws DaoException {
@@ -89,7 +91,7 @@ public class AttemptAction extends ActionSupport {
             attempt = attemptImpl.getAttempt(attemptId,(pageNumber - 1) * limit, limit);
             String topicName = attempt.getTopicName();
             int questionnaireId = attempt.getQuestionnaireId();
-
+//            questionNumber
             questions = questionImpl.getQuestions(topicName, questionnaireId, (pageNumber - 1) * limit, limit);
 //            questionnaire = questionnaireImpl.getQuestionnaire(topicName, questionnaireId);
 

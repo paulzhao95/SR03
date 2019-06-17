@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="information-top-content-right">
                                     <!-- 这里填分数-->
-                                    <p><s:property value='#id.fullMarks'/></p>
+                                    <p><s:property value='#id.score'/></p>
                                 </div>
                             </s:iterator>
 
