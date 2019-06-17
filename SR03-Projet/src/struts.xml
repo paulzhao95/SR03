@@ -10,7 +10,7 @@
     <package name="default" extends="struts-default" namespace="/">
 
         <global-results>
-            <result name="dataBaseConnectionFailed">test.jsp</result>
+            <result name="dataBaseConnectionFailed">/index.jsp</result>
         </global-results>
         <global-exception-mappings>
             <exception-mapping exception="dao.DaoException" result="dataBaseConnectionFailed" />
@@ -39,27 +39,27 @@
                 <param name="actionName">getTopics</param>
                 <param name="pageNumberTopic">${pageNumberTopic}</param>
             </result>
-            <result name="error">/test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="getUser" class="action.administrator.UserAction" method="getUserInfo">
             <result name="success">/administrator/UserInfoChangeAdmin.jsp</result>
-            <result name="error">/test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="updateUser" class="action.administrator.UserAction" method="update">
             <result type="redirectAction" name="success">getUsers</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="deleteUser" class="action.administrator.UserAction" method="delete">
             <result type="redirectAction" name="success">getUsers</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="addUser" class="action.administrator.UserAction" method="add">
             <result type="redirectAction" name="success">getUsers</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <!--        administrator topic action-->
@@ -70,71 +70,71 @@
 
         <action name="addTopic" class="action.administrator.TopicAction" method="add">
             <result type="redirectAction" name="success">getUsers</result>
-            <result name="error">/test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="updateTopic" class="action.administrator.TopicAction" method="update">
             <result type="redirectAction" name="success">getUsers</result>
-            <result name="error">/test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="deleteTopic" class="action.administrator.TopicAction" method="delete">
             <result type="redirectAction" name="success">getUsers</result>
-            <result name="error">/test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <!--        administrator questionnaire action -->
         <action name="getQuestionnaires" class="action.administrator.QuestionnaireAction" method="get">
             <result name="success">/administrator/QuestionnaireList.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="addQuestionnaire" class="action.administrator.QuestionnaireAction" method="add">
             <result type="redirectAction" name="success">getQuestionnaires</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="deleteQuestionnaire" class="action.administrator.QuestionnaireAction" method="delete">
             <result type="chain" name="success">getQuestionnaires</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="updateQuestionnaire" class="action.administrator.QuestionnaireAction" method="update">
             <result type="redirectAction" name="success">getQuestionnaires</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="getQuestionnaire" class="action.administrator.QuestionnaireAction" method="getQuestionnaireInfo">
             <result name="success">/administrator/QuestionList.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <!--        administrator question action -->
         <action name="getQuestions" class="action.administrator.QuestionAction" method="get">
             <result name="success">/administrator/QuestionList.jsp</result>
 
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="addQuestion" class="action.administrator.QuestionAction" method="add">
             <result type="chain" name="success">getQuestions</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="deleteQuestion" class="action.administrator.QuestionAction" method="delete">
             <result type="chain" name="success">getQuestions</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="getQuestion" class="action.administrator.QuestionAction" method="getQuestionInfo">
             <result name="success">/administrator/QuestionInfoChange.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
 
         <action name="updateQuestion" class="action.administrator.QuestionAction" method="update">
             <result type="chain" name="success">getQuestions</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="changeQuestionOrder" class="action.administrator.QuestionAction" method="exchangeQuestionOrder">
@@ -144,74 +144,70 @@
                 <param name="questionnaireId">${questionnaireId}</param>
                 <param name="pageNumber">${pageNumber}</param>
             </result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
 <!--        administrator attempt action -->
         <action name="getAttemptsByUser" class="action.administrator.AttemptAction" method="getAttemptsByUser">
             <result name="success">/administrator/AttemptByUser.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="getAttemptsByQuestionnaire" class="action.administrator.AttemptAction" method="getAttemptsByQuestionnaire">
             <result name="success">/administrator/AttemptByQuestionnaire.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
 
         <action name="getAttempt" class="action.administrator.AttemptAction" method="getAttemptInfo">
             <result name="success">/administrator/AttemptDetail.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <!--        intern topic action-->
         <action name="internGetHistoryAttempt" class="action.intern.AttemptAction" method="get">
             <result name="success">/intern/QuestionnaireListIntern.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="internGetTopics" class="action.intern.TopicAction" method="get">
             <result name="success">/intern/ChooseTopic.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="internGetQuestionnaires" class="action.intern.QuestionnaireAction" method="get">
             <result name="success">/intern/ChooseQuestionnaire.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <!--        intern attempt action -->
 
         <action name="internStartAttempt" class="action.intern.AttemptAction" method="start">
             <result name="success">/intern/DoQuestions.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="internPrepareAttempt" class="action.intern.AttemptAction" method="prepare">
             <result name="success">/intern/StartDoQuestion.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="internOperateAttempt" class="action.intern.AttemptAction" method="next">
             <result name="success">/intern/DoQuestions.jsp</result>
             <result name="finish">/intern/ResultInterface.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="internGetAttempts" class="action.intern.AttemptAction" method="get">
             <result name="success">/intern/QuestionnaireListIntern.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
         <action name="internGetAttempt" class="action.intern.AttemptAction" method="getAttemptInfo">
             <result name="success">/intern/QuestionListIntern.jsp</result>
-            <result name="error">test.jsp</result>
+            <result name="error">/index.jsp</result>
         </action>
 
-        <action name="internGetQuestionnaire" class="action.intern.QuestionnaireAction" method="getQuestionnaireInfo">
-            <result type="chain" name="success">/intern/XXXXXX</result>
-            <result name="error">test.jsp</result>
-        </action>
 
     </package>
 
