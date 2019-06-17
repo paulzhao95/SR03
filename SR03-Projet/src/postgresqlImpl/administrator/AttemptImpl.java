@@ -76,7 +76,6 @@ public class AttemptImpl extends postgresqlImpl.AttemptImpl implements AttemptDa
         return attempts;
     }
 
-    // TODO: 6/16/19 attempt should show topic and search topic as well
     public ArrayList<Attempt> getAttemptsByUserByQuestionnaire(String email, String topic, String questionnaireName) throws DaoException {
 
         /**

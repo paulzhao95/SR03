@@ -206,30 +206,59 @@ public class QuestionImpl extends postgresqlImpl.QuestionImpl implements Questio
     public void deleteQuestion(Question question) throws DaoException {
         Connection connection;
         CallableStatement callableStatement;
+        PreparedStatement preparedStatement;
+
 
         try {
             connection = daoFactory.getConnection();
-            callableStatement = connection.prepareCall("call delete_question(?,?,?)" );
-            callableStatement.setString(1,question.getTopic());
-            callableStatement.setInt(2,question.getQuestionnaireId());
-            callableStatement.setInt(3,question.getQuestionId());
 
-            callableStatement.executeUpdate();
+            preparedStatement = connection.prepareStatement("delete from questions where topic = ? and questionnaire_id = ? and number = ?");
+            preparedStatement.setString(1,question.getTopic());
+            preparedStatement.setInt(2, question.getQuestionnaireId());
+            preparedStatement.setInt(3,question.getQuestionId());
+            preparedStatement.executeUpdate();
             connection.commit();
+            preparedStatement.close();
+
+            preparedStatement = connection.prepareStatement("select max(number) as max_number from questions where topic = ? and questionnaire_id = ?");
+            preparedStatement.setString(1, question.getTopic());
+            preparedStatement.setInt(2, question.getQuestionnaireId());
+
+            int max_numer = 0;
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                max_numer = resultSet.getInt("max_number");
+            }
+
+            for (int i = question.getQuestionId()+1; i<= max_numer; i++) {
+                preparedStatement = connection.prepareStatement("update questions set number = ? where number = ? ");
+                preparedStatement.setInt(1, i-1);
+                preparedStatement.setInt(2, i);
+                preparedStatement.execute();
+                connection.commit();
+            }
+
+//
+//            callableStatement = connection.prepareCall("call delete_question(?,?,?)" );
+//            callableStatement.setString(1,question.getTopic());
+//            callableStatement.setInt(2,question.getQuestionnaireId());
+//            callableStatement.setInt(3,question.getQuestionId());
+//
+//            callableStatement.executeUpdate();
+//            connection.commit();
 
         } catch (SQLException e) {
             throw new DaoException("Delete question in database failed :) " + e.getMessage());
         }
 
         try {
-            callableStatement.close();
+            preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DaoException("Database connection failed");
         }
     }
 
-    // TODO: 6/15/19 right choice does not show
     @Override
     public void updateQuestion(Question question) throws DaoException {
         Connection connection;

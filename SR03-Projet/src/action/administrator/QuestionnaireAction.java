@@ -93,7 +93,6 @@ public class QuestionnaireAction extends ActionSupport implements SessionAware, 
         return SUCCESS;
     }
 
-    // TODO: 6/15/19 update status failed
     public String update() {
         try {
             questionnaireImpl.updateQuestionnaire(questionnaire);

@@ -84,7 +84,6 @@ public class QuestionAction extends ActionSupport implements SessionAware {
         return SUCCESS;
     }
 
-    // TODO: 6/15/19 add question status change
     public String update() {
         if (choice1 != -1 && choice2 != -1) {
             Choice tmpChoice1 = question.getChoices().get(choice1);

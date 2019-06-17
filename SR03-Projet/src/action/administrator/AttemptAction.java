@@ -84,7 +84,6 @@ public class AttemptAction extends ActionSupport {
 
     }
 
-    // TODO: 6/15/19 check whether work or not
     public String getAttemptInfo() {
         try {
             attempt = attemptImpl.getAttempt(attemptId,(pageNumber - 1) * limit, limit);
