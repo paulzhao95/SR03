@@ -60,7 +60,6 @@
                 </div>
                 <div style="float: right;margin: 150px;">
                     <br>
-                    <!-- 这里我的想法是做一个连接，可以查看这次答题的每一道题的对错情况。可以直接调用QuestionListInter.jsp这个jsp作为显示 -->
                     <a href="internGetAttempt.action?attemptId=<%=attemptId%>&topic=<%=topicID%>&questionnaireId=<%=questionnaireId%>" class="link_class">Details</a>
                 </div>
             </div>

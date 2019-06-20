@@ -50,7 +50,6 @@
 <body>
 <%String topic = request.getParameter("topic");
     System.out.println(topic);
-    String score = "100分";
 %>
 <div>
     <div class="content">
@@ -119,11 +118,9 @@
 
                             <s:iterator value="attempts">
                                 <div class="information-top-content-left">
-                                    <!-- 这里写action，还没填，要改-->
                                     <a href="http://localhost:8080/SR03_Projet_war_exploded/default/internGetAttempt?attemptId=<s:property value="id"/>" class="information-top-content-p"><s:property value='questionnaireName'/> | Strat time: <s:property value='startTime'/></a>
                                 </div>
                                 <div class="information-top-content-right">
-                                    <!-- 这里填分数-->
                                     <p><s:property value='score'/></p>
                                 </div>
                             </s:iterator>

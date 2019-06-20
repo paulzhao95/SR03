@@ -82,10 +82,6 @@
 </head>
 <body>
 
-<%--<%String questionnaireId = request.getParameter("questionnaireId");--%>
-<%--    String topic = request.getParameter("topic");--%>
-
-<%--%>--%>
 
 <div>
     <div class="content">
