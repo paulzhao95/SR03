@@ -59,12 +59,12 @@ $(document).ready(function() {
                 Investigation_Question_opnum = Investigation_Question_opnum - 1;
             }
             else
-                alert("选择题不能少于2个选项");
+                alert("");
         },
 
         CreateSingleOption: function () {
             var index = $(this).parents("tr").index();
-            $(this).parents("tr").after('<tr><td><input class="inputtext choicetxt" type="text" value="选项' + Investigation_Question_opnum + '"></td><td><span title="在此选项下面插入一个新的选项" class="choiceimg design-icon design-add" style="cursor: pointer;"></span></td><td><span title="删除当前选项（最少保留2个选项）" class="choiceimg design-icon design-minus" style="cursor: pointer;"></span></td></tr>');
+            $(this).parents("tr").after('<tr><td><input class="inputtext choicetxt" type="text" value="choose' + Investigation_Question_opnum + '"></td><td><span title="insert" class="choiceimg design-icon design-add" style="cursor: pointer;"></span></td><td><span title="delete" class="choiceimg design-icon design-minus" style="cursor: pointer;"></span></td></tr>');
             $(this).parents("tr").next().children("td").eq(0).children(".inputtext").change(Investigation.ChangeValue);
             $(this).parents("tr").next().children("td").eq(1).children().click(Investigation.CreateSingleOption);
             $(this).parents("tr").next().children("td").eq(2).children().click(Investigation.DeleteOption);
@@ -84,13 +84,13 @@ $(document).ready(function() {
         },
         CreateMultiOption: function () {
             var index = $(this).parents("tr").index();
-            $(this).parents("tr").after('<tr><td><input class="inputtext choicetxt" type="text" value="选项' + Investigation_Question_opnum + '"></td><td><span title="在此选项下面插入一个新的选项" class="choiceimg design-icon design-add" style="cursor: pointer;"></span></td><td><span title="删除当前选项（最少保留2个选项）" class="choiceimg design-icon design-minus" style="cursor: pointer;"></span></td></tr>');
+            $(this).parents("tr").after('<tr><td><input class="inputtext choicetxt" type="text" value="choose' + Investigation_Question_opnum + '"></td><td><span title="insert" class="choiceimg design-icon design-add" style="cursor: pointer;"></span></td><td><span title="delete" class="choiceimg design-icon design-minus" style="cursor: pointer;"></span></td></tr>');
             $(this).parents("tr").next().children("td").eq(0).children(".inputtext").change(Investigation.ChangeValue);
             $(this).parents("tr").next().children("td").eq(1).children().click(Investigation.CreateMultiOption);
             $(this).parents("tr").next().children("td").eq(2).children().click(Investigation.DeleteOption);
 
             var optionobj = $(this).parents(".div_question").children(".div_preview").children(".div_table_question").children("ul").children("li").eq(index);
-            optionobj.after('<li style="width:15%"><input type="checkbox"/><span>选项' + Investigation_Question_opnum + '</span></li>');
+            optionobj.after('<li style="width:15%"><input type="checkbox"/><span>choose' + Investigation_Question_opnum + '</span></li>');
             Investigation_Question_opnum = Investigation_Question_opnum + 1;
         },
 

@@ -123,11 +123,9 @@
 
                             <s:iterator value="attempts" var = "id">
                                 <div class="information-top-content-left">
-                                    <!-- 这里写action，还没填，要改-->
                                     <a href="getAttempt.action?attemptId=<s:property value="id"/>" class="information-top-content-p"><s:property value='#id.userEmail'/> | Strat time: <s:property value='#id.startTime'/></a>
                                 </div>
                                 <div class="information-top-content-right">
-                                    <!-- 这里填分数-->
                                     <p><s:property value='#id.fullMarks'/></p>
                                 </div>
                             </s:iterator>

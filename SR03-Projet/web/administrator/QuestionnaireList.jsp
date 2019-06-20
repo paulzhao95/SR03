@@ -126,7 +126,6 @@
 
                             <s:iterator value="questionnaires">
                             <div class="information-top-content-left">
-                                <!-- 这里写action，还没填，要改-->
 <%--                                <a href="http://localhost:8080/SR03_Projet_war_exploded/default/getQuestions?questionnaireId=<s:property value='questionnaireId'/>&status=<s:property value='status'/>&topic=<s:property value='topic'/>&name=<s:property value='name'/>" class="information-top-content-p"><s:property value='name'/></a>--%>
                                 <a href="<s:url action="getQuestions"><s:param name="topic" value="topic"></s:param><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="pageNumber" value="1"></s:param> </s:url>" class="information-top-content-p"><s:property value='name'/></a> |
                                 <a href="getAttemptsByQuestionnaire.action?topic=<s:property value='topic'/>&questionnaireId=<s:property value="questionnaireId"/>&pageNumber=<s:property value="1"/> " class="information-top-content-p">Check attempts</a>
@@ -134,7 +133,6 @@
 
                             </div>
                             <div class="information-top-content-right">
-                                <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
                                 <a href="http://localhost:8080/SR03_Projet_war_exploded/default/deleteQuestionnaire?questionnaire.questionnaireId=<s:property value='questionnaireId'/>&questionnaire.topic=<s:property value='topic'/>" class="information-top-content-p">Delete</a> |
                                 <a href="<s:url value=" QuestionnaireInfoChangeAdmin.jsp"><s:param name="questionnaireId" value="questionnaireId"></s:param><s:param name="status" value="status"></s:param><s:param name="name" value="name"></s:param><s:param name="topic" value="topic"></s:param></s:url>">Update</a>
                             </div>

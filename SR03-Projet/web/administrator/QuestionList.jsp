@@ -113,7 +113,6 @@
                                 </form>
                             </div>
                             <div style="border: 1px solid #d8d8d8;width:200px; height: 200px;">
-                                <!-- 这里用get方法把删除的id加入url里传输，deleteTopic.servlet?id=i -->
                                 <a href="http://localhost:8080/SR03_Projet_war_exploded/default/deleteQuestion.action?question.topic=<s:property value="topic"/>&question.questionnaireId=<s:property value="questionnaireId"/>&question.questionId=<s:property value="questionId"/>" class="information-top-content-p">Delete</a>
                             </div>
                             </s:iterator>
